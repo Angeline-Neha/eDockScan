@@ -1,0 +1,11 @@
+{
+  "schema_version": "2.0",
+  "extraction_timestamp": "2025-11-01T19:32:51.010534",
+  "total_images": 10,
+  "successful_scans": 10,
+  "failed_scans": 0,
+  "success_rate": 1.0,
+  "timeout_per_image": 300,
+  "max_workers": 3,
+  "failed_images": []
+}

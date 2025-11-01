@@ -1,0 +1,28 @@
+{
+  "schema_version": "2.0",
+  "extraction_timestamp": "2025-11-01T19:25:01.584808",
+  "total_images": 10,
+  "successful_scans": 6,
+  "failed_scans": 4,
+  "success_rate": 0.6,
+  "timeout_per_image": 300,
+  "max_workers": 3,
+  "failed_images": [
+    [
+      "mongodb:6.0",
+      "safe"
+    ],
+    [
+      "mongodb:7.0",
+      "safe"
+    ],
+    [
+      "php:5.4",
+      "risky"
+    ],
+    [
+      "php:5.3",
+      "risky"
+    ]
+  ]
+}
