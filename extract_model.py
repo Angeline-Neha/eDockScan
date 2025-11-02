@@ -1194,8 +1194,8 @@ Examples:
     elif args.command == 'test':
         logger.info("Running test with 10 images...")
         df = extract_dataset_parallel(
-        SAFE_IMAGES[40:45],    # Next 5 safe images
-        RISKY_IMAGES[40:45], 
+        SAFE_IMAGES[60:75],    # Next 5 safe images
+        RISKY_IMAGES[60:75], 
         output_csv=args.output,
         max_workers=3
     )

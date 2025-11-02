@@ -1,0 +1,24 @@
+{
+  "schema_version": "2.0",
+  "extraction_timestamp": "2025-11-02T15:03:58.937668",
+  "total_images": 26,
+  "successful_scans": 23,
+  "failed_scans": 3,
+  "success_rate": 0.8846153846153846,
+  "timeout_per_image": 300,
+  "max_workers": 3,
+  "failed_images": [
+    [
+      "openjdk:11-alpine",
+      "safe"
+    ],
+    [
+      "perl:5.16",
+      "risky"
+    ],
+    [
+      "perl:5.18",
+      "risky"
+    ]
+  ]
+}

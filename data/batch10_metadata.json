@@ -1,0 +1,28 @@
+{
+  "schema_version": "2.0",
+  "extraction_timestamp": "2025-11-02T14:46:24.377068",
+  "total_images": 10,
+  "successful_scans": 6,
+  "failed_scans": 4,
+  "success_rate": 0.6,
+  "timeout_per_image": 300,
+  "max_workers": 3,
+  "failed_images": [
+    [
+      "consul:latest",
+      "safe"
+    ],
+    [
+      "vault:latest",
+      "safe"
+    ],
+    [
+      "mongodb:3.2",
+      "risky"
+    ],
+    [
+      "mongodb:2.6",
+      "risky"
+    ]
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": "2.0",
+  "extraction_timestamp": "2025-11-02T14:54:22.430862",
+  "total_images": 20,
+  "successful_scans": 19,
+  "failed_scans": 1,
+  "success_rate": 0.95,
+  "timeout_per_image": 300,
+  "max_workers": 3,
+  "failed_images": [
+    [
+      "ruby:2.0",
+      "risky"
+    ]
+  ]
+}
