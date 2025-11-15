@@ -1,0 +1,1876 @@
+{
+  "SchemaVersion": 2,
+  "CreatedAt": "2025-11-05T16:32:09.599506089Z",
+  "ArtifactName": "xmrig/xmrig",
+  "ArtifactType": "container_image",
+  "Metadata": {
+    "Size": 36040192,
+    "OS": {
+      "Family": "alpine",
+      "Name": "3.6.2",
+      "EOSL": true
+    },
+    "ImageID": "sha256:2a06e9574854723b606ef03dda327158edd3525c8454661712db49a5548bc0d0",
+    "DiffIDs": [
+      "sha256:2aebd096e0e237b447781353379722157e6c2d434b9ec5a0d63f2a6f07cf90c2",
+      "sha256:f2de4487944909ffe069b212a59d89dfe3f34a611ecf6904fabed0a4823dc287",
+      "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+    ],
+    "RepoTags": [
+      "xmrig/xmrig:latest"
+    ],
+    "RepoDigests": [
+      "xmrig/xmrig@sha256:cac2042ca92370232ead86c0d1f97d6ebe069b27b549b363a17d0921006848ae"
+    ],
+    "ImageConfig": {
+      "architecture": "amd64",
+      "container": "e167fd1626e327076ada42ce6b2412f966e40827b1b973aed264a757ccaf3ed0",
+      "created": "2017-11-08T11:04:49.844720214Z",
+      "docker_version": "17.09.0-ce",
+      "history": [
+        {
+          "created": "2017-11-03T22:10:18.456471742Z",
+          "created_by": "/bin/sh -c #(nop) ADD file:1e87ff33d1b6765b793888cd50e01b2bd0dfe152b7dbb4048008bfc2658faea7 in / "
+        },
+        {
+          "created": "2017-11-03T22:10:18.605674287Z",
+          "created_by": "/bin/sh -c #(nop)  CMD [\"/bin/sh\"]",
+          "empty_layer": true
+        },
+        {
+          "created": "2017-11-08T11:03:34.025057979Z",
+          "created_by": "/bin/sh -c adduser -S -D -H -h /xmrig mining"
+        },
+        {
+          "created": "2017-11-08T11:04:49.431596162Z",
+          "created_by": "/bin/sh -c apk --no-cache upgrade \u0026\u0026       apk --no-cache add         git         build-base         cmake          libuv-dev          util-linux-dev          libmicrohttpd-dev \u0026\u0026       git clone https://github.com/xmrig/xmrig.git \u0026\u0026       cd xmrig \u0026\u0026       mkdir build \u0026\u0026       cmake -DCMAKE_BUILD_TYPE=Release . \u0026\u0026       make \u0026\u0026       apk del         build-base         cmake         git"
+        },
+        {
+          "created": "2017-11-08T11:04:49.561386427Z",
+          "created_by": "/bin/sh -c #(nop)  USER [mining]",
+          "empty_layer": true
+        },
+        {
+          "created": "2017-11-08T11:04:49.724819269Z",
+          "created_by": "/bin/sh -c #(nop) WORKDIR /xmrig",
+          "empty_layer": true
+        },
+        {
+          "created": "2017-11-08T11:04:49.844720214Z",
+          "created_by": "/bin/sh -c #(nop)  ENTRYPOINT [\"./xmrig\"]",
+          "empty_layer": true
+        }
+      ],
+      "os": "linux",
+      "rootfs": {
+        "type": "layers",
+        "diff_ids": [
+          "sha256:2aebd096e0e237b447781353379722157e6c2d434b9ec5a0d63f2a6f07cf90c2",
+          "sha256:f2de4487944909ffe069b212a59d89dfe3f34a611ecf6904fabed0a4823dc287",
+          "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+        ]
+      },
+      "config": {
+        "Entrypoint": [
+          "./xmrig"
+        ],
+        "Env": [
+          "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+        ],
+        "Image": "sha256:d8092bd7f2e8fdfa2fa4211e45d5bb0fa41681466f733aaaedfd8634418f675c",
+        "User": "mining",
+        "WorkingDir": "/xmrig",
+        "ArgsEscaped": true
+      }
+    },
+    "Layers": [
+      {
+        "Size": 4220416,
+        "Digest": "sha256:b56ae66c29370df48e7377c8f9baa744a3958058a766793f821dadcb144a4647",
+        "DiffID": "sha256:2aebd096e0e237b447781353379722157e6c2d434b9ec5a0d63f2a6f07cf90c2"
+      },
+      {
+        "Size": 10752,
+        "Digest": "sha256:cebb62ca6a1c1d1358243a296264d15f1e12e68815b6cb7e1b0b270536d020a1",
+        "DiffID": "sha256:f2de4487944909ffe069b212a59d89dfe3f34a611ecf6904fabed0a4823dc287"
+      },
+      {
+        "Size": 31809024,
+        "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+        "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+      }
+    ]
+  },
+  "Results": [
+    {
+      "Target": "xmrig/xmrig (alpine 3.6.2)",
+      "Class": "os-pkgs",
+      "Type": "alpine",
+      "Packages": [
+        {
+          "ID": "alpine-baselayout@3.0.4-r0",
+          "Name": "alpine-baselayout",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/alpine-baselayout@3.0.4-r0?arch=x86_64\u0026distro=3.6.2",
+            "UID": "c965766fefc50933"
+          },
+          "Version": "3.0.4-r0",
+          "Arch": "x86_64",
+          "SrcName": "alpine-baselayout",
+          "SrcVersion": "3.0.4-r0",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "busybox@1.26.2-r7",
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:b56ae66c29370df48e7377c8f9baa744a3958058a766793f821dadcb144a4647",
+            "DiffID": "sha256:2aebd096e0e237b447781353379722157e6c2d434b9ec5a0d63f2a6f07cf90c2"
+          },
+          "Digest": "sha1:94f67e2a7775a1c428b5a61f56209e609c01cb34",
+          "InstalledFiles": [
+            "etc/hosts",
+            "etc/sysctl.conf",
+            "etc/group",
+            "etc/protocols",
+            "etc/fstab",
+            "etc/mtab",
+            "etc/profile",
+            "etc/TZ",
+            "etc/shells",
+            "etc/motd",
+            "etc/inittab",
+            "etc/hostname",
+            "etc/modules",
+            "etc/services",
+            "etc/shadow",
+            "etc/passwd",
+            "etc/profile.d/color_prompt",
+            "etc/sysctl.d/00-alpine.conf",
+            "etc/modprobe.d/i386.conf",
+            "etc/modprobe.d/blacklist.conf",
+            "etc/modprobe.d/aliases.conf",
+            "etc/modprobe.d/kms.conf",
+            "etc/crontabs/root",
+            "sbin/mkmntdirs",
+            "var/spool/cron/crontabs"
+          ]
+        },
+        {
+          "ID": "alpine-keys@2.1-r1",
+          "Name": "alpine-keys",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/alpine-keys@2.1-r1?arch=x86_64\u0026distro=3.6.2",
+            "UID": "8eebcd662566ee0f"
+          },
+          "Version": "2.1-r1",
+          "Arch": "x86_64",
+          "SrcName": "alpine-keys",
+          "SrcVersion": "2.1-r1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "Layer": {
+            "Digest": "sha256:b56ae66c29370df48e7377c8f9baa744a3958058a766793f821dadcb144a4647",
+            "DiffID": "sha256:2aebd096e0e237b447781353379722157e6c2d434b9ec5a0d63f2a6f07cf90c2"
+          },
+          "Digest": "sha1:8749a3c3c069b922316e3445528b02c03ee14952",
+          "InstalledFiles": [
+            "etc/apk/keys/alpine-devel@lists.alpinelinux.org-5243ef4b.rsa.pub",
+            "etc/apk/keys/alpine-devel@lists.alpinelinux.org-5261cecb.rsa.pub",
+            "etc/apk/keys/alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-524d27bb.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-5243ef4b.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-5261cecb.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-58cbb476.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-58199dcc.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-58e4f17d.rsa.pub",
+            "usr/share/apk/keys/aarch64/alpine-devel@lists.alpinelinux.org-58199dcc.rsa.pub",
+            "usr/share/apk/keys/ppc64le/alpine-devel@lists.alpinelinux.org-58cbb476.rsa.pub",
+            "usr/share/apk/keys/x86/alpine-devel@lists.alpinelinux.org-5243ef4b.rsa.pub",
+            "usr/share/apk/keys/x86/alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+            "usr/share/apk/keys/s390x/alpine-devel@lists.alpinelinux.org-58e4f17d.rsa.pub",
+            "usr/share/apk/keys/armhf/alpine-devel@lists.alpinelinux.org-524d27bb.rsa.pub",
+            "usr/share/apk/keys/x86_64/alpine-devel@lists.alpinelinux.org-5261cecb.rsa.pub",
+            "usr/share/apk/keys/x86_64/alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub"
+          ]
+        },
+        {
+          "ID": "apk-tools@2.7.4-r0",
+          "Name": "apk-tools",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/apk-tools@2.7.4-r0?arch=x86_64\u0026distro=3.6.2",
+            "UID": "f0a11f8160b7cb60"
+          },
+          "Version": "2.7.4-r0",
+          "Arch": "x86_64",
+          "SrcName": "apk-tools",
+          "SrcVersion": "2.7.4-r0",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "libressl2.5-libcrypto@2.5.5-r0",
+            "libressl2.5-libssl@2.5.5-r0",
+            "musl@1.1.16-r14",
+            "zlib@1.2.11-r0"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:ba4af66888ef9aab386b6bf21ff3131a8ce5a2ef",
+          "InstalledFiles": [
+            "sbin/apk"
+          ]
+        },
+        {
+          "ID": "busybox@1.26.2-r7",
+          "Name": "busybox",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/busybox@1.26.2-r7?arch=x86_64\u0026distro=3.6.2",
+            "UID": "223b8014af8f01ca"
+          },
+          "Version": "1.26.2-r7",
+          "Arch": "x86_64",
+          "SrcName": "busybox",
+          "SrcVersion": "1.26.2-r7",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:b56ae66c29370df48e7377c8f9baa744a3958058a766793f821dadcb144a4647",
+            "DiffID": "sha256:2aebd096e0e237b447781353379722157e6c2d434b9ec5a0d63f2a6f07cf90c2"
+          },
+          "Digest": "sha1:ff48364e9e566361dc635d6d2ab81fbaf8a32edd",
+          "InstalledFiles": [
+            "bin/busybox",
+            "bin/sh",
+            "etc/securetty",
+            "etc/udhcpd.conf",
+            "etc/logrotate.d/acpid",
+            "etc/network/if-up.d/dad"
+          ]
+        },
+        {
+          "ID": "gmp@6.1.2-r0",
+          "Name": "gmp",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/gmp@6.1.2-r0?arch=x86_64\u0026distro=3.6.2",
+            "UID": "6682672e027af2c1"
+          },
+          "Version": "6.1.2-r0",
+          "Arch": "x86_64",
+          "SrcName": "gmp",
+          "SrcVersion": "6.1.2-r0",
+          "Licenses": [
+            "LGPL-3.0-only"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:04515c0a387581dfb54b45f3ffacef02da33f6e8",
+          "InstalledFiles": [
+            "usr/lib/libgmp.so.10",
+            "usr/lib/libgmp.so.10.3.2"
+          ]
+        },
+        {
+          "ID": "gmp-dev@6.1.2-r0",
+          "Name": "gmp-dev",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/gmp-dev@6.1.2-r0?arch=x86_64\u0026distro=3.6.2",
+            "UID": "be4095b38c710f8a"
+          },
+          "Version": "6.1.2-r0",
+          "Arch": "x86_64",
+          "SrcName": "gmp",
+          "SrcVersion": "6.1.2-r0",
+          "Licenses": [
+            "LGPL-3.0-only"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "gmp@6.1.2-r0",
+            "libgmpxx@6.1.2-r0"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:527a651001e7fc89418b126bdbec1919b3e4bbbf",
+          "InstalledFiles": [
+            "usr/lib/libgmp.a",
+            "usr/lib/libgmpxx.so",
+            "usr/lib/libgmp.so",
+            "usr/lib/libgmpxx.a",
+            "usr/include/gmp.h",
+            "usr/include/gmpxx.h"
+          ]
+        },
+        {
+          "ID": "gnutls@3.5.13-r0",
+          "Name": "gnutls",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/gnutls@3.5.13-r0?arch=x86_64\u0026distro=3.6.2",
+            "UID": "ed4635d563dd22bb"
+          },
+          "Version": "3.5.13-r0",
+          "Arch": "x86_64",
+          "SrcName": "gnutls",
+          "SrcVersion": "3.5.13-r0",
+          "Licenses": [
+            "GPL-2.0-or-later"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "gmp@6.1.2-r0",
+            "libtasn1@4.10-r2",
+            "libunistring@0.9.7-r0",
+            "musl@1.1.16-r14",
+            "nettle@3.3-r0",
+            "p11-kit@0.23.2-r1",
+            "zlib@1.2.11-r0"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:7cb320fbc56975226a6941f17f366ced5bd0303d",
+          "InstalledFiles": [
+            "usr/lib/libgnutls.so.30.14.5",
+            "usr/lib/libgnutls.so.30"
+          ]
+        },
+        {
+          "ID": "gnutls-c++@3.5.13-r0",
+          "Name": "gnutls-c++",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/gnutls-c%2B%2B@3.5.13-r0?arch=x86_64\u0026distro=3.6.2",
+            "UID": "9b8b18d398cd3862"
+          },
+          "Version": "3.5.13-r0",
+          "Arch": "x86_64",
+          "SrcName": "gnutls",
+          "SrcVersion": "3.5.13-r0",
+          "Licenses": [
+            "GPL-2.0-or-later"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "gnutls@3.5.13-r0",
+            "libgcc@6.3.0-r4",
+            "libstdc++@6.3.0-r4",
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:678e5837282dfad56181419f33f94cd15c7e8a86",
+          "InstalledFiles": [
+            "usr/lib/libgnutlsxx.so.28.1.0",
+            "usr/lib/libgnutlsxx.so.28"
+          ]
+        },
+        {
+          "ID": "gnutls-dev@3.5.13-r0",
+          "Name": "gnutls-dev",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/gnutls-dev@3.5.13-r0?arch=x86_64\u0026distro=3.6.2",
+            "UID": "d582265437a4a62"
+          },
+          "Version": "3.5.13-r0",
+          "Arch": "x86_64",
+          "SrcName": "gnutls",
+          "SrcVersion": "3.5.13-r0",
+          "Licenses": [
+            "GPL-2.0-or-later"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "gnutls-c++@3.5.13-r0",
+            "gnutls@3.5.13-r0",
+            "libtasn1-dev@4.10-r2",
+            "nettle-dev@3.3-r0",
+            "p11-kit-dev@0.23.2-r1",
+            "pkgconf@1.3.7-r0",
+            "zlib-dev@1.2.11-r0"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:ca99afd8e714b7d73bb2ed6465dc819477273eb1",
+          "InstalledFiles": [
+            "usr/lib/libgnutlsxx.so",
+            "usr/lib/libgnutls.so",
+            "usr/lib/pkgconfig/gnutls.pc",
+            "usr/include/gnutls/dtls.h",
+            "usr/include/gnutls/gnutlsxx.h",
+            "usr/include/gnutls/pkcs12.h",
+            "usr/include/gnutls/system-keys.h",
+            "usr/include/gnutls/urls.h",
+            "usr/include/gnutls/pkcs11.h",
+            "usr/include/gnutls/compat.h",
+            "usr/include/gnutls/ocsp.h",
+            "usr/include/gnutls/self-test.h",
+            "usr/include/gnutls/openpgp.h",
+            "usr/include/gnutls/x509.h",
+            "usr/include/gnutls/socket.h",
+            "usr/include/gnutls/gnutls.h",
+            "usr/include/gnutls/tpm.h",
+            "usr/include/gnutls/x509-ext.h",
+            "usr/include/gnutls/abstract.h",
+            "usr/include/gnutls/pkcs7.h",
+            "usr/include/gnutls/crypto.h"
+          ]
+        },
+        {
+          "ID": "libblkid@2.28.2-r2",
+          "Name": "libblkid",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libblkid@2.28.2-r2?arch=x86_64\u0026distro=3.6.2",
+            "UID": "4e9c5b6d89c00bf5"
+          },
+          "Version": "2.28.2-r2",
+          "Arch": "x86_64",
+          "SrcName": "util-linux",
+          "SrcVersion": "2.28.2-r2",
+          "Licenses": [
+            "GPL-2.0-only",
+            "GPL-2.0-or-later",
+            "LGPL-2.0-or-later",
+            "BSD-3-Clause",
+            "Public",
+            "Domain"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "libuuid@2.28.2-r2",
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:9811eed81c590c81e4544667d6a573291f41cc2e",
+          "InstalledFiles": [
+            "lib/libblkid.so.1.1.0",
+            "lib/libblkid.so.1"
+          ]
+        },
+        {
+          "ID": "libc-utils@0.7.1-r0",
+          "Name": "libc-utils",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libc-utils@0.7.1-r0?arch=x86_64\u0026distro=3.6.2",
+            "UID": "4a9d73e7dc624ce2"
+          },
+          "Version": "0.7.1-r0",
+          "Arch": "x86_64",
+          "SrcName": "libc-dev",
+          "SrcVersion": "0.7.1-r0",
+          "Licenses": [
+            "BSD-3-Clause"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl-utils@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:b56ae66c29370df48e7377c8f9baa744a3958058a766793f821dadcb144a4647",
+            "DiffID": "sha256:2aebd096e0e237b447781353379722157e6c2d434b9ec5a0d63f2a6f07cf90c2"
+          },
+          "Digest": "sha1:81e44a2198fca3a64e72a395d3539fe03907040f"
+        },
+        {
+          "ID": "libfdisk@2.28.2-r2",
+          "Name": "libfdisk",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libfdisk@2.28.2-r2?arch=x86_64\u0026distro=3.6.2",
+            "UID": "36496fd7684b30e6"
+          },
+          "Version": "2.28.2-r2",
+          "Arch": "x86_64",
+          "SrcName": "util-linux",
+          "SrcVersion": "2.28.2-r2",
+          "Licenses": [
+            "GPL-2.0-only",
+            "GPL-2.0-or-later",
+            "LGPL-2.0-or-later",
+            "BSD-3-Clause",
+            "Public",
+            "Domain"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "libblkid@2.28.2-r2",
+            "libuuid@2.28.2-r2",
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:f3be3b33773644f7fe8e5241e3f67d71e40aef71",
+          "InstalledFiles": [
+            "lib/libfdisk.so.1.1.0",
+            "lib/libfdisk.so.1"
+          ]
+        },
+        {
+          "ID": "libffi@3.2.1-r3",
+          "Name": "libffi",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libffi@3.2.1-r3?arch=x86_64\u0026distro=3.6.2",
+            "UID": "f3cb02fabbf5af4f"
+          },
+          "Version": "3.2.1-r3",
+          "Arch": "x86_64",
+          "SrcName": "libffi",
+          "SrcVersion": "3.2.1-r3",
+          "Licenses": [
+            "MIT"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:ce5e86ebce8f954e698b0953ea3b613671c0b289",
+          "InstalledFiles": [
+            "usr/lib/libffi.so.6.0.4",
+            "usr/lib/libffi.so.6"
+          ]
+        },
+        {
+          "ID": "libgcc@6.3.0-r4",
+          "Name": "libgcc",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libgcc@6.3.0-r4?arch=x86_64\u0026distro=3.6.2",
+            "UID": "a39508006ab8e95"
+          },
+          "Version": "6.3.0-r4",
+          "Arch": "x86_64",
+          "SrcName": "gcc",
+          "SrcVersion": "6.3.0-r4",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "LGPL-2.0-or-later"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:b6944f01934f6faa9c7cbb47b071b71396115dba",
+          "InstalledFiles": [
+            "usr/lib/libgcc_s.so.1"
+          ]
+        },
+        {
+          "ID": "libgcrypt@1.7.9-r0",
+          "Name": "libgcrypt",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libgcrypt@1.7.9-r0?arch=x86_64\u0026distro=3.6.2",
+            "UID": "84e84c7c5b17a80b"
+          },
+          "Version": "1.7.9-r0",
+          "Arch": "x86_64",
+          "SrcName": "libgcrypt",
+          "SrcVersion": "1.7.9-r0",
+          "Licenses": [
+            "LGPL-2.0-or-later"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "libgpg-error@1.27-r0",
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:830fa65aa52886716e372c61916c4e36af8d6dba",
+          "InstalledFiles": [
+            "usr/bin/mpicalc",
+            "usr/bin/hmac256",
+            "usr/bin/dumpsexp",
+            "usr/lib/libgcrypt.so.20",
+            "usr/lib/libgcrypt.so.20.1.9"
+          ]
+        },
+        {
+          "ID": "libgmpxx@6.1.2-r0",
+          "Name": "libgmpxx",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libgmpxx@6.1.2-r0?arch=x86_64\u0026distro=3.6.2",
+            "UID": "b5bf55a539a6c34"
+          },
+          "Version": "6.1.2-r0",
+          "Arch": "x86_64",
+          "SrcName": "gmp",
+          "SrcVersion": "6.1.2-r0",
+          "Licenses": [
+            "LGPL-3.0-only"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "gmp@6.1.2-r0",
+            "libgcc@6.3.0-r4",
+            "libstdc++@6.3.0-r4",
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:17dbbd803ceca6ff4aff28598457241f07a84d52",
+          "InstalledFiles": [
+            "usr/lib/libgmpxx.so.4",
+            "usr/lib/libgmpxx.so.4.5.2"
+          ]
+        },
+        {
+          "ID": "libgpg-error@1.27-r0",
+          "Name": "libgpg-error",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libgpg-error@1.27-r0?arch=x86_64\u0026distro=3.6.2",
+            "UID": "4fe034dc5addd830"
+          },
+          "Version": "1.27-r0",
+          "Arch": "x86_64",
+          "SrcName": "libgpg-error",
+          "SrcVersion": "1.27-r0",
+          "Licenses": [
+            "LGPL-2.0-or-later"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:33dba1c03ee8d640a53bff3655934b928164c155",
+          "InstalledFiles": [
+            "usr/bin/gpg-error",
+            "usr/lib/libgpg-error.so.0",
+            "usr/lib/libgpg-error.so.0.22.0"
+          ]
+        },
+        {
+          "ID": "libmicrohttpd@0.9.54-r0",
+          "Name": "libmicrohttpd",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libmicrohttpd@0.9.54-r0?arch=x86_64\u0026distro=3.6.2",
+            "UID": "a9b0ec9545f173ee"
+          },
+          "Version": "0.9.54-r0",
+          "Arch": "x86_64",
+          "SrcName": "libmicrohttpd",
+          "SrcVersion": "0.9.54-r0",
+          "Licenses": [
+            "GPL-2.0-or-later"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "gnutls@3.5.13-r0",
+            "libgcrypt@1.7.9-r0",
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:efa084685742587cb77d9797932ae0a081ca2b00",
+          "InstalledFiles": [
+            "usr/lib/libmicrohttpd.so.12",
+            "usr/lib/libmicrohttpd.so.12.42.0"
+          ]
+        },
+        {
+          "ID": "libmicrohttpd-dev@0.9.54-r0",
+          "Name": "libmicrohttpd-dev",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libmicrohttpd-dev@0.9.54-r0?arch=x86_64\u0026distro=3.6.2",
+            "UID": "6f62b1f05f1263e8"
+          },
+          "Version": "0.9.54-r0",
+          "Arch": "x86_64",
+          "SrcName": "libmicrohttpd",
+          "SrcVersion": "0.9.54-r0",
+          "Licenses": [
+            "GPL-2.0-or-later"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "gnutls-dev@3.5.13-r0",
+            "libmicrohttpd@0.9.54-r0",
+            "pkgconf@1.3.7-r0"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:27bc7d7010cd5ed3ae84050e9e56c495df21bdc2",
+          "InstalledFiles": [
+            "usr/lib/libmicrohttpd.so",
+            "usr/lib/libmicrohttpd.a",
+            "usr/lib/pkgconfig/libmicrohttpd.pc",
+            "usr/include/platform.h",
+            "usr/include/microhttpd.h"
+          ]
+        },
+        {
+          "ID": "libmount@2.28.2-r2",
+          "Name": "libmount",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libmount@2.28.2-r2?arch=x86_64\u0026distro=3.6.2",
+            "UID": "31edccede77ab827"
+          },
+          "Version": "2.28.2-r2",
+          "Arch": "x86_64",
+          "SrcName": "util-linux",
+          "SrcVersion": "2.28.2-r2",
+          "Licenses": [
+            "GPL-2.0-only",
+            "GPL-2.0-or-later",
+            "LGPL-2.0-or-later",
+            "BSD-3-Clause",
+            "Public",
+            "Domain"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "libblkid@2.28.2-r2",
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:d1ec2f03cf7b95b94debf0209b20c28323f8f7f3",
+          "InstalledFiles": [
+            "lib/libmount.so.1.1.0",
+            "lib/libmount.so.1"
+          ]
+        },
+        {
+          "ID": "libressl2.5-libcrypto@2.5.5-r0",
+          "Name": "libressl2.5-libcrypto",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libressl2.5-libcrypto@2.5.5-r0?arch=x86_64\u0026distro=3.6.2",
+            "UID": "50999e018f3f9780"
+          },
+          "Version": "2.5.5-r0",
+          "Arch": "x86_64",
+          "SrcName": "libressl",
+          "SrcVersion": "2.5.5-r0",
+          "Licenses": [
+            "custom"
+          ],
+          "Maintainer": "Orion \u003csystmkor@gmail.com\u003e",
+          "DependsOn": [
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:b56ae66c29370df48e7377c8f9baa744a3958058a766793f821dadcb144a4647",
+            "DiffID": "sha256:2aebd096e0e237b447781353379722157e6c2d434b9ec5a0d63f2a6f07cf90c2"
+          },
+          "Digest": "sha1:38a144ba1040cb778978ceb26bac083beeaca6ed",
+          "InstalledFiles": [
+            "lib/libcrypto.so.41.0.1",
+            "lib/libcrypto.so.41",
+            "usr/lib/libcrypto.so.41.0.1",
+            "usr/lib/libcrypto.so.41"
+          ]
+        },
+        {
+          "ID": "libressl2.5-libssl@2.5.5-r0",
+          "Name": "libressl2.5-libssl",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libressl2.5-libssl@2.5.5-r0?arch=x86_64\u0026distro=3.6.2",
+            "UID": "37e05a264a6fc37e"
+          },
+          "Version": "2.5.5-r0",
+          "Arch": "x86_64",
+          "SrcName": "libressl",
+          "SrcVersion": "2.5.5-r0",
+          "Licenses": [
+            "custom"
+          ],
+          "Maintainer": "Orion \u003csystmkor@gmail.com\u003e",
+          "DependsOn": [
+            "libressl2.5-libcrypto@2.5.5-r0",
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:b56ae66c29370df48e7377c8f9baa744a3958058a766793f821dadcb144a4647",
+            "DiffID": "sha256:2aebd096e0e237b447781353379722157e6c2d434b9ec5a0d63f2a6f07cf90c2"
+          },
+          "Digest": "sha1:68e26cf56129cf64d4a2f83083953224e4958bf1",
+          "InstalledFiles": [
+            "lib/libssl.so.43.0.2",
+            "lib/libssl.so.43",
+            "usr/lib/libssl.so.43.0.2",
+            "usr/lib/libssl.so.43"
+          ]
+        },
+        {
+          "ID": "libsmartcols@2.28.2-r2",
+          "Name": "libsmartcols",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libsmartcols@2.28.2-r2?arch=x86_64\u0026distro=3.6.2",
+            "UID": "9cdb57eba712624e"
+          },
+          "Version": "2.28.2-r2",
+          "Arch": "x86_64",
+          "SrcName": "util-linux",
+          "SrcVersion": "2.28.2-r2",
+          "Licenses": [
+            "GPL-2.0-only",
+            "GPL-2.0-or-later",
+            "LGPL-2.0-or-later",
+            "BSD-3-Clause",
+            "Public",
+            "Domain"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:de4b161eaf6c392ccdd5f90d982f40955d53651c",
+          "InstalledFiles": [
+            "lib/libsmartcols.so.1.1.0",
+            "lib/libsmartcols.so.1"
+          ]
+        },
+        {
+          "ID": "libstdc++@6.3.0-r4",
+          "Name": "libstdc++",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libstdc%2B%2B@6.3.0-r4?arch=x86_64\u0026distro=3.6.2",
+            "UID": "5ba0531c87ead413"
+          },
+          "Version": "6.3.0-r4",
+          "Arch": "x86_64",
+          "SrcName": "gcc",
+          "SrcVersion": "6.3.0-r4",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "LGPL-2.0-or-later"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "libgcc@6.3.0-r4",
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:037ae91da869343f099654081979bfe3d8fc0160",
+          "InstalledFiles": [
+            "usr/lib/libstdc++.so.6.0.22",
+            "usr/lib/libstdc++.so.6"
+          ]
+        },
+        {
+          "ID": "libtasn1@4.10-r2",
+          "Name": "libtasn1",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libtasn1@4.10-r2?arch=x86_64\u0026distro=3.6.2",
+            "UID": "99ac80de5326f4b"
+          },
+          "Version": "4.10-r2",
+          "Arch": "x86_64",
+          "SrcName": "libtasn1",
+          "SrcVersion": "4.10-r2",
+          "Licenses": [
+            "GPL-3.0-only",
+            "LGPL-2.0-or-later"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:96653106e4238ae5fd6e75a26ee0e1e2c7f2b5ec",
+          "InstalledFiles": [
+            "usr/bin/asn1Parser",
+            "usr/bin/asn1Decoding",
+            "usr/bin/asn1Coding",
+            "usr/lib/libtasn1.so.6.5.3",
+            "usr/lib/libtasn1.so.6"
+          ]
+        },
+        {
+          "ID": "libtasn1-dev@4.10-r2",
+          "Name": "libtasn1-dev",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libtasn1-dev@4.10-r2?arch=x86_64\u0026distro=3.6.2",
+            "UID": "d5c11ff5b4e69aa9"
+          },
+          "Version": "4.10-r2",
+          "Arch": "x86_64",
+          "SrcName": "libtasn1",
+          "SrcVersion": "4.10-r2",
+          "Licenses": [
+            "GPL-3.0-only",
+            "LGPL-2.0-or-later"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "libtasn1@4.10-r2",
+            "pkgconf@1.3.7-r0"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:2569ed570bff63dc77ea6b68b2591ee2bd7fee0f",
+          "InstalledFiles": [
+            "usr/lib/libtasn1.so",
+            "usr/lib/libtasn1.a",
+            "usr/lib/pkgconfig/libtasn1.pc",
+            "usr/include/libtasn1.h"
+          ]
+        },
+        {
+          "ID": "libunistring@0.9.7-r0",
+          "Name": "libunistring",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libunistring@0.9.7-r0?arch=x86_64\u0026distro=3.6.2",
+            "UID": "809987228e8e6ab"
+          },
+          "Version": "0.9.7-r0",
+          "Arch": "x86_64",
+          "SrcName": "libunistring",
+          "SrcVersion": "0.9.7-r0",
+          "Licenses": [
+            "GPL-2.0-or-later"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:187bbd0615a3d23db861c830d577f4a8fcc4ead8",
+          "InstalledFiles": [
+            "usr/lib/libunistring.so.2",
+            "usr/lib/libunistring.so.2.0.0"
+          ]
+        },
+        {
+          "ID": "libuuid@2.28.2-r2",
+          "Name": "libuuid",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libuuid@2.28.2-r2?arch=x86_64\u0026distro=3.6.2",
+            "UID": "7cd0f301c8ebef43"
+          },
+          "Version": "2.28.2-r2",
+          "Arch": "x86_64",
+          "SrcName": "util-linux",
+          "SrcVersion": "2.28.2-r2",
+          "Licenses": [
+            "GPL-2.0-only",
+            "GPL-2.0-or-later",
+            "LGPL-2.0-or-later",
+            "BSD-3-Clause",
+            "Public",
+            "Domain"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:7e393042f6bcb958bee6ab9868f4c65ddf16d139",
+          "InstalledFiles": [
+            "lib/libuuid.so.1.3.0",
+            "lib/libuuid.so.1"
+          ]
+        },
+        {
+          "ID": "libuv@1.11.0-r1",
+          "Name": "libuv",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libuv@1.11.0-r1?arch=x86_64\u0026distro=3.6.2",
+            "UID": "13f7377ea7583ee5"
+          },
+          "Version": "1.11.0-r1",
+          "Arch": "x86_64",
+          "SrcName": "libuv",
+          "SrcVersion": "1.11.0-r1",
+          "Licenses": [
+            "MIT",
+            "BSD-3-Clause",
+            "ISC"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:2c35a10ec116621548eb83fe915452177248581b",
+          "InstalledFiles": [
+            "usr/lib/libuv.so.1",
+            "usr/lib/libuv.so.1.0.0",
+            "usr/share/licenses/libuv/LICENSE"
+          ]
+        },
+        {
+          "ID": "libuv-dev@1.11.0-r1",
+          "Name": "libuv-dev",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libuv-dev@1.11.0-r1?arch=x86_64\u0026distro=3.6.2",
+            "UID": "fdcf87e3b83dcf68"
+          },
+          "Version": "1.11.0-r1",
+          "Arch": "x86_64",
+          "SrcName": "libuv",
+          "SrcVersion": "1.11.0-r1",
+          "Licenses": [
+            "MIT",
+            "BSD-3-Clause",
+            "ISC"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "libuv@1.11.0-r1",
+            "pkgconf@1.3.7-r0"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:a5f4aafb3f659374a4bd293867c789d84f175ef9",
+          "InstalledFiles": [
+            "usr/lib/libuv.so",
+            "usr/lib/libuv.a",
+            "usr/lib/pkgconfig/libuv.pc",
+            "usr/include/uv-unix.h",
+            "usr/include/uv-threadpool.h",
+            "usr/include/uv.h",
+            "usr/include/uv-version.h",
+            "usr/include/uv-linux.h",
+            "usr/include/uv-errno.h"
+          ]
+        },
+        {
+          "ID": "musl@1.1.16-r14",
+          "Name": "musl",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/musl@1.1.16-r14?arch=x86_64\u0026distro=3.6.2",
+            "UID": "cfddc2b5c84e67a7"
+          },
+          "Version": "1.1.16-r14",
+          "Arch": "x86_64",
+          "SrcName": "musl",
+          "SrcVersion": "1.1.16-r14",
+          "Licenses": [
+            "MIT"
+          ],
+          "Maintainer": "Timo Teräs \u003ctimo.teras@iki.fi\u003e",
+          "Layer": {
+            "Digest": "sha256:b56ae66c29370df48e7377c8f9baa744a3958058a766793f821dadcb144a4647",
+            "DiffID": "sha256:2aebd096e0e237b447781353379722157e6c2d434b9ec5a0d63f2a6f07cf90c2"
+          },
+          "Digest": "sha1:e5c8569bdf9b270f140ecf87e5a5b7270e7a0488",
+          "InstalledFiles": [
+            "lib/libc.musl-x86_64.so.1",
+            "lib/ld-musl-x86_64.so.1"
+          ]
+        },
+        {
+          "ID": "musl-utils@1.1.16-r14",
+          "Name": "musl-utils",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/musl-utils@1.1.16-r14?arch=x86_64\u0026distro=3.6.2",
+            "UID": "ba8ee8188cf45386"
+          },
+          "Version": "1.1.16-r14",
+          "Arch": "x86_64",
+          "SrcName": "musl",
+          "SrcVersion": "1.1.16-r14",
+          "Licenses": [
+            "MIT",
+            "BSD-3-Clause",
+            "GPL-2.0-or-later"
+          ],
+          "Maintainer": "Timo Teräs \u003ctimo.teras@iki.fi\u003e",
+          "DependsOn": [
+            "musl@1.1.16-r14",
+            "scanelf@1.2.2-r0"
+          ],
+          "Layer": {
+            "Digest": "sha256:b56ae66c29370df48e7377c8f9baa744a3958058a766793f821dadcb144a4647",
+            "DiffID": "sha256:2aebd096e0e237b447781353379722157e6c2d434b9ec5a0d63f2a6f07cf90c2"
+          },
+          "Digest": "sha1:cd99d7d11a41d1d9bfe7fa37f576a8d46a333941",
+          "InstalledFiles": [
+            "sbin/ldconfig",
+            "usr/bin/iconv",
+            "usr/bin/ldd",
+            "usr/bin/getconf",
+            "usr/bin/getent"
+          ]
+        },
+        {
+          "ID": "nettle@3.3-r0",
+          "Name": "nettle",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/nettle@3.3-r0?arch=x86_64\u0026distro=3.6.2",
+            "UID": "9fa97e3868f0da89"
+          },
+          "Version": "3.3-r0",
+          "Arch": "x86_64",
+          "SrcName": "nettle",
+          "SrcVersion": "3.3-r0",
+          "Licenses": [
+            "LGPL-2.0-or-later"
+          ],
+          "Maintainer": "Fabian Affolter \u003cfabian@affolter-engineering.ch\u003e",
+          "DependsOn": [
+            "gmp@6.1.2-r0",
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:598b71214246b67d96286acbdd86b8eca70aa76c",
+          "InstalledFiles": [
+            "usr/lib/libhogweed.so.4",
+            "usr/lib/libhogweed.so.4.3",
+            "usr/lib/libnettle.so.6",
+            "usr/lib/libnettle.so.6.3"
+          ]
+        },
+        {
+          "ID": "nettle-dev@3.3-r0",
+          "Name": "nettle-dev",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/nettle-dev@3.3-r0?arch=x86_64\u0026distro=3.6.2",
+            "UID": "d9ec34167c6d4b03"
+          },
+          "Version": "3.3-r0",
+          "Arch": "x86_64",
+          "SrcName": "nettle",
+          "SrcVersion": "3.3-r0",
+          "Licenses": [
+            "LGPL-2.0-or-later"
+          ],
+          "Maintainer": "Fabian Affolter \u003cfabian@affolter-engineering.ch\u003e",
+          "DependsOn": [
+            "gmp-dev@6.1.2-r0",
+            "nettle@3.3-r0",
+            "pkgconf@1.3.7-r0"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:b4de4120121cfe55c787ef835d77c67e2522481c",
+          "InstalledFiles": [
+            "usr/lib/libnettle.so",
+            "usr/lib/libhogweed.so",
+            "usr/lib/libnettle.a",
+            "usr/lib/libhogweed.a",
+            "usr/lib/pkgconfig/nettle.pc",
+            "usr/lib/pkgconfig/hogweed.pc",
+            "usr/include/nettle/ripemd160.h",
+            "usr/include/nettle/twofish.h",
+            "usr/include/nettle/md4.h",
+            "usr/include/nettle/base16.h",
+            "usr/include/nettle/chacha.h",
+            "usr/include/nettle/camellia.h",
+            "usr/include/nettle/nettle-meta.h",
+            "usr/include/nettle/memops.h",
+            "usr/include/nettle/curve25519.h",
+            "usr/include/nettle/rsa.h",
+            "usr/include/nettle/macros.h",
+            "usr/include/nettle/aes.h",
+            "usr/include/nettle/poly1305.h",
+            "usr/include/nettle/pbkdf2.h",
+            "usr/include/nettle/des.h",
+            "usr/include/nettle/arcfour.h",
+            "usr/include/nettle/bignum.h",
+            "usr/include/nettle/des-compat.h",
+            "usr/include/nettle/yarrow.h",
+            "usr/include/nettle/eax.h",
+            "usr/include/nettle/pgp.h",
+            "usr/include/nettle/sha2.h",
+            "usr/include/nettle/md2.h",
+            "usr/include/nettle/sexp.h",
+            "usr/include/nettle/salsa20.h",
+            "usr/include/nettle/version.h",
+            "usr/include/nettle/ctr.h",
+            "usr/include/nettle/gosthash94.h",
+            "usr/include/nettle/pkcs1.h",
+            "usr/include/nettle/dsa-compat.h",
+            "usr/include/nettle/hmac.h",
+            "usr/include/nettle/cbc.h",
+            "usr/include/nettle/ecc.h",
+            "usr/include/nettle/umac.h",
+            "usr/include/nettle/cast128.h",
+            "usr/include/nettle/arctwo.h",
+            "usr/include/nettle/sha.h",
+            "usr/include/nettle/ecc-curve.h",
+            "usr/include/nettle/md5.h",
+            "usr/include/nettle/sha1.h",
+            "usr/include/nettle/asn1.h",
+            "usr/include/nettle/chacha-poly1305.h",
+            "usr/include/nettle/nettle-stdint.h",
+            "usr/include/nettle/ecdsa.h",
+            "usr/include/nettle/memxor.h",
+            "usr/include/nettle/sha3.h",
+            "usr/include/nettle/knuth-lfib.h",
+            "usr/include/nettle/gcm.h",
+            "usr/include/nettle/buffer.h",
+            "usr/include/nettle/eddsa.h",
+            "usr/include/nettle/ccm.h",
+            "usr/include/nettle/blowfish.h",
+            "usr/include/nettle/nettle-types.h",
+            "usr/include/nettle/dsa.h",
+            "usr/include/nettle/base64.h",
+            "usr/include/nettle/serpent.h",
+            "usr/include/nettle/md5-compat.h",
+            "usr/include/nettle/realloc.h"
+          ]
+        },
+        {
+          "ID": "p11-kit@0.23.2-r1",
+          "Name": "p11-kit",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/p11-kit@0.23.2-r1?arch=x86_64\u0026distro=3.6.2",
+            "UID": "ef3ba64cdc1a79ff"
+          },
+          "Version": "0.23.2-r1",
+          "Arch": "x86_64",
+          "SrcName": "p11-kit",
+          "SrcVersion": "0.23.2-r1",
+          "Licenses": [
+            "BSD-3-Clause"
+          ],
+          "Maintainer": "Fabian Affolter \u003cfabian@affolter-engineering.ch\u003e",
+          "DependsOn": [
+            "libffi@3.2.1-r3",
+            "libtasn1@4.10-r2",
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:3e4b906f8c3058c2d34eb99c57136fd2fbb7d4b3",
+          "InstalledFiles": [
+            "etc/pkcs11/pkcs11.conf.example",
+            "usr/bin/trust",
+            "usr/bin/p11-kit",
+            "usr/lib/libp11-kit.so.0",
+            "usr/lib/libp11-kit.so.0.1.0",
+            "usr/lib/p11-kit/p11-kit-remote"
+          ]
+        },
+        {
+          "ID": "p11-kit-dev@0.23.2-r1",
+          "Name": "p11-kit-dev",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/p11-kit-dev@0.23.2-r1?arch=x86_64\u0026distro=3.6.2",
+            "UID": "f9f44ce7928224e2"
+          },
+          "Version": "0.23.2-r1",
+          "Arch": "x86_64",
+          "SrcName": "p11-kit",
+          "SrcVersion": "0.23.2-r1",
+          "Licenses": [
+            "BSD-3-Clause"
+          ],
+          "Maintainer": "Fabian Affolter \u003cfabian@affolter-engineering.ch\u003e",
+          "DependsOn": [
+            "p11-kit@0.23.2-r1",
+            "pkgconf@1.3.7-r0"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:bd07940ae3cbdf34c9969b2a23f8211053fdd725",
+          "InstalledFiles": [
+            "usr/lib/libp11-kit.so",
+            "usr/lib/p11-kit-proxy.so",
+            "usr/lib/pkgconfig/p11-kit-1.pc",
+            "usr/include/p11-kit-1/p11-kit/pkcs11.h",
+            "usr/include/p11-kit-1/p11-kit/iter.h",
+            "usr/include/p11-kit-1/p11-kit/remote.h",
+            "usr/include/p11-kit-1/p11-kit/pin.h",
+            "usr/include/p11-kit-1/p11-kit/deprecated.h",
+            "usr/include/p11-kit-1/p11-kit/pkcs11x.h",
+            "usr/include/p11-kit-1/p11-kit/uri.h",
+            "usr/include/p11-kit-1/p11-kit/p11-kit.h"
+          ]
+        },
+        {
+          "ID": "pkgconf@1.3.7-r0",
+          "Name": "pkgconf",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/pkgconf@1.3.7-r0?arch=x86_64\u0026distro=3.6.2",
+            "UID": "7663e33d62a13781"
+          },
+          "Version": "1.3.7-r0",
+          "Arch": "x86_64",
+          "SrcName": "pkgconf",
+          "SrcVersion": "1.3.7-r0",
+          "Licenses": [
+            "ISC"
+          ],
+          "Maintainer": "William Pitcock \u003cnenolod@dereferenced.org\u003e",
+          "DependsOn": [
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:0b0cbdf3758bfe77a30a4e7cdf9e3dd8d13580b3",
+          "InstalledFiles": [
+            "usr/bin/pkgconf",
+            "usr/bin/pkg-config",
+            "usr/lib/libpkgconf.so.2",
+            "usr/lib/libpkgconf.so.2.0.0",
+            "usr/share/aclocal/pkg.m4"
+          ]
+        },
+        {
+          "ID": "scanelf@1.2.2-r0",
+          "Name": "scanelf",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/scanelf@1.2.2-r0?arch=x86_64\u0026distro=3.6.2",
+            "UID": "43826205a9d53171"
+          },
+          "Version": "1.2.2-r0",
+          "Arch": "x86_64",
+          "SrcName": "pax-utils",
+          "SrcVersion": "1.2.2-r0",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:b56ae66c29370df48e7377c8f9baa744a3958058a766793f821dadcb144a4647",
+            "DiffID": "sha256:2aebd096e0e237b447781353379722157e6c2d434b9ec5a0d63f2a6f07cf90c2"
+          },
+          "Digest": "sha1:bce6b82de0d5ba9cdacec02506e7a1882b17d481",
+          "InstalledFiles": [
+            "usr/bin/scanelf"
+          ]
+        },
+        {
+          "ID": "util-linux-dev@2.28.2-r2",
+          "Name": "util-linux-dev",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/util-linux-dev@2.28.2-r2?arch=x86_64\u0026distro=3.6.2",
+            "UID": "aedd85dd1eaeef66"
+          },
+          "Version": "2.28.2-r2",
+          "Arch": "x86_64",
+          "SrcName": "util-linux",
+          "SrcVersion": "2.28.2-r2",
+          "Licenses": [
+            "GPL-2.0-only",
+            "GPL-2.0-or-later",
+            "LGPL-2.0-or-later",
+            "BSD-3-Clause",
+            "Public",
+            "Domain"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "libblkid@2.28.2-r2",
+            "libfdisk@2.28.2-r2",
+            "libmount@2.28.2-r2",
+            "libsmartcols@2.28.2-r2",
+            "libuuid@2.28.2-r2",
+            "pkgconf@1.3.7-r0"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:3f33b16728581090ed313425c2628e7c50e56720",
+          "InstalledFiles": [
+            "usr/lib/libmount.a",
+            "usr/lib/libmount.so",
+            "usr/lib/libsmartcols.a",
+            "usr/lib/libuuid.so",
+            "usr/lib/libfdisk.so",
+            "usr/lib/libblkid.so",
+            "usr/lib/libsmartcols.so",
+            "usr/lib/libfdisk.a",
+            "usr/lib/libblkid.a",
+            "usr/lib/libuuid.a",
+            "usr/lib/pkgconfig/smartcols.pc",
+            "usr/lib/pkgconfig/uuid.pc",
+            "usr/lib/pkgconfig/mount.pc",
+            "usr/lib/pkgconfig/fdisk.pc",
+            "usr/lib/pkgconfig/blkid.pc",
+            "usr/include/uuid/uuid.h",
+            "usr/include/libfdisk/libfdisk.h",
+            "usr/include/libmount/libmount.h",
+            "usr/include/blkid/blkid.h",
+            "usr/include/libsmartcols/libsmartcols.h"
+          ]
+        },
+        {
+          "ID": "zlib@1.2.11-r0",
+          "Name": "zlib",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/zlib@1.2.11-r0?arch=x86_64\u0026distro=3.6.2",
+            "UID": "c0d0dd559b39f926"
+          },
+          "Version": "1.2.11-r0",
+          "Arch": "x86_64",
+          "SrcName": "zlib",
+          "SrcVersion": "1.2.11-r0",
+          "Licenses": [
+            "Zlib"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.1.16-r14"
+          ],
+          "Layer": {
+            "Digest": "sha256:b56ae66c29370df48e7377c8f9baa744a3958058a766793f821dadcb144a4647",
+            "DiffID": "sha256:2aebd096e0e237b447781353379722157e6c2d434b9ec5a0d63f2a6f07cf90c2"
+          },
+          "Digest": "sha1:c376572327e292f0d9805c8dc8b2d12208eaa6a5",
+          "InstalledFiles": [
+            "lib/libz.so.1.2.11",
+            "lib/libz.so.1"
+          ]
+        },
+        {
+          "ID": "zlib-dev@1.2.11-r0",
+          "Name": "zlib-dev",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/zlib-dev@1.2.11-r0?arch=x86_64\u0026distro=3.6.2",
+            "UID": "d3df347ae7aaf516"
+          },
+          "Version": "1.2.11-r0",
+          "Arch": "x86_64",
+          "SrcName": "zlib",
+          "SrcVersion": "1.2.11-r0",
+          "Licenses": [
+            "Zlib"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "pkgconf@1.3.7-r0",
+            "zlib@1.2.11-r0"
+          ],
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "Digest": "sha1:43a2cada63294dbf2830d8438e829f626221530d",
+          "InstalledFiles": [
+            "lib/libz.a",
+            "lib/libz.so",
+            "usr/lib/pkgconfig/zlib.pc",
+            "usr/include/zlib.h",
+            "usr/include/zconf.h"
+          ]
+        }
+      ],
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2017-16544",
+          "PkgID": "busybox@1.26.2-r7",
+          "PkgName": "busybox",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/busybox@1.26.2-r7?arch=x86_64\u0026distro=3.6.2",
+            "UID": "223b8014af8f01ca"
+          },
+          "InstalledVersion": "1.26.2-r7",
+          "FixedVersion": "1.26.2-r9",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:b56ae66c29370df48e7377c8f9baa744a3958058a766793f821dadcb144a4647",
+            "DiffID": "sha256:2aebd096e0e237b447781353379722157e6c2d434b9ec5a0d63f2a6f07cf90c2"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2017-16544",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "busybox: Insufficient sanitization of filenames when autocompleting",
+          "Description": "In the add_match function in libbb/lineedit.c in BusyBox through 1.27.2, the tab autocomplete feature of the shell, used to get a list of filenames in a directory, does not sanitize filenames and results in executing any escape sequence in the terminal. This could potentially result in code execution, arbitrary file writes, or other attacks.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-94"
+          ],
+          "VendorSeverity": {
+            "nvd": 3,
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:S/C:P/I:P/A:P",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "V2Score": 6.5,
+              "V3Score": 8.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:L/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:L",
+              "V3Score": 4.8
+            }
+          },
+          "References": [
+            "http://packetstormsecurity.com/files/154361/Cisco-Device-Hardcoded-Credentials-GNU-glibc-BusyBox.html",
+            "http://packetstormsecurity.com/files/154536/VMware-Security-Advisory-2019-0013.html",
+            "http://packetstormsecurity.com/files/167552/Nexans-FTTO-GigaSwitch-Outdated-Components-Hardcoded-Backdoor.html",
+            "http://seclists.org/fulldisclosure/2019/Jun/18",
+            "http://seclists.org/fulldisclosure/2019/Sep/7",
+            "http://seclists.org/fulldisclosure/2020/Aug/20",
+            "http://seclists.org/fulldisclosure/2020/Mar/15",
+            "http://seclists.org/fulldisclosure/2020/Sep/6",
+            "http://seclists.org/fulldisclosure/2021/Aug/21",
+            "http://seclists.org/fulldisclosure/2021/Jan/39",
+            "http://seclists.org/fulldisclosure/2022/Jun/36",
+            "http://www.vmware.com/security/advisories/VMSA-2019-0013.html",
+            "https://access.redhat.com/security/cve/CVE-2017-16544",
+            "https://git.busybox.net/busybox/commit/?id=c3797d40a1c57352192c6106cc0f435e7d9c11e8",
+            "https://lists.debian.org/debian-lts-announce/2018/07/msg00037.html",
+            "https://lists.debian.org/debian-lts-announce/2021/02/msg00020.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2017-16544",
+            "https://seclists.org/bugtraq/2019/Jun/14",
+            "https://seclists.org/bugtraq/2019/Sep/7",
+            "https://ubuntu.com/security/notices/USN-3935-1",
+            "https://us-cert.cisa.gov/ics/advisories/icsa-20-240-01",
+            "https://usn.ubuntu.com/3935-1/",
+            "https://www.cve.org/CVERecord?id=CVE-2017-16544",
+            "https://www.twistlock.com/2017/11/20/cve-2017-16544-busybox-autocompletion-vulnerability/"
+          ],
+          "PublishedDate": "2017-11-20T15:29:00.387Z",
+          "LastModifiedDate": "2025-06-09T16:15:26.85Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2017-15873",
+          "PkgID": "busybox@1.26.2-r7",
+          "PkgName": "busybox",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/busybox@1.26.2-r7?arch=x86_64\u0026distro=3.6.2",
+            "UID": "223b8014af8f01ca"
+          },
+          "InstalledVersion": "1.26.2-r7",
+          "FixedVersion": "1.26.2-r9",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:b56ae66c29370df48e7377c8f9baa744a3958058a766793f821dadcb144a4647",
+            "DiffID": "sha256:2aebd096e0e237b447781353379722157e6c2d434b9ec5a0d63f2a6f07cf90c2"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2017-15873",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "busybox: Integer overflow in the get_next_block function",
+          "Description": "The get_next_block function in archival/libarchive/decompress_bunzip2.c in BusyBox 1.27.2 has an Integer Overflow that may lead to a write access violation.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-190"
+          ],
+          "VendorSeverity": {
+            "nvd": 2,
+            "redhat": 1,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:M/Au:N/C:N/I:N/A:P",
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+              "V2Score": 4.3,
+              "V3Score": 5.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:L",
+              "V3Score": 3.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2017-15873",
+            "https://bugs.busybox.net/show_bug.cgi?id=10431",
+            "https://git.busybox.net/busybox/commit/?id=0402cb32df015d9372578e3db27db47b33d5c7b0",
+            "https://lists.debian.org/debian-lts-announce/2018/07/msg00037.html",
+            "https://lists.debian.org/debian-lts-announce/2021/02/msg00020.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2017-15873",
+            "https://ubuntu.com/security/notices/USN-3935-1",
+            "https://usn.ubuntu.com/3935-1/",
+            "https://www.cve.org/CVERecord?id=CVE-2017-15873"
+          ],
+          "PublishedDate": "2017-10-24T20:29:00.28Z",
+          "LastModifiedDate": "2025-06-09T16:15:26.423Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2018-0495",
+          "PkgID": "libgcrypt@1.7.9-r0",
+          "PkgName": "libgcrypt",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libgcrypt@1.7.9-r0?arch=x86_64\u0026distro=3.6.2",
+            "UID": "84e84c7c5b17a80b"
+          },
+          "InstalledVersion": "1.7.9-r0",
+          "FixedVersion": "1.7.10-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2018-0495",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "ROHNP: Key Extraction Side Channel in Multiple Crypto Libraries",
+          "Description": "Libgcrypt before 1.7.10 and 1.8.x before 1.8.3 allows a memory-cache side-channel attack on ECDSA signatures that can be mitigated through the use of blinding during the signing process in the _gcry_ecc_ecdsa_sign function in cipher/ecc-ecdsa.c, aka the Return Of the Hidden Number Problem or ROHNP. To discover an ECDSA key, the attacker needs access to either the local machine or a different virtual machine on the same physical host.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-203"
+          ],
+          "VendorSeverity": {
+            "amazon": 2,
+            "nvd": 2,
+            "oracle-oval": 2,
+            "photon": 2,
+            "redhat": 2,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:L/AC:M/Au:N/C:P/I:N/A:N",
+              "V3Vector": "CVSS:3.0/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:N",
+              "V2Score": 1.9,
+              "V3Score": 4.7
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:L/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 5.1
+            }
+          },
+          "References": [
+            "http://www.securitytracker.com/id/1041144",
+            "http://www.securitytracker.com/id/1041147",
+            "https://access.redhat.com/errata/RHSA-2018:3221",
+            "https://access.redhat.com/errata/RHSA-2018:3505",
+            "https://access.redhat.com/errata/RHSA-2019:1296",
+            "https://access.redhat.com/errata/RHSA-2019:1297",
+            "https://access.redhat.com/errata/RHSA-2019:1543",
+            "https://access.redhat.com/errata/RHSA-2019:2237",
+            "https://access.redhat.com/security/cve/CVE-2018-0495",
+            "https://dev.gnupg.org/T4011",
+            "https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/NSS_3.38_release_notes",
+            "https://git.gnupg.org/cgi-bin/gitweb.cgi?p=libgcrypt.git%3Ba=commit%3Bh=9010d1576e278a4274ad3f4aa15776c28f6ba965",
+            "https://linux.oracle.com/cve/CVE-2018-0495.html",
+            "https://linux.oracle.com/errata/ELSA-2019-2237.html",
+            "https://lists.debian.org/debian-lts-announce/2018/06/msg00013.html",
+            "https://lists.gnupg.org/pipermail/gnupg-announce/2018q2/000426.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2018-0495",
+            "https://ubuntu.com/security/notices/USN-3689-1",
+            "https://ubuntu.com/security/notices/USN-3689-2",
+            "https://ubuntu.com/security/notices/USN-3692-1",
+            "https://ubuntu.com/security/notices/USN-3692-2",
+            "https://ubuntu.com/security/notices/USN-3850-1",
+            "https://ubuntu.com/security/notices/USN-3850-2",
+            "https://usn.ubuntu.com/3689-1/",
+            "https://usn.ubuntu.com/3689-2/",
+            "https://usn.ubuntu.com/3692-1/",
+            "https://usn.ubuntu.com/3692-2/",
+            "https://usn.ubuntu.com/3850-1/",
+            "https://usn.ubuntu.com/3850-2/",
+            "https://www.cve.org/CVERecord?id=CVE-2018-0495",
+            "https://www.debian.org/security/2018/dsa-4231",
+            "https://www.nccgroup.trust/us/our-research/technical-advisory-return-of-the-hidden-number-problem/",
+            "https://www.oracle.com/technetwork/security-advisory/cpuapr2019-5072813.html"
+          ],
+          "PublishedDate": "2018-06-13T23:29:00.333Z",
+          "LastModifiedDate": "2024-11-21T03:38:21.16Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2018-6003",
+          "PkgID": "libtasn1@4.10-r2",
+          "PkgName": "libtasn1",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libtasn1@4.10-r2?arch=x86_64\u0026distro=3.6.2",
+            "UID": "99ac80de5326f4b"
+          },
+          "InstalledVersion": "4.10-r2",
+          "FixedVersion": "4.10-r3",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2018-6003",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "libtasn1: Stack exhaustion due to indefinite recursion during BER decoding",
+          "Description": "An issue was discovered in the _asn1_decode_simple_ber function in decoding.c in GNU Libtasn1 before 4.13. Unlimited recursion in the BER decoder leads to stack exhaustion and DoS.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-674"
+          ],
+          "VendorSeverity": {
+            "nvd": 3,
+            "photon": 3,
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:N/I:N/A:P",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V2Score": 5,
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "http://git.savannah.nongnu.org/cgit/libtasn1.git/commit/?id=c593ae84cfcde8fea45787e53950e0ac71e9ca97",
+            "https://access.redhat.com/security/cve/CVE-2018-6003",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=1535926",
+            "https://bugzilla.suse.com/show_bug.cgi?id=1076832",
+            "https://gitlab.com/gnutls/libtasn1/commit/946565d8eb05fbf7970ea366e817581bb5a90910",
+            "https://lists.apache.org/thread.html/r58af02e294bd07f487e2c64ffc0a29b837db5600e33b6e698b9d696b%40%3Cissues.bookkeeper.apache.org%3E",
+            "https://lists.apache.org/thread.html/rf4c02775860db415b4955778a131c2795223f61cb8c6a450893651e4%40%3Cissues.bookkeeper.apache.org%3E",
+            "https://nvd.nist.gov/vuln/detail/CVE-2018-6003",
+            "https://ubuntu.com/security/notices/USN-3547-1",
+            "https://www.cve.org/CVERecord?id=CVE-2018-6003",
+            "https://www.debian.org/security/2018/dsa-4106"
+          ],
+          "PublishedDate": "2018-01-22T20:29:00.493Z",
+          "LastModifiedDate": "2024-11-21T04:09:51.87Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2018-6003",
+          "PkgID": "libtasn1-dev@4.10-r2",
+          "PkgName": "libtasn1-dev",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libtasn1-dev@4.10-r2?arch=x86_64\u0026distro=3.6.2",
+            "UID": "d5c11ff5b4e69aa9"
+          },
+          "InstalledVersion": "4.10-r2",
+          "FixedVersion": "4.10-r3",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:dd35677af7f113926500a1b6367d2af105e0ba08e89cdb5f5621b00a5f7d9b2e",
+            "DiffID": "sha256:0ac217418ce5fe195ff4e469cf622643794d283f72333d5533f109e1dbf0ee15"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2018-6003",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "libtasn1: Stack exhaustion due to indefinite recursion during BER decoding",
+          "Description": "An issue was discovered in the _asn1_decode_simple_ber function in decoding.c in GNU Libtasn1 before 4.13. Unlimited recursion in the BER decoder leads to stack exhaustion and DoS.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-674"
+          ],
+          "VendorSeverity": {
+            "nvd": 3,
+            "photon": 3,
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "nvd": {
+              "V2Vector": "AV:N/AC:L/Au:N/C:N/I:N/A:P",
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V2Score": 5,
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "http://git.savannah.nongnu.org/cgit/libtasn1.git/commit/?id=c593ae84cfcde8fea45787e53950e0ac71e9ca97",
+            "https://access.redhat.com/security/cve/CVE-2018-6003",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=1535926",
+            "https://bugzilla.suse.com/show_bug.cgi?id=1076832",
+            "https://gitlab.com/gnutls/libtasn1/commit/946565d8eb05fbf7970ea366e817581bb5a90910",
+            "https://lists.apache.org/thread.html/r58af02e294bd07f487e2c64ffc0a29b837db5600e33b6e698b9d696b%40%3Cissues.bookkeeper.apache.org%3E",
+            "https://lists.apache.org/thread.html/rf4c02775860db415b4955778a131c2795223f61cb8c6a450893651e4%40%3Cissues.bookkeeper.apache.org%3E",
+            "https://nvd.nist.gov/vuln/detail/CVE-2018-6003",
+            "https://ubuntu.com/security/notices/USN-3547-1",
+            "https://www.cve.org/CVERecord?id=CVE-2018-6003",
+            "https://www.debian.org/security/2018/dsa-4106"
+          ],
+          "PublishedDate": "2018-01-22T20:29:00.493Z",
+          "LastModifiedDate": "2024-11-21T04:09:51.87Z"
+        }
+      ]
+    }
+  ]
+}

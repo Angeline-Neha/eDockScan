@@ -78,11 +78,13 @@ class ImageFeatures:
     high_entropy_ratio: Optional[float] = None
     stratum_indicators: Optional[float] = None
     raw_ip_connections: Optional[float] = None
+    suspicious_dns_queries: Optional[float] = None 
     stripped_binaries_ratio: Optional[float] = None
     layer_deletion_score: Optional[float] = None
     packed_binary_score: Optional[float] = None
     temp_file_activity: Optional[float] = None
     process_injection_risk: Optional[float] = None
+    privilege_escalation_risk: Optional[float] = None
     crypto_mining_behavior: Optional[float] = None
     anti_analysis_score: Optional[float] = None
     
@@ -350,7 +352,7 @@ class EnhancedRemoteDockerScanner:
         self.retry_handler = RetryHandler()
         self.security_detector = EnhancedSecurityDetector()
 
-        self.behavioral_analyzer = BehavioralAnalyzer(
+        self.behavioral_analyzer = BehavioralAnalyzer()
         
         # Verify tools
         self._verify_tools()
@@ -436,28 +438,28 @@ class EnhancedRemoteDockerScanner:
                 self._extract_grype_features(grype_data, features)
             
             # Calculate confidence score based on successful scans
+           # Calculate confidence score based on successful scans
             features.confidence_score = scans_succeeded / 3.0
-
             if trivy_success and syft_success:
-            try:
-                logger.info("Extracting behavioral features...")
-                behavioral_features = self.behavioral_analyzer.analyze_image(
-                    image_name, trivy_data, syft_data
-                )
+                try:
+                    logger.info("Extracting behavioral features...")
+                    behavioral_features = self.behavioral_analyzer.analyze_image(
+                        image_name, trivy_data, syft_data
+                        )
+        
+        # Add behavioral features to the features object
+                    for feature_name, value in behavioral_features.items():
+                        if hasattr(features, feature_name):
+                            setattr(features, feature_name, value)
                 
-                # Add behavioral features to the features object
-                for feature_name, value in behavioral_features.items():
-                    if hasattr(features, feature_name):
-                        setattr(features, feature_name, value)
-                
-                logger.info(f"Behavioral analysis complete "
-                           f"(crypto_mining_behavior: {behavioral_features.get('crypto_mining_behavior', 0):.3f})")
-                
-            except Exception as e:
-                logger.warning(f"Behavioral analysis failed: {e}")
-                # Features will remain None (acceptable)
-        else:
-            logger.warning("Skipping behavioral analysis (missing trivy or syft data)")
+                    logger.info(f"Behavioral analysis complete "
+                    f"(crypto_mining_behavior: {behavioral_features.get('crypto_mining_behavior', 0):.3f})")
+        
+                except Exception as e:
+                    logger.warning(f"Behavioral analysis failed: {e}")
+        # Features will remain None (acceptable)
+            else:
+                logger.warning("Skipping behavioral analysis (missing trivy or syft data)")
             
             # Log results
             self._log_feature_summary(features)

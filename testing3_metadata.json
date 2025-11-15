@@ -1,0 +1,54 @@
+{
+  "schema_version": "2.0",
+  "extraction_timestamp": "2025-11-04T14:53:09.796610",
+  "total_images": 26,
+  "successful_scans": 23,
+  "failed_scans": 3,
+  "success_rate": 0.8846153846153846,
+  "timeout_per_image": 300,
+  "max_workers": 3,
+  "safe_images_scanned": 14,
+  "risky_images_scanned": 9,
+  "column_order": [
+    "cryptominer_binary",
+    "mining_pools",
+    "hardcoded_secrets",
+    "external_calls",
+    "ssh_backdoor",
+    "runs_as_root",
+    "known_cves",
+    "outdated_base",
+    "typosquatting_score",
+    "image_age_days",
+    "high_entropy_files",
+    "suspicious_ports",
+    "avg_file_entropy",
+    "high_entropy_ratio",
+    "stratum_indicators",
+    "raw_ip_connections",
+    "suspicious_dns_queries",
+    "stripped_binaries_ratio",
+    "packed_binary_score",
+    "layer_deletion_score",
+    "temp_file_activity",
+    "process_injection_risk",
+    "privilege_escalation_risk",
+    "crypto_mining_behavior",
+    "anti_analysis_score",
+    "label"
+  ],
+  "failed_images": [
+    [
+      "openjdk:11-alpine",
+      "safe"
+    ],
+    [
+      "perl:5.16",
+      "risky"
+    ],
+    [
+      "perl:5.18",
+      "risky"
+    ]
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "feature_names": [
+    "cryptominer_binary",
+    "mining_pools",
+    "hardcoded_secrets",
+    "external_calls",
+    "ssh_backdoor",
+    "runs_as_root",
+    "known_cves",
+    "outdated_base",
+    "typosquatting_score",
+    "image_age_days",
+    "suspicious_ports",
+    "avg_file_entropy",
+    "high_entropy_ratio",
+    "stratum_indicators",
+    "raw_ip_connections",
+    "suspicious_dns_queries",
+    "stripped_binaries_ratio",
+    "packed_binary_score",
+    "layer_deletion_score",
+    "temp_file_activity",
+    "process_injection_risk",
+    "privilege_escalation_risk",
+    "crypto_mining_behavior",
+    "anti_analysis_score"
+  ],
+  "feature_importance": [
+    {
+      "feature": "image_age_days",
+      "importance": 0.32509931921958923
+    },
+    {
+      "feature": "outdated_base",
+      "importance": 0.18037906289100647
+    },
+    {
+      "feature": "suspicious_dns_queries",
+      "importance": 0.1269027441740036
+    },
+    {
+      "feature": "runs_as_root",
+      "importance": 0.11493656039237976
+    },
+    {
+      "feature": "known_cves",
+      "importance": 0.06801723688840866
+    },
+    {
+      "feature": "process_injection_risk",
+      "importance": 0.04262369126081467
+    },
+    {
+      "feature": "privilege_escalation_risk",
+      "importance": 0.026441896334290504
+    },
+    {
+      "feature": "temp_file_activity",
+      "importance": 0.023622829467058182
+    },
+    {
+      "feature": "anti_analysis_score",
+      "importance": 0.023582909256219864
+    },
+    {
+      "feature": "stratum_indicators",
+      "importance": 0.013432717882096767
+    },
+    {
+      "feature": "typosquatting_score",
+      "importance": 0.01141660287976265
+    },
+    {
+      "feature": "crypto_mining_behavior",
+      "importance": 0.010911038145422935
+    },
+    {
+      "feature": "suspicious_ports",
+      "importance": 0.01027927827090025
+    },
+    {
+      "feature": "avg_file_entropy",
+      "importance": 0.007892231456935406
+    },
+    {
+      "feature": "layer_deletion_score",
+      "importance": 0.0077344621531665325
+    },
+    {
+      "feature": "raw_ip_connections",
+      "importance": 0.006727413274347782
+    },
+    {
+      "feature": "packed_binary_score",
+      "importance": 0.0
+    },
+    {
+      "feature": "cryptominer_binary",
+      "importance": 0.0
+    },
+    {
+      "feature": "stripped_binaries_ratio",
+      "importance": 0.0
+    },
+    {
+      "feature": "mining_pools",
+      "importance": 0.0
+    },
+    {
+      "feature": "ssh_backdoor",
+      "importance": 0.0
+    },
+    {
+      "feature": "external_calls",
+      "importance": 0.0
+    },
+    {
+      "feature": "hardcoded_secrets",
+      "importance": 0.0
+    },
+    {
+      "feature": "high_entropy_ratio",
+      "importance": 0.0
+    }
+  ],
+  "train_samples": 165,
+  "test_samples": 42,
+  "train_auc": 0.9998526377836723,
+  "test_auc": 1.0,
+  "accuracy": 1.0,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1_score": 1.0,
+  "false_positive_rate": 0.0,
+  "confusion_matrix": {
+    "true_negatives": 22,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "true_positives": 20
+  },
+  "class_distribution": {
+    "safe": 109,
+    "risky": 98
+  }
+}

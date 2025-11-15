@@ -1,0 +1,58 @@
+{
+  "schema_version": "2.0",
+  "extraction_timestamp": "2025-11-04T15:23:00.778460",
+  "total_images": 40,
+  "successful_scans": 36,
+  "failed_scans": 4,
+  "success_rate": 0.9,
+  "timeout_per_image": 300,
+  "max_workers": 4,
+  "safe_images_scanned": 20,
+  "risky_images_scanned": 16,
+  "column_order": [
+    "cryptominer_binary",
+    "mining_pools",
+    "hardcoded_secrets",
+    "external_calls",
+    "ssh_backdoor",
+    "runs_as_root",
+    "known_cves",
+    "outdated_base",
+    "typosquatting_score",
+    "image_age_days",
+    "high_entropy_files",
+    "suspicious_ports",
+    "avg_file_entropy",
+    "high_entropy_ratio",
+    "stratum_indicators",
+    "raw_ip_connections",
+    "suspicious_dns_queries",
+    "stripped_binaries_ratio",
+    "packed_binary_score",
+    "layer_deletion_score",
+    "temp_file_activity",
+    "process_injection_risk",
+    "privilege_escalation_risk",
+    "crypto_mining_behavior",
+    "anti_analysis_score",
+    "label"
+  ],
+  "failed_images": [
+    [
+      "ubuntu:10.04",
+      "risky"
+    ],
+    [
+      "debian:squeeze",
+      "risky"
+    ],
+    [
+      "debian:lenny",
+      "risky"
+    ],
+    [
+      "python:2.6",
+      "risky"
+    ]
+  ]
+}

@@ -1,0 +1,275 @@
+======================================================================
+DOCKER DATASET FEATURE DOCUMENTATION
+======================================================================
+
+Dataset: 100 samples, 36 features
+Generated: 2025-11-04T13:34:33.069863
+
+
+VULNERABILITY FEATURES:
+--------------------------------------------------
+  known_cves                               100.0% complete
+  outdated_base                            100.0% complete
+  image_age_days                           100.0% complete
+
+BEHAVIORAL FEATURES:
+--------------------------------------------------
+  avg_file_entropy                         100.0% complete
+  high_entropy_ratio                       100.0% complete
+  stratum_indicators                       100.0% complete
+  raw_ip_connections                       100.0% complete
+  suspicious_dns_queries                   100.0% complete
+  stripped_binaries_ratio                  100.0% complete
+  packed_binary_score                      100.0% complete
+  layer_deletion_score                     100.0% complete
+  temp_file_activity                       100.0% complete
+  process_injection_risk                   100.0% complete
+  privilege_escalation_risk                100.0% complete
+  crypto_mining_behavior                   100.0% complete
+  anti_analysis_score                      100.0% complete
+
+BINARY_INDICATORS FEATURES:
+--------------------------------------------------
+  cryptominer_binary                       100.0% complete
+  ssh_backdoor                             100.0% complete
+  runs_as_root                             100.0% complete
+
+COUNT_FEATURES FEATURES:
+--------------------------------------------------
+  mining_pools                             100.0% complete
+  hardcoded_secrets                        100.0% complete
+  external_calls                           100.0% complete
+  high_entropy_files                       100.0% complete
+  suspicious_ports                         100.0% complete
+
+METADATA FEATURES:
+--------------------------------------------------
+  typosquatting_score                      100.0% complete
+  image_age_days                           100.0% complete
+
+
+ENGINEERED FEATURES:
+--------------------------------------------------
+  image_age_days_log                       100.0% complete
+  known_cves_log                           100.0% complete
+  total_risk_binary                        100.0% complete
+  behavioral_risk_avg                      100.0% complete
+  has_malware_indicator                    100.0% complete
+  vuln_low                                 100.0% complete
+  vuln_medium                              100.0% complete
+  vuln_high                                100.0% complete
+
+
+FEATURE STATISTICS:
+======================================================================
+
+cryptominer_binary:
+  Min:    0.0000
+  Max:    1.0000
+  Mean:   0.0100
+  Median: 0.0000
+  Std:    0.1000
+
+mining_pools:
+  Min:    0.0000
+  Max:    0.0000
+  Mean:   0.0000
+  Median: 0.0000
+  Std:    0.0000
+
+hardcoded_secrets:
+  Min:    0.0000
+  Max:    4.0000
+  Mean:   0.1200
+  Median: 0.0000
+  Std:    0.4981
+
+external_calls:
+  Min:    0.0000
+  Max:    0.0000
+  Mean:   0.0000
+  Median: 0.0000
+  Std:    0.0000
+
+ssh_backdoor:
+  Min:    0.0000
+  Max:    1.0000
+  Mean:   0.0300
+  Median: 0.0000
+  Std:    0.1714
+
+runs_as_root:
+  Min:    0.0000
+  Max:    1.0000
+  Mean:   0.8600
+  Median: 1.0000
+  Std:    0.3487
+
+known_cves:
+  Min:    0.0000
+  Max:    51.0000
+  Mean:   24.9900
+  Median: 21.0000
+  Std:    22.9235
+
+outdated_base:
+  Min:    0.0000
+  Max:    1.0000
+  Mean:   0.5800
+  Median: 1.0000
+  Std:    0.4960
+
+typosquatting_score:
+  Min:    0.2770
+  Max:    1.0000
+  Mean:   0.8333
+  Median: 1.0000
+  Std:    0.2752
+
+image_age_days:
+  Min:    0.0000
+  Max:    3287.0000
+  Mean:   1079.8900
+  Median: 668.5000
+  Std:    1094.9662
+
+high_entropy_files:
+  Min:    0.0000
+  Max:    0.0000
+  Mean:   0.0000
+  Median: 0.0000
+  Std:    0.0000
+
+suspicious_ports:
+  Min:    0.0000
+  Max:    5.0000
+  Mean:   3.2000
+  Median: 3.0000
+  Std:    1.1807
+
+avg_file_entropy:
+  Min:    0.0000
+  Max:    0.9807
+  Mean:   0.1157
+  Median: 0.0000
+  Std:    0.3150
+
+high_entropy_ratio:
+  Min:    0.0000
+  Max:    0.0000
+  Mean:   0.0000
+  Median: 0.0000
+  Std:    0.0000
+
+stratum_indicators:
+  Min:    0.0000
+  Max:    0.2400
+  Mean:   0.0872
+  Median: 0.0800
+  Std:    0.0592
+
+raw_ip_connections:
+  Min:    0.0000
+  Max:    1.0000
+  Mean:   0.5700
+  Median: 1.0000
+  Std:    0.4886
+
+suspicious_dns_queries:
+  Min:    0.0000
+  Max:    1.0000
+  Mean:   0.3440
+  Median: 0.2500
+  Std:    0.3251
+
+stripped_binaries_ratio:
+  Min:    0.0000
+  Max:    0.0000
+  Mean:   0.0000
+  Median: 0.0000
+  Std:    0.0000
+
+packed_binary_score:
+  Min:    0.0000
+  Max:    0.0000
+  Mean:   0.0000
+  Median: 0.0000
+  Std:    0.0000
+
+layer_deletion_score:
+  Min:    0.0000
+  Max:    1.0000
+  Mean:   0.1847
+  Median: 0.0180
+  Std:    0.2242
+
+temp_file_activity:
+  Min:    0.0000
+  Max:    0.5000
+  Mean:   0.0650
+  Median: 0.0000
+  Std:    0.1158
+
+process_injection_risk:
+  Min:    0.0000
+  Max:    0.6982
+  Mean:   0.1777
+  Median: 0.0983
+  Std:    0.2098
+
+privilege_escalation_risk:
+  Min:    0.0000
+  Max:    0.9785
+  Mean:   0.2229
+  Median: 0.1500
+  Std:    0.2534
+
+crypto_mining_behavior:
+  Min:    0.0000
+  Max:    0.2970
+  Mean:   0.1485
+  Median: 0.2000
+  Std:    0.1068
+
+anti_analysis_score:
+  Min:    0.0000
+  Max:    1.0000
+  Mean:   0.3917
+  Median: 0.4000
+  Std:    0.3018
+
+image_age_days_log:
+  Min:    0.0000
+  Max:    8.0980
+  Mean:   5.6883
+  Median: 6.5053
+  Std:    2.2176
+
+known_cves_log:
+  Min:    0.0000
+  Max:    3.9512
+  Mean:   2.3804
+  Median: 3.0869
+  Std:    1.6254
+
+total_risk_binary:
+  Min:    0.0000
+  Max:    2.0000
+  Mean:   1.4800
+  Median: 2.0000
+  Std:    0.6432
+
+behavioral_risk_avg:
+  Min:    0.0000
+  Max:    0.4169
+  Mean:   0.1775
+  Median: 0.1805
+  Std:    0.1205
+
+has_malware_indicator:
+  Min:    0.0000
+  Max:    1.0000
+  Mean:   0.0400
+  Median: 0.0000
+  Std:    0.1969
+
