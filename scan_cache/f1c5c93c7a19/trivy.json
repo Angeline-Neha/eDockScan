@@ -1,6 +1,6 @@
 {
   "SchemaVersion": 2,
-  "CreatedAt": "2025-11-05T16:49:28.928789762Z",
+  "CreatedAt": "2025-11-15T10:10:59.079972597Z",
   "ArtifactName": "mcr.microsoft.com/dotnet/runtime:7.0",
   "ArtifactType": "container_image",
   "Metadata": {
@@ -9535,6 +9535,7 @@
             "amazon": 2,
             "azure": 1,
             "oracle-oval": 2,
+            "photon": 3,
             "redhat": 2,
             "rocky": 2,
             "ubuntu": 2
@@ -10298,6 +10299,7 @@
             "amazon": 2,
             "azure": 1,
             "oracle-oval": 2,
+            "photon": 3,
             "redhat": 2,
             "rocky": 2,
             "ubuntu": 2
@@ -11482,6 +11484,7 @@
             "http://www.openwall.com/lists/oss-security/2025/07/11/3",
             "https://access.redhat.com/errata/RHSA-2025:16115",
             "https://access.redhat.com/errata/RHSA-2025:16116",
+            "https://access.redhat.com/errata/RHSA-2025:17181",
             "https://access.redhat.com/errata/RHSA-2025:17348",
             "https://access.redhat.com/errata/RHSA-2025:17361",
             "https://access.redhat.com/errata/RHSA-2025:17415",
@@ -11509,7 +11512,7 @@
             "https://www.cve.org/CVERecord?id=CVE-2025-32988"
           ],
           "PublishedDate": "2025-07-10T08:15:24.223Z",
-          "LastModifiedDate": "2025-11-04T22:16:10.16Z"
+          "LastModifiedDate": "2025-11-06T23:15:36.797Z"
         },
         {
           "VulnerabilityID": "CVE-2025-32990",
@@ -11568,6 +11571,7 @@
             "http://www.openwall.com/lists/oss-security/2025/07/11/3",
             "https://access.redhat.com/errata/RHSA-2025:16115",
             "https://access.redhat.com/errata/RHSA-2025:16116",
+            "https://access.redhat.com/errata/RHSA-2025:17181",
             "https://access.redhat.com/errata/RHSA-2025:17348",
             "https://access.redhat.com/errata/RHSA-2025:17361",
             "https://access.redhat.com/errata/RHSA-2025:17415",
@@ -11595,7 +11599,7 @@
             "https://www.cve.org/CVERecord?id=CVE-2025-32990"
           ],
           "PublishedDate": "2025-07-10T10:15:33.06Z",
-          "LastModifiedDate": "2025-11-04T22:16:10.45Z"
+          "LastModifiedDate": "2025-11-06T23:15:37.137Z"
         },
         {
           "VulnerabilityID": "CVE-2024-12243",
@@ -11877,6 +11881,7 @@
             "http://www.openwall.com/lists/oss-security/2025/07/11/3",
             "https://access.redhat.com/errata/RHSA-2025:16115",
             "https://access.redhat.com/errata/RHSA-2025:16116",
+            "https://access.redhat.com/errata/RHSA-2025:17181",
             "https://access.redhat.com/errata/RHSA-2025:17348",
             "https://access.redhat.com/errata/RHSA-2025:17361",
             "https://access.redhat.com/errata/RHSA-2025:17415",
@@ -11904,7 +11909,7 @@
             "https://www.cve.org/CVERecord?id=CVE-2025-6395"
           ],
           "PublishedDate": "2025-07-10T16:15:25.11Z",
-          "LastModifiedDate": "2025-11-04T22:16:43.003Z"
+          "LastModifiedDate": "2025-11-07T00:15:55.29Z"
         },
         {
           "VulnerabilityID": "CVE-2011-3389",
@@ -14351,7 +14356,9 @@
             "https://access.redhat.com/errata/RHSA-2025:15827",
             "https://access.redhat.com/errata/RHSA-2025:15828",
             "https://access.redhat.com/errata/RHSA-2025:16524",
+            "https://access.redhat.com/errata/RHSA-2025:17181",
             "https://access.redhat.com/errata/RHSA-2025:18219",
+            "https://access.redhat.com/errata/RHSA-2025:20181",
             "https://access.redhat.com/errata/RHSA-2025:9526",
             "https://access.redhat.com/security/cve/CVE-2025-6020",
             "https://bugzilla.redhat.com/2372512",
@@ -14370,7 +14377,7 @@
             "https://www.openwall.com/lists/oss-security/2025/06/17/1"
           ],
           "PublishedDate": "2025-06-17T13:15:21.66Z",
-          "LastModifiedDate": "2025-11-03T19:16:15.117Z"
+          "LastModifiedDate": "2025-11-11T16:15:40.43Z"
         },
         {
           "VulnerabilityID": "CVE-2024-10041",
@@ -14577,7 +14584,9 @@
             "https://access.redhat.com/errata/RHSA-2025:15827",
             "https://access.redhat.com/errata/RHSA-2025:15828",
             "https://access.redhat.com/errata/RHSA-2025:16524",
+            "https://access.redhat.com/errata/RHSA-2025:17181",
             "https://access.redhat.com/errata/RHSA-2025:18219",
+            "https://access.redhat.com/errata/RHSA-2025:20181",
             "https://access.redhat.com/errata/RHSA-2025:9526",
             "https://access.redhat.com/security/cve/CVE-2025-6020",
             "https://bugzilla.redhat.com/2372512",
@@ -14596,7 +14605,7 @@
             "https://www.openwall.com/lists/oss-security/2025/06/17/1"
           ],
           "PublishedDate": "2025-06-17T13:15:21.66Z",
-          "LastModifiedDate": "2025-11-03T19:16:15.117Z"
+          "LastModifiedDate": "2025-11-11T16:15:40.43Z"
         },
         {
           "VulnerabilityID": "CVE-2024-10041",
@@ -14803,7 +14812,9 @@
             "https://access.redhat.com/errata/RHSA-2025:15827",
             "https://access.redhat.com/errata/RHSA-2025:15828",
             "https://access.redhat.com/errata/RHSA-2025:16524",
+            "https://access.redhat.com/errata/RHSA-2025:17181",
             "https://access.redhat.com/errata/RHSA-2025:18219",
+            "https://access.redhat.com/errata/RHSA-2025:20181",
             "https://access.redhat.com/errata/RHSA-2025:9526",
             "https://access.redhat.com/security/cve/CVE-2025-6020",
             "https://bugzilla.redhat.com/2372512",
@@ -14822,7 +14833,7 @@
             "https://www.openwall.com/lists/oss-security/2025/06/17/1"
           ],
           "PublishedDate": "2025-06-17T13:15:21.66Z",
-          "LastModifiedDate": "2025-11-03T19:16:15.117Z"
+          "LastModifiedDate": "2025-11-11T16:15:40.43Z"
         },
         {
           "VulnerabilityID": "CVE-2024-10041",
@@ -15029,7 +15040,9 @@
             "https://access.redhat.com/errata/RHSA-2025:15827",
             "https://access.redhat.com/errata/RHSA-2025:15828",
             "https://access.redhat.com/errata/RHSA-2025:16524",
+            "https://access.redhat.com/errata/RHSA-2025:17181",
             "https://access.redhat.com/errata/RHSA-2025:18219",
+            "https://access.redhat.com/errata/RHSA-2025:20181",
             "https://access.redhat.com/errata/RHSA-2025:9526",
             "https://access.redhat.com/security/cve/CVE-2025-6020",
             "https://bugzilla.redhat.com/2372512",
@@ -15048,7 +15061,7 @@
             "https://www.openwall.com/lists/oss-security/2025/06/17/1"
           ],
           "PublishedDate": "2025-06-17T13:15:21.66Z",
-          "LastModifiedDate": "2025-11-03T19:16:15.117Z"
+          "LastModifiedDate": "2025-11-11T16:15:40.43Z"
         },
         {
           "VulnerabilityID": "CVE-2024-10041",

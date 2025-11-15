@@ -539,20 +539,26 @@ class EnhancedRemoteDockerScanner:
             if trivy_success and syft_success:
                 try:
                     logger.info("Extracting behavioral features...")
-                    behavioral_features = self.behavioral_analyzer.analyze_image(
-                        image_name, trivy_data, syft_data
-                    )
-        
-                    # Add behavioral features to the features object
+                    behavioral_features = self.behavioral_analyzer.analyze_image(image_name, trivy_data, syft_data)
+
+        # Extract remediations (stored separately, won't go in CSV)
+                    remediations = behavioral_features.pop('_remediations', [])
+
+        # Add behavioral features to the features object
                     for feature_name, value in behavioral_features.items():
                         if hasattr(features, feature_name):
                             setattr(features, feature_name, value)
-                
-                    logger.info(f"Behavioral analysis complete "
-                    f"(crypto_mining_behavior: {behavioral_features.get('crypto_mining_behavior', 0):.3f})")
         
+        # Store remediations in features metadata (for reporting)
+                    features.remediations = remediations
+        
+                    logger.info(f"Behavioral analysis complete "
+                    f"(crypto_mining_behavior: {behavioral_features.get('crypto_mining_behavior', 0):.3f}, "
+                    f"{len(remediations)} remediations)")
+
                 except Exception as e:
                     logger.warning(f"Behavioral analysis failed: {e}")
+                    features.remediations = []
             else:
                 logger.warning("Skipping behavioral analysis (missing trivy or syft data)")
             

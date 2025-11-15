@@ -420,6 +420,52 @@ class DockerSecurityScanner:
         
         risk_factors.sort(key=lambda x: x['importance'] * x['value'], reverse=True)
         
+        layer_analyses = []
+        remediations = []
+    
+    # Get cached data
+        cache_path = self.extractor.cache_manager.get_cache_path(image_name)
+        trivy_file = cache_path / 'trivy.json'
+        syft_file = cache_path / 'sbom.json'
+    
+        if trivy_file.exists():
+            import json
+            with open(trivy_file) as f:
+                trivy_data = json.load(f)
+                
+            syft_data = {}
+            if syft_file.exists():
+                with open(syft_file) as f:
+                    syft_data = json.load(f)
+        
+        # Re-run behavioral analyzer to get layer analyses
+            from behavioral_analyzer import BehavioralAnalyzer
+            analyzer = BehavioralAnalyzer()
+        
+            metadata = trivy_data.get('Metadata', {})
+            image_config = metadata.get('ImageConfig', {})
+            history = image_config.get('history', [])
+        
+            if history:
+                for idx, layer in enumerate(history):
+                    analysis = analyzer._analyze_layer(idx, layer)
+                    layer_analyses.append(analysis)
+            
+                remediations_objects = analyzer._generate_remediations(layer_analyses)
+                for rem in remediations_objects:
+                    remediations.append({
+                        'severity': rem.severity,
+                        'issue': rem.issue,
+                        'layer_id': rem.layer_id,
+                        'remediation': rem.remediation,
+                        'example_fix': rem.example_fix
+                        })
+    
+    # ============================================
+    # END OF ADDED BLOCK
+    # ============================================
+
+       
         # Build report
         report = {
             'image': image_name,
@@ -431,8 +477,12 @@ class DockerSecurityScanner:
             'scan_status': features.scan_status,
             'scan_confidence': features.confidence_score,
             'top_risk_factors': risk_factors[:10],
-            'all_features': image_features
+            'all_features': image_features,
+            'layer_analyses': layer_analyses,  # ADD THIS
+            'remediations': remediations  
         }
+        # Add remediations if available
+        
         
         return report
     
@@ -496,8 +546,204 @@ class DockerSecurityScanner:
             value = report['all_features'].get(key, 0)
             status = "❌" if value > 0 else "✓"
             print(f"{status} {label:30s}: {value}")
+
+        # ============================================
+    # ADD THIS ENTIRE BLOCK
+    # ============================================
+    
+    # Behavioral Analysis Summary
+        print(f"\n{'─'*70}")
+        print("BEHAVIORAL ANALYSIS (LAYER-BY-LAYER)")
+        print(f"{'─'*70}")
+    
+        behavioral_features = {
+            'crypto_mining_behavior': ('Cryptocurrency mining', 0.5),
+            'privilege_escalation_risk': ('Privilege escalation', 0.5),
+            'layer_deletion_score': ('Temporal anomalies', 0.3),
+            'anti_analysis_score': ('Anti-analysis tactics', 0.5),
+            'process_injection_risk': ('Process injection', 0.5),
+            'temp_file_activity': ('Suspicious temp file usage', 0.3),
+            'external_calls': ('External network calls', 3)
+            }
+    
+        has_behavioral_risk = False
+        for key, (label, threshold) in behavioral_features.items():
+            value = report['all_features'].get(key, 0)
+        
+        # Determine status based on thresholds
+            if key == 'external_calls':
+                if value >= 5:
+                    status = "🔴 HIGH"
+                    has_behavioral_risk = True
+                
+                elif value >= 3:
+                    status = "🟡 MEDIUM"
+                    has_behavioral_risk = True
+            
+                elif value > 0:
+                    status = "⚠️  LOW"
+                    
+                else:
+                    status = "✓ CLEAN"
+            else:
+            # Float features
+                if value >= 0.7:
+                    status = "🔴 CRITICAL"
+                    has_behavioral_risk = True
+                elif value >= threshold:
+                    status = "🟠 HIGH"
+                    has_behavioral_risk = True
+                elif value >= 0.1:
+                    status = "🟡 MEDIUM"
+                    has_behavioral_risk = True
+                elif value > 0:
+                    status = "⚠️  LOW"
+                else:
+                    status = "✓ CLEAN"
+        
+            print(f"{status:15s} {label:35s}: {value:.3f}" if isinstance(value, float) else f"{status:15s} {label:35s}: {value}")
+    
+        if not has_behavioral_risk:
+            print("\n✅ No significant behavioral threats detected")
+    
+    # CVE Risk Summary
+        print(f"\n{'─'*70}")
+        print("CVE & METADATA RISKS")
+        print(f"{'─'*70}")
+    
+        cve_features = {
+            'known_cves': ('Known vulnerabilities', 5),
+            'outdated_base': ('Outdated base image', 0),
+            'image_age_days': ('Image age (days)', 365),
+            'hardcoded_secrets': ('Hardcoded secrets', 0),
+            'suspicious_ports': ('Suspicious ports exposed', 0)
+            }
+    
+        for key, (label, threshold) in cve_features.items():
+            value = report['all_features'].get(key, 0)
+            
+            if key == 'outdated_base':
+                status = "❌ YES" if value == 1 else "✓ NO"
+                print(f"{status:15s} {label:35s}")
+        
+            elif key == 'image_age_days':
+                if value > 730:
+                    status = "🔴 CRITICAL"
+                elif value > 365:
+                    status = "🟠 HIGH"
+                elif value > 180:
+                    status = "🟡 MEDIUM"
+                else:
+                    status = "✓ FRESH"
+                print(f"{status:15s} {label:35s}: {value}")
+            else:
+                if value >= threshold and value > 0:
+                    status = "🔴 HIGH"
+                elif value > 0:
+                    status = "🟡 MEDIUM"
+                else:
+                    status = "✓ NONE"
+                print(f"{status:15s} {label:35s}: {value}")
+    
+        # ============================================
+    # ADD THIS: LAYER-BY-LAYER DETAILED ANALYSIS
+    # ============================================
+    
+        layer_analyses = report.get('layer_analyses', [])
+        remediations = report.get('remediations', [])
+    
+        if layer_analyses:
+            print(f"\n{'─'*70}")
+            print("DETAILED LAYER-BY-LAYER ANALYSIS")
+            print(f"{'─'*70}")
+        
+        # Calculate overall layer risk
+            max_risk = max(la.risk_score for la in layer_analyses)
+            avg_risk = sum(la.risk_score for la in layer_analyses) / len(layer_analyses)
+            high_risk_count = sum(1 for la in layer_analyses if la.risk_score > 0.5)
+        
+            overall_score = (max_risk * 0.5) + (avg_risk * 0.3) + (high_risk_count / len(layer_analyses) * 0.2)
+        
+            if overall_score >= 0.7:
+                level = 'CRITICAL'
+                emoji = '🔴'
+            elif overall_score >= 0.5:
+                level = 'HIGH'
+                emoji = '🟠'
+            elif overall_score >= 0.3:
+                level = 'MEDIUM'
+                emoji = '🟡'
+            else:
+                level = 'LOW'
+                emoji = '🟢'
+        
+            print(f"\n{emoji} Overall Layer Risk: {level} ({overall_score:.1%})")
+            print(f"   Total Layers: {len(layer_analyses)}")
+            print(f"   High-Risk Layers: {high_risk_count}")
+            print(f"   Max Layer Risk: {max_risk:.1%}")
+        
+        # Show high-risk layers
+            high_risk_layers = [la for la in layer_analyses if la.risk_score >= 0.3]
+        
+            if high_risk_layers:
+                print(f"\n🔍 High-Risk Layers Detected:")
+                for analysis in high_risk_layers[:5]: 
+                    risk_emoji = "🔴" if analysis.risk_score >= 0.7 else "🟠" if analysis.risk_score >= 0.5 else "🟡"
+                
+                    print(f"\n   {risk_emoji} {analysis.layer_id.upper()} (Risk: {analysis.risk_score:.1%})")
+                    print(f"      Command: {analysis.command[:80]}...")
+                
+                    if analysis.findings:
+                        print(f"      Findings:")
+                        for finding in analysis.findings[:3]:
+                            print(f"         • {finding}")
+            
+                if len(high_risk_layers) > 5:
+                    print(f"\n   ... and {len(high_risk_layers) - 5} more high-risk layers")
+            else:
+                print(f"\n   ✅ No high-risk layers detected")
+    
+    # Remediation Recommendations
+        if remediations:
+            print(f"\n{'─'*70}")
+            print("🔧 REMEDIATION RECOMMENDATIONS")
+            print(f"{'─'*70}")
+        
+            # Group by severity
+            critical = [r for r in remediations if r['severity'] == "CRITICAL"]
+            high = [r for r in remediations if r['severity'] == "HIGH"]
+            medium = [r for r in remediations if r['severity'] == "MEDIUM"]
+        
+            for severity, items in [("CRITICAL", critical), ("HIGH", high), ("MEDIUM", medium)]:
+                if not items:
+                    continue
+            
+                icon = "🔴" if severity == "CRITICAL" else "🟠" if severity == "HIGH" else "🟡"
+                print(f"\n{icon} {severity} PRIORITY ({len(items)} issues)")
+            
+                
+
+                for idx, rem in enumerate(items[:3], 1):  
+                    print(f"\n   {idx}. {rem['issue']}")
+                    print(f"      Layer: {rem['layer_id']}")
+                    print(f"      Fix: {rem['remediation']}")
+    
+                    if rem['example_fix']:
+                        print(f"      Example:")
+                        for line in rem['example_fix'].split('\n')[:4]:  
+                            if line.strip():
+                                print(f"         {line}")
+            
+                if len(items) > 3:
+                    print(f"\n   ... and {len(items) - 3} more {severity} issues")
+    
+    # ============================================
+    # END OF ADDED BLOCK
+    # ============================================
         
         print(f"\n{'='*70}")
+
+
 
 
 # ============================================
