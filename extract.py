@@ -825,7 +825,7 @@ class EnhancedRemoteDockerScanner:
             elif severity in ['high', 'hi', 'h']:
                 high_count += 1
         
-        features.known_cves = min(critical_count + high_count, 50)
+        features.known_cves = critical_count + high_count
         
         if features.known_cves > 0:
             logger.warning(f"CVEs found: {critical_count} critical, {high_count} high")
@@ -1267,6 +1267,204 @@ RISKY_IMAGES = [
     'webgoat/goatandwolf',
 ]
 
+NEW_SAFE_IMAGES = [
+    # Cloud-native & Container tools (official, small)
+    'docker:dind-alpine',
+    'docker:24-cli-alpine',
+    'containerd/containerd:1.7.11',
+    'registry:2',
+    'registry:2.8-alpine',
+    
+    # Databases you haven't used
+    'couchdb:3.3',
+    'cockroachdb/cockroach:v23.1.14',
+    'arangodb:3.11',
+    'orientdb:3.2',
+    'cassandra:4.1',
+    'timescaledb/timescaledb:latest-pg16',
+    
+    # Message queues & streaming
+    'confluentinc/cp-kafka:7.5.3',
+    'apache/kafka:3.6.1',
+    'apache/zookeeper:3.9.1',
+    'redis/redis-stack-server:latest',
+    
+    # Web servers & proxies (different versions)
+    'nginx:1.26-alpine',
+    'nginx:mainline-alpine',
+    'envoyproxy/envoy:v1.28.0',
+    'kong:3.5-alpine',
+    
+    # Programming language runtimes (newer/different versions)
+    'python:3.13-slim',
+    'node:22-alpine',
+    'golang:1.22-alpine',
+    'ruby:3.3-alpine',
+    'php:8.3-alpine',
+    'openjdk:21-slim',
+    'rust:1.76-alpine',
+    'dotnet/runtime:8.0-alpine',
+    'dotnet/aspnet:8.0-alpine',
+    
+    # Monitoring & observability
+    'prom/alertmanager:latest',
+    'prom/node-exporter:latest',
+    'prom/blackbox-exporter:latest',
+    'grafana/loki:2.9.3',
+    'grafana/promtail:2.9.3',
+    'jaegertracing/all-in-one:1.53',
+    
+    # CI/CD & DevOps tools
+    'gitlab/gitlab-runner:alpine',
+    'hashicorp/terraform:latest',
+    'drone/drone:2',
+    'argoproj/argocd:latest',
+    'fluxcd/flux:latest',
+
+     'ubuntu:20.04',  # LTS until April 2025 ✅
+    'ubuntu:18.04',  # LTS until April 2028 (ESM) ⚠️ Borderline but patched
+    
+    # Debian Stable/Oldstable (still supported)
+    'debian:buster-slim',  # Oldstable, security support until June 2024 ⚠️ Check date
+    'debian:bullseye',  # Oldstable, supported until 2026 ✅
+    
+    # Alpine older but maintained
+    'alpine:3.17',  # Still receives security patches ✅
+    'alpine:3.16',  # Still receives security patches ✅
+    
+    # ═══════════════════════════════════════════════════════════
+    # DIFFERENT CATEGORIES YOU DON'T HAVE
+    # ═══════════════════════════════════════════════════════════
+    
+    # Search engines
+    'opensearchproject/opensearch:2.11.1',  # Elasticsearch alternative ✅
+    'meilisearch/meilisearch:v1.5',  # Fast search engine ✅
+    
+    # Reverse proxies / Load balancers (different from yours)
+    'nginx/nginx-ingress:3.4.3',  # Nginx Ingress Controller ✅
+    'haproxytech/haproxy-debian:2.8',  # HAProxy Debian variant ✅
+    
+    # Cache / In-memory stores
+    'memcached:1.6.22',  # Specific stable version ✅
+    'dragonflydb/dragonfly:v1.13.0',  # Redis alternative ✅
+    
+    # Web application servers
+    'jetty:11-jre17-alpine',  # Jetty server ✅
+    
+    # Serverless / FaaS
+    'openfaas/gateway:0.27.4',  # OpenFaaS gateway ✅
+    
+    # Documentation / Static sites
+    'squidfunk/mkdocs-material:9.5', 
+]
+
+NEW_RISKY_IMAGES = [
+    # More EOL Ubuntu versions
+    'ubuntu:19.04',  # EOL
+    'ubuntu:19.10',  # EOL
+    
+    'ubuntu:21.10',  # EOL
+    'ubuntu:17.10',  # EOL
+    
+    # More EOL Debian
+    'debian:buster',  # oldstable, getting EOL
+    'debian:oldstable',
+    
+    # EOL Fedora versions
+    'fedora:28',  # EOL
+    'fedora:29',  # EOL
+    'fedora:30',  # EOL
+    'fedora:31',  # EOL
+    
+    # Older Alpine (security issues)
+    'alpine:3.8',
+    'alpine:3.9',
+    
+    'alpine:3.11',
+    
+    # More old Python
+    'python:3.7',  # EOL June 2023
+    'python:3.8-slim',  # EOL October 2024
+    'python:2.7-alpine',
+    
+    # More old Node.js
+    'node:14',  # EOL April 2023
+    'node:15',  # EOL
+    'node:13',  # EOL
+    
+    # Old Golang
+    'golang:1.13',
+    
+    'golang:1.16',
+    
+    # Old Ruby
+    'ruby:2.4',  # EOL
+      # EOL
+    'ruby:2.6',  # EOL
+    
+    # Old Redis (vulnerabilities)
+    'redis:5.0',
+    'redis:4.0.14',
+    
+    # Old Nginx
+    'nginx:1.16',
+    
+    'nginx:1.13',
+    
+    # Old Postgres
+    'postgres:10',  # EOL November 2022
+      # EOL November 2023
+    'postgres:9.0',
+    
+    # Old MySQL
+    'mysql:5.7',  # EOL October 2023
+    
+    # Intentionally vulnerable images (verified small & public)
+    'citizenstig/dvwa',  # Damn Vulnerable Web App
+    'vulnerables/cve-2017-7494',  # Samba vulnerability
+    'vulhub/struts2:2.3.15.1',  # Struts2 RCE
+
+    'servethehome/monero_xmr_stak',
+    'kannix/monero-miner',
+    'metalicjames/cryptonote-xmr-pool',
+    
+    # SSH backdoors (small)
+    'linuxserver/openssh-server',
+    'rastasheep/ubuntu-sshd',
+    'panubo/sshd',
+    'jdeathe/centos-ssh',
+    
+    # Root user + privilege escalation
+     # May be large - test first
+    
+    # Vulnerable web apps (verified small)
+    'bkimminich/juice-shop',  # ~300MB
+    'webgoat/webgoat-8.0',  # ~400MB
+    'vulnerables/web-dvwa',  # ~500MB
+    'citizenstig/dvwa',
+    
+    # Hardcoded secrets
+    'mongo-express/mongo-express',
+    
+    # Network tools (external calls)
+    'nicolaka/netshoot',
+    'instrumentisto/nmap',
+    
+    # VNC/RDP (suspicious ports)
+    'dorowu/ubuntu-desktop-lxde-vnc',
+    
+    # Build tools (temp files, high entropy)
+    'buildpack-deps:buster',
+    'buildpack-deps:focal',
+    
+    # Security scanners (multiple behavioral flags)
+    'owasp/zap2docker-stable',
+    'projectdiscovery/nuclei',
+    'aquasec/trivy',
+    
+    # Container with many binaries (stripped, packed)
+    'voidlinux/voidlinux'
+]
 
 if __name__ == "__main__":
     import sys
@@ -1311,6 +1509,8 @@ Examples:
     test_parser = subparsers.add_parser('test', help='Test with small dataset')
     test_parser.add_argument('--output', default='data/test_features.csv',
                             help='Output CSV file')
+    test_parser.add_argument('--timeout', type=int, default=300,  # ← ADD THIS
+                        help='Timeout per image (seconds)')
     
     # Single image command
     single_parser = subparsers.add_parser('single', help='Scan single image')
@@ -1357,10 +1557,11 @@ Examples:
     elif args.command == 'test':
         logger.info("Running test with 30 images...")
         df = extract_dataset_parallel(
-            SAFE_IMAGES[:20],    # 15 safe images
-            RISKY_IMAGES[:20],   # 15 risky images
+            NEW_SAFE_IMAGES[40:50],    # 15 safe images
+            NEW_RISKY_IMAGES[40:50],   # 15 risky images
             output_csv=args.output,
-            max_workers=4
+            max_workers=4,
+            timeout_per_image=args.timeout
         )
     
     elif args.command == 'single':

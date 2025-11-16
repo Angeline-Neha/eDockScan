@@ -1,0 +1,80 @@
+{
+  "SchemaVersion": 2,
+  "CreatedAt": "2025-11-15T14:21:24.507306137Z",
+  "ArtifactName": "fedora:30",
+  "ArtifactType": "container_image",
+  "Metadata": {
+    "Size": 245868544,
+    "OS": {
+      "Family": "fedora",
+      "Name": "30"
+    },
+    "ImageID": "sha256:177d5adf0c6c2627a752e168479395d2a530a090deab65b47716405075bd2107",
+    "DiffIDs": [
+      "sha256:a061a1fe0040b84fdb837cd6e57b4f71df56535cb72d95b0ccdcbcc96cec3403"
+    ],
+    "RepoTags": [
+      "fedora:30"
+    ],
+    "RepoDigests": [
+      "fedora@sha256:3a0c8c86d8ac2d1bbcfd08d40d3b757337f7916fb14f40efcb1d1137a4edef45"
+    ],
+    "ImageConfig": {
+      "architecture": "amd64",
+      "container": "4ba10552be6362bfcfa4d5094ab099a8c184abdf25778a8c50eed9835feeb1f5",
+      "created": "2020-02-21T02:40:48.303555757Z",
+      "docker_version": "18.09.7",
+      "history": [
+        {
+          "created": "2019-01-16T21:21:55.569693599Z",
+          "created_by": "/bin/sh -c #(nop)  LABEL maintainer=Clement Verna \u003ccverna@fedoraproject.org\u003e",
+          "empty_layer": true
+        },
+        {
+          "created": "2019-09-27T21:20:49.838093153Z",
+          "created_by": "/bin/sh -c #(nop)  ENV DISTTAG=f30-updates-candidatecontainer FGC=f30-updates-candidate FBR=f30-updates-candidate",
+          "empty_layer": true
+        },
+        {
+          "created": "2020-02-21T02:40:47.885678191Z",
+          "created_by": "/bin/sh -c #(nop) ADD file:7eccfd20ecf40bd0c40fe783141bcea78524531160e7a8fc5f77993aa37507d7 in / "
+        },
+        {
+          "created": "2020-02-21T02:40:48.303555757Z",
+          "created_by": "/bin/sh -c #(nop)  CMD [\"/bin/bash\"]",
+          "empty_layer": true
+        }
+      ],
+      "os": "linux",
+      "rootfs": {
+        "type": "layers",
+        "diff_ids": [
+          "sha256:a061a1fe0040b84fdb837cd6e57b4f71df56535cb72d95b0ccdcbcc96cec3403"
+        ]
+      },
+      "config": {
+        "Cmd": [
+          "/bin/bash"
+        ],
+        "Env": [
+          "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "DISTTAG=f30-updates-candidatecontainer",
+          "FGC=f30-updates-candidate",
+          "FBR=f30-updates-candidate"
+        ],
+        "Image": "sha256:952ee813e0ce0441e43ae9226e493c771b7700d9e166eeb649071ae75a922b7d",
+        "Labels": {
+          "maintainer": "Clement Verna \u003ccverna@fedoraproject.org\u003e"
+        },
+        "ArgsEscaped": true
+      }
+    },
+    "Layers": [
+      {
+        "Size": 245868544,
+        "Digest": "sha256:401909e6e2aacafa1d786d52eea42628f264d257577910f091402edded1fd2d8",
+        "DiffID": "sha256:a061a1fe0040b84fdb837cd6e57b4f71df56535cb72d95b0ccdcbcc96cec3403"
+      }
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 {
   "SchemaVersion": 2,
-  "CreatedAt": "2025-11-15T11:40:00.129945259Z",
+  "CreatedAt": "2025-11-16T14:14:35.415064697Z",
   "ArtifactName": "golang:1.22-alpine",
   "ArtifactType": "container_image",
   "Metadata": {

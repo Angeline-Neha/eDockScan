@@ -8,6 +8,9 @@ import seaborn as sns
 import json
 import sys
 from pathlib import Path
+# At the very top of model.py, add:
+import logging
+logging.basicConfig(level=logging.DEBUG, format='%(name)s - %(levelname)s - %(message)s')
 
 # Import your feature extraction tools
 from extract import EnhancedRemoteDockerScanner
@@ -63,6 +66,19 @@ def train_and_analyze_model(csv_path='data/merged_docker_features.csv', save_ana
     # Handle class imbalance
     scale_pos_weight = (y_train == 0).sum() / (y_train == 1).sum()
     print(f"\nUsing scale_pos_weight: {scale_pos_weight:.2f}")
+
+
+    feature_weights = np.ones(len(X_train.columns))
+
+    # Find CVE column index
+    cve_idx = X_train.columns.get_loc('known_cves')
+    age_idx = X_train.columns.get_loc('image_age_days')
+
+    # Boost CVE importance by 3x
+    feature_weights[cve_idx] = 3.0
+
+    # Keep age strong (already 32%)
+    feature_weights[age_idx] = 1.0
     
     # Train XGBoost with optimal parameters
     model = xgb.XGBClassifier(
@@ -76,7 +92,8 @@ def train_and_analyze_model(csv_path='data/merged_docker_features.csv', save_ana
         subsample=0.8,
         colsample_bytree=0.8,
         min_child_weight=1,
-        gamma=0.1
+        gamma=0.1,
+        feature_weights=feature_weights 
     )
     
     print("\n" + "="*70)
@@ -253,6 +270,53 @@ def train_and_analyze_model(csv_path='data/merged_docker_features.csv', save_ana
     
     return model, feature_names, analysis_results
 
+
+def train_behavioral_scorer(csv_path='data/merged_docker_features.csv'):
+    """
+    Train a lightweight model to score behavioral patterns
+    This replaces hardcoded thresholds in behavioral_analyzer.py
+    """
+    df = pd.read_csv(csv_path)
+    
+    # Features that come from behavioral analysis
+    behavioral_features = [
+        'layer_deletion_score',
+        'temp_file_activity', 
+        'process_injection_risk',
+        'privilege_escalation_risk',
+        'anti_analysis_score',
+        'crypto_mining_behavior',
+        'external_calls'
+    ]
+    
+    X_behavioral = df[behavioral_features]
+    y = df['label']
+    
+    # Train a simple model to learn behavioral weights
+    behavioral_model = xgb.XGBRegressor(
+        max_depth=3,
+        learning_rate=0.1,
+        n_estimators=50,
+        objective='reg:squarederror'
+    )
+    
+    behavioral_model.fit(X_behavioral, y)
+    
+    # Get learned weights for each pattern
+    learned_weights = {
+        feat: float(imp) 
+        for feat, imp in zip(behavioral_features, behavioral_model.feature_importances_)
+    }
+    
+    # Save weights
+    with open('behavioral_weights.json', 'w') as f:
+        json.dump(learned_weights, f, indent=2)
+    
+    print("\n✅ Learned behavioral weights:")
+    for feat, weight in sorted(learned_weights.items(), key=lambda x: x[1], reverse=True):
+        print(f"  {feat:35s}: {weight:.4f}")
+    
+    return learned_weights
 
 def create_visualizations(feature_importance, y_test, y_pred_proba, confusion_matrix):
     """Create and save analysis visualizations"""
@@ -827,6 +891,11 @@ if __name__ == "__main__":
         if command == "train":
             # Train the model
             csv_path = sys.argv[2] if len(sys.argv) > 2 else 'data/merged_docker_features.csv'
+            print("\n🔄 Step 1: Training behavioral scorer...")
+            learned_weights = train_behavioral_scorer(csv_path)
+    
+            # Then train main model
+            print("\n🔄 Step 2: Training main model...")
             train_and_analyze_model(csv_path)
         
         elif command == "scan":

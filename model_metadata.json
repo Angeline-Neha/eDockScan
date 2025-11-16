@@ -27,68 +27,64 @@
   ],
   "feature_importance": [
     {
+      "feature": "suspicious_dns_queries",
+      "importance": 0.2965986728668213
+    },
+    {
       "feature": "image_age_days",
-      "importance": 0.32509931921958923
+      "importance": 0.25255751609802246
     },
     {
       "feature": "outdated_base",
-      "importance": 0.18037906289100647
-    },
-    {
-      "feature": "suspicious_dns_queries",
-      "importance": 0.1269027441740036
-    },
-    {
-      "feature": "runs_as_root",
-      "importance": 0.11493656039237976
+      "importance": 0.12261408567428589
     },
     {
       "feature": "known_cves",
-      "importance": 0.06801723688840866
+      "importance": 0.06779957562685013
+    },
+    {
+      "feature": "runs_as_root",
+      "importance": 0.056330785155296326
     },
     {
       "feature": "process_injection_risk",
-      "importance": 0.04262369126081467
-    },
-    {
-      "feature": "privilege_escalation_risk",
-      "importance": 0.026441896334290504
-    },
-    {
-      "feature": "temp_file_activity",
-      "importance": 0.023622829467058182
-    },
-    {
-      "feature": "anti_analysis_score",
-      "importance": 0.023582909256219864
-    },
-    {
-      "feature": "stratum_indicators",
-      "importance": 0.013432717882096767
+      "importance": 0.039257727563381195
     },
     {
       "feature": "typosquatting_score",
-      "importance": 0.01141660287976265
+      "importance": 0.03192858397960663
     },
     {
       "feature": "crypto_mining_behavior",
-      "importance": 0.010911038145422935
+      "importance": 0.029776355251669884
     },
     {
-      "feature": "suspicious_ports",
-      "importance": 0.01027927827090025
+      "feature": "temp_file_activity",
+      "importance": 0.0262251328676939
     },
     {
-      "feature": "avg_file_entropy",
-      "importance": 0.007892231456935406
+      "feature": "anti_analysis_score",
+      "importance": 0.01982801966369152
     },
     {
       "feature": "layer_deletion_score",
-      "importance": 0.0077344621531665325
+      "importance": 0.019081946462392807
+    },
+    {
+      "feature": "privilege_escalation_risk",
+      "importance": 0.012200171127915382
+    },
+    {
+      "feature": "stratum_indicators",
+      "importance": 0.011147445067763329
     },
     {
       "feature": "raw_ip_connections",
-      "importance": 0.006727413274347782
+      "importance": 0.007850050926208496
+    },
+    {
+      "feature": "suspicious_ports",
+      "importance": 0.006803963333368301
     },
     {
       "feature": "packed_binary_score",
@@ -104,6 +100,10 @@
     },
     {
       "feature": "mining_pools",
+      "importance": 0.0
+    },
+    {
+      "feature": "avg_file_entropy",
       "importance": 0.0
     },
     {
@@ -125,7 +125,7 @@
   ],
   "train_samples": 165,
   "test_samples": 42,
-  "train_auc": 0.9998526377836723,
+  "train_auc": 1.0,
   "test_auc": 1.0,
   "accuracy": 1.0,
   "precision": 1.0,

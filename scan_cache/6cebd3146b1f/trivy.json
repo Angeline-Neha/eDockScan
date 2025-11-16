@@ -1,0 +1,737 @@
+{
+  "SchemaVersion": 2,
+  "CreatedAt": "2025-11-15T15:24:11.482371559Z",
+  "ArtifactName": "alpine:3.16",
+  "ArtifactType": "container_image",
+  "Metadata": {
+    "Size": 5827584,
+    "OS": {
+      "Family": "alpine",
+      "Name": "3.16.9",
+      "EOSL": true
+    },
+    "ImageID": "sha256:d49a5025be10344cce77d178103a225cb5d7316861e5d8f106e7ff278ae51b62",
+    "DiffIDs": [
+      "sha256:5535fda0356bb3eff348b2f618314a47946d7ccfbeb880b3fc910dd7375ae140"
+    ],
+    "RepoTags": [
+      "alpine:3.16"
+    ],
+    "RepoDigests": [
+      "alpine@sha256:452e7292acee0ee16c332324d7de05fa2c99f9994ecc9f0779c602916a672ae4"
+    ],
+    "ImageConfig": {
+      "architecture": "amd64",
+      "container": "f8bdaf28992eb00fd04360dd03fa8e9500bfddf0d3633ee151826f93cb0cf4cf",
+      "created": "2024-01-27T00:31:09.532912003Z",
+      "docker_version": "20.10.23",
+      "history": [
+        {
+          "created": "2024-01-27T00:31:09.42422573Z",
+          "created_by": "/bin/sh -c #(nop) ADD file:b308dfeecaa300a430b4e65e312a48eb5f191df7754e93ff4e7b2d04016b3ca7 in / "
+        },
+        {
+          "created": "2024-01-27T00:31:09.532912003Z",
+          "created_by": "/bin/sh -c #(nop)  CMD [\"/bin/sh\"]",
+          "empty_layer": true
+        }
+      ],
+      "os": "linux",
+      "rootfs": {
+        "type": "layers",
+        "diff_ids": [
+          "sha256:5535fda0356bb3eff348b2f618314a47946d7ccfbeb880b3fc910dd7375ae140"
+        ]
+      },
+      "config": {
+        "Cmd": [
+          "/bin/sh"
+        ],
+        "Env": [
+          "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+        ],
+        "Image": "sha256:69640e9b2b584d352ba6d594b2fc03f4fba50ede4d3ef7050a02acf606a93a6b"
+      }
+    },
+    "Layers": [
+      {
+        "Size": 5827584,
+        "Digest": "sha256:a88dc8b54e91eb6b19695ef7e04865926d4df23004f414a3ee86978617492d4d",
+        "DiffID": "sha256:5535fda0356bb3eff348b2f618314a47946d7ccfbeb880b3fc910dd7375ae140"
+      }
+    ]
+  },
+  "Results": [
+    {
+      "Target": "alpine:3.16 (alpine 3.16.9)",
+      "Class": "os-pkgs",
+      "Type": "alpine",
+      "Packages": [
+        {
+          "ID": "alpine-baselayout@3.2.0-r23",
+          "Name": "alpine-baselayout",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/alpine-baselayout@3.2.0-r23?arch=x86_64\u0026distro=3.16.9",
+            "UID": "9f667a32bbed6178"
+          },
+          "Version": "3.2.0-r23",
+          "Arch": "x86_64",
+          "SrcName": "alpine-baselayout",
+          "SrcVersion": "3.2.0-r23",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "alpine-baselayout-data@3.2.0-r23",
+            "busybox@1.35.0-r17",
+            "musl@1.2.3-r3"
+          ],
+          "Layer": {
+            "Digest": "sha256:a88dc8b54e91eb6b19695ef7e04865926d4df23004f414a3ee86978617492d4d",
+            "DiffID": "sha256:5535fda0356bb3eff348b2f618314a47946d7ccfbeb880b3fc910dd7375ae140"
+          },
+          "Digest": "sha1:f5423b531ca2532c06e9a7b0f5cde50813ec86c1",
+          "InstalledFiles": [
+            "etc/motd",
+            "etc/crontabs/root",
+            "etc/modprobe.d/aliases.conf",
+            "etc/modprobe.d/blacklist.conf",
+            "etc/modprobe.d/i386.conf",
+            "etc/modprobe.d/kms.conf",
+            "etc/profile.d/README",
+            "etc/profile.d/color_prompt.sh.disabled",
+            "etc/profile.d/locale.sh",
+            "lib/sysctl.d/00-alpine.conf",
+            "sbin/mkmntdirs",
+            "var/run",
+            "var/spool/mail",
+            "var/spool/cron/crontabs"
+          ]
+        },
+        {
+          "ID": "alpine-baselayout-data@3.2.0-r23",
+          "Name": "alpine-baselayout-data",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/alpine-baselayout-data@3.2.0-r23?arch=x86_64\u0026distro=3.16.9",
+            "UID": "fd96ace10a41ec2f"
+          },
+          "Version": "3.2.0-r23",
+          "Arch": "x86_64",
+          "SrcName": "alpine-baselayout",
+          "SrcVersion": "3.2.0-r23",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "Layer": {
+            "Digest": "sha256:a88dc8b54e91eb6b19695ef7e04865926d4df23004f414a3ee86978617492d4d",
+            "DiffID": "sha256:5535fda0356bb3eff348b2f618314a47946d7ccfbeb880b3fc910dd7375ae140"
+          },
+          "Digest": "sha1:7781d0fc6c9fc3b3510f5a91bce812e88cd3dac2",
+          "InstalledFiles": [
+            "etc/fstab",
+            "etc/group",
+            "etc/hostname",
+            "etc/hosts",
+            "etc/inittab",
+            "etc/modules",
+            "etc/mtab",
+            "etc/nsswitch.conf",
+            "etc/passwd",
+            "etc/profile",
+            "etc/protocols",
+            "etc/services",
+            "etc/shadow",
+            "etc/shells",
+            "etc/sysctl.conf"
+          ]
+        },
+        {
+          "ID": "alpine-keys@2.4-r1",
+          "Name": "alpine-keys",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/alpine-keys@2.4-r1?arch=x86_64\u0026distro=3.16.9",
+            "UID": "5248de499daad22"
+          },
+          "Version": "2.4-r1",
+          "Arch": "x86_64",
+          "SrcName": "alpine-keys",
+          "SrcVersion": "2.4-r1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "Layer": {
+            "Digest": "sha256:a88dc8b54e91eb6b19695ef7e04865926d4df23004f414a3ee86978617492d4d",
+            "DiffID": "sha256:5535fda0356bb3eff348b2f618314a47946d7ccfbeb880b3fc910dd7375ae140"
+          },
+          "Digest": "sha1:1417c88edb049afbaaa0d5e94a15c3726fe68f31",
+          "InstalledFiles": [
+            "etc/apk/keys/alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+            "etc/apk/keys/alpine-devel@lists.alpinelinux.org-5243ef4b.rsa.pub",
+            "etc/apk/keys/alpine-devel@lists.alpinelinux.org-5261cecb.rsa.pub",
+            "etc/apk/keys/alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub",
+            "etc/apk/keys/alpine-devel@lists.alpinelinux.org-61666e3f.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-5243ef4b.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-524d27bb.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-5261cecb.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-58199dcc.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-58cbb476.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-58e4f17d.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-5e69ca50.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-60ac2099.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-61666e3f.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616a9724.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616abc23.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616ac3bc.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616adfeb.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616db30d.rsa.pub",
+            "usr/share/apk/keys/aarch64/alpine-devel@lists.alpinelinux.org-58199dcc.rsa.pub",
+            "usr/share/apk/keys/aarch64/alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub",
+            "usr/share/apk/keys/armhf/alpine-devel@lists.alpinelinux.org-524d27bb.rsa.pub",
+            "usr/share/apk/keys/armhf/alpine-devel@lists.alpinelinux.org-616a9724.rsa.pub",
+            "usr/share/apk/keys/armv7/alpine-devel@lists.alpinelinux.org-524d27bb.rsa.pub",
+            "usr/share/apk/keys/armv7/alpine-devel@lists.alpinelinux.org-616adfeb.rsa.pub",
+            "usr/share/apk/keys/mips64/alpine-devel@lists.alpinelinux.org-5e69ca50.rsa.pub",
+            "usr/share/apk/keys/ppc64le/alpine-devel@lists.alpinelinux.org-58cbb476.rsa.pub",
+            "usr/share/apk/keys/ppc64le/alpine-devel@lists.alpinelinux.org-616abc23.rsa.pub",
+            "usr/share/apk/keys/riscv64/alpine-devel@lists.alpinelinux.org-60ac2099.rsa.pub",
+            "usr/share/apk/keys/riscv64/alpine-devel@lists.alpinelinux.org-616db30d.rsa.pub",
+            "usr/share/apk/keys/s390x/alpine-devel@lists.alpinelinux.org-58e4f17d.rsa.pub",
+            "usr/share/apk/keys/s390x/alpine-devel@lists.alpinelinux.org-616ac3bc.rsa.pub",
+            "usr/share/apk/keys/x86/alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+            "usr/share/apk/keys/x86/alpine-devel@lists.alpinelinux.org-5243ef4b.rsa.pub",
+            "usr/share/apk/keys/x86/alpine-devel@lists.alpinelinux.org-61666e3f.rsa.pub",
+            "usr/share/apk/keys/x86_64/alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+            "usr/share/apk/keys/x86_64/alpine-devel@lists.alpinelinux.org-5261cecb.rsa.pub",
+            "usr/share/apk/keys/x86_64/alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub"
+          ]
+        },
+        {
+          "ID": "apk-tools@2.12.9-r3",
+          "Name": "apk-tools",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/apk-tools@2.12.9-r3?arch=x86_64\u0026distro=3.16.9",
+            "UID": "fe903e45ede2d1dd"
+          },
+          "Version": "2.12.9-r3",
+          "Arch": "x86_64",
+          "SrcName": "apk-tools",
+          "SrcVersion": "2.12.9-r3",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "ca-certificates-bundle@20230506-r0",
+            "libcrypto1.1@1.1.1w-r1",
+            "libssl1.1@1.1.1w-r1",
+            "musl@1.2.3-r3",
+            "zlib@1.2.12-r3"
+          ],
+          "Layer": {
+            "Digest": "sha256:a88dc8b54e91eb6b19695ef7e04865926d4df23004f414a3ee86978617492d4d",
+            "DiffID": "sha256:5535fda0356bb3eff348b2f618314a47946d7ccfbeb880b3fc910dd7375ae140"
+          },
+          "Digest": "sha1:54514558c2a307d69191e8480137399308008655",
+          "InstalledFiles": [
+            "lib/libapk.so.3.12.0",
+            "sbin/apk"
+          ]
+        },
+        {
+          "ID": "busybox@1.35.0-r17",
+          "Name": "busybox",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/busybox@1.35.0-r17?arch=x86_64\u0026distro=3.16.9",
+            "UID": "52c2bb852df5930b"
+          },
+          "Version": "1.35.0-r17",
+          "Arch": "x86_64",
+          "SrcName": "busybox",
+          "SrcVersion": "1.35.0-r17",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Sören Tempel \u003csoeren+alpine@soeren-tempel.net\u003e",
+          "DependsOn": [
+            "musl@1.2.3-r3"
+          ],
+          "Layer": {
+            "Digest": "sha256:a88dc8b54e91eb6b19695ef7e04865926d4df23004f414a3ee86978617492d4d",
+            "DiffID": "sha256:5535fda0356bb3eff348b2f618314a47946d7ccfbeb880b3fc910dd7375ae140"
+          },
+          "Digest": "sha1:899f82d8925d0659b628ab403a44a433bcd97a06",
+          "InstalledFiles": [
+            "bin/busybox",
+            "bin/sh",
+            "etc/securetty",
+            "etc/udhcpd.conf",
+            "etc/logrotate.d/acpid",
+            "etc/network/if-up.d/dad",
+            "usr/share/udhcpc/default.script"
+          ]
+        },
+        {
+          "ID": "ca-certificates-bundle@20230506-r0",
+          "Name": "ca-certificates-bundle",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/ca-certificates-bundle@20230506-r0?arch=x86_64\u0026distro=3.16.9",
+            "UID": "60b57f1682d2e0d5"
+          },
+          "Version": "20230506-r0",
+          "Arch": "x86_64",
+          "SrcName": "ca-certificates",
+          "SrcVersion": "20230506-r0",
+          "Licenses": [
+            "MPL-2.0",
+            "MIT"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "Layer": {
+            "Digest": "sha256:a88dc8b54e91eb6b19695ef7e04865926d4df23004f414a3ee86978617492d4d",
+            "DiffID": "sha256:5535fda0356bb3eff348b2f618314a47946d7ccfbeb880b3fc910dd7375ae140"
+          },
+          "Digest": "sha1:e31547142c54427511d7cdd30cb23de992910446",
+          "InstalledFiles": [
+            "etc/ssl/cert.pem",
+            "etc/ssl/certs/ca-certificates.crt"
+          ]
+        },
+        {
+          "ID": "libc-utils@0.7.2-r3",
+          "Name": "libc-utils",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libc-utils@0.7.2-r3?arch=x86_64\u0026distro=3.16.9",
+            "UID": "e3fe2589c7f942f5"
+          },
+          "Version": "0.7.2-r3",
+          "Arch": "x86_64",
+          "SrcName": "libc-dev",
+          "SrcVersion": "0.7.2-r3",
+          "Licenses": [
+            "BSD-2-Clause",
+            "BSD-3-Clause"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl-utils@1.2.3-r3"
+          ],
+          "Layer": {
+            "Digest": "sha256:a88dc8b54e91eb6b19695ef7e04865926d4df23004f414a3ee86978617492d4d",
+            "DiffID": "sha256:5535fda0356bb3eff348b2f618314a47946d7ccfbeb880b3fc910dd7375ae140"
+          },
+          "Digest": "sha1:3b8185251bc7cfde6d3e33bce2aa44be4355c03c"
+        },
+        {
+          "ID": "libcrypto1.1@1.1.1w-r1",
+          "Name": "libcrypto1.1",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libcrypto1.1@1.1.1w-r1?arch=x86_64\u0026distro=3.16.9",
+            "UID": "4e5c2507c9562cfe"
+          },
+          "Version": "1.1.1w-r1",
+          "Arch": "x86_64",
+          "SrcName": "openssl",
+          "SrcVersion": "1.1.1w-r1",
+          "Licenses": [
+            "OpenSSL"
+          ],
+          "Maintainer": "Timo Teras \u003ctimo.teras@iki.fi\u003e",
+          "DependsOn": [
+            "musl@1.2.3-r3"
+          ],
+          "Layer": {
+            "Digest": "sha256:a88dc8b54e91eb6b19695ef7e04865926d4df23004f414a3ee86978617492d4d",
+            "DiffID": "sha256:5535fda0356bb3eff348b2f618314a47946d7ccfbeb880b3fc910dd7375ae140"
+          },
+          "Digest": "sha1:b0bda9c8ca517645567ba67f44be19aee380de40",
+          "InstalledFiles": [
+            "etc/ssl/ct_log_list.cnf",
+            "etc/ssl/ct_log_list.cnf.dist",
+            "etc/ssl/openssl.cnf",
+            "etc/ssl/openssl.cnf.dist",
+            "etc/ssl/misc/CA.pl",
+            "etc/ssl/misc/tsget",
+            "etc/ssl/misc/tsget.pl",
+            "lib/libcrypto.so.1.1",
+            "usr/lib/libcrypto.so.1.1",
+            "usr/lib/engines-1.1/afalg.so",
+            "usr/lib/engines-1.1/capi.so",
+            "usr/lib/engines-1.1/padlock.so"
+          ]
+        },
+        {
+          "ID": "libssl1.1@1.1.1w-r1",
+          "Name": "libssl1.1",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libssl1.1@1.1.1w-r1?arch=x86_64\u0026distro=3.16.9",
+            "UID": "1401548f35ac1943"
+          },
+          "Version": "1.1.1w-r1",
+          "Arch": "x86_64",
+          "SrcName": "openssl",
+          "SrcVersion": "1.1.1w-r1",
+          "Licenses": [
+            "OpenSSL"
+          ],
+          "Maintainer": "Timo Teras \u003ctimo.teras@iki.fi\u003e",
+          "DependsOn": [
+            "libcrypto1.1@1.1.1w-r1",
+            "musl@1.2.3-r3"
+          ],
+          "Layer": {
+            "Digest": "sha256:a88dc8b54e91eb6b19695ef7e04865926d4df23004f414a3ee86978617492d4d",
+            "DiffID": "sha256:5535fda0356bb3eff348b2f618314a47946d7ccfbeb880b3fc910dd7375ae140"
+          },
+          "Digest": "sha1:5facd69c238a147ee0c8d9b5dbe2cce00be9dbfc",
+          "InstalledFiles": [
+            "lib/libssl.so.1.1",
+            "usr/lib/libssl.so.1.1"
+          ]
+        },
+        {
+          "ID": "musl@1.2.3-r3",
+          "Name": "musl",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/musl@1.2.3-r3?arch=x86_64\u0026distro=3.16.9",
+            "UID": "1ccb8aa90312d9b2"
+          },
+          "Version": "1.2.3-r3",
+          "Arch": "x86_64",
+          "SrcName": "musl",
+          "SrcVersion": "1.2.3-r3",
+          "Licenses": [
+            "MIT"
+          ],
+          "Maintainer": "Timo Teräs \u003ctimo.teras@iki.fi\u003e",
+          "Layer": {
+            "Digest": "sha256:a88dc8b54e91eb6b19695ef7e04865926d4df23004f414a3ee86978617492d4d",
+            "DiffID": "sha256:5535fda0356bb3eff348b2f618314a47946d7ccfbeb880b3fc910dd7375ae140"
+          },
+          "Digest": "sha1:aeaba8a7b765872305893dae63d55ccadc914c4e",
+          "InstalledFiles": [
+            "lib/ld-musl-x86_64.so.1",
+            "lib/libc.musl-x86_64.so.1"
+          ]
+        },
+        {
+          "ID": "musl-utils@1.2.3-r3",
+          "Name": "musl-utils",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/musl-utils@1.2.3-r3?arch=x86_64\u0026distro=3.16.9",
+            "UID": "c094b56dbb46049d"
+          },
+          "Version": "1.2.3-r3",
+          "Arch": "x86_64",
+          "SrcName": "musl",
+          "SrcVersion": "1.2.3-r3",
+          "Licenses": [
+            "MIT",
+            "BSD-3-Clause",
+            "GPL-2.0-or-later"
+          ],
+          "Maintainer": "Timo Teräs \u003ctimo.teras@iki.fi\u003e",
+          "DependsOn": [
+            "musl@1.2.3-r3",
+            "scanelf@1.3.4-r0"
+          ],
+          "Layer": {
+            "Digest": "sha256:a88dc8b54e91eb6b19695ef7e04865926d4df23004f414a3ee86978617492d4d",
+            "DiffID": "sha256:5535fda0356bb3eff348b2f618314a47946d7ccfbeb880b3fc910dd7375ae140"
+          },
+          "Digest": "sha1:d552c24c9c5503aff6e68be78292a6c409c633bf",
+          "InstalledFiles": [
+            "sbin/ldconfig",
+            "usr/bin/getconf",
+            "usr/bin/getent",
+            "usr/bin/iconv",
+            "usr/bin/ldd"
+          ]
+        },
+        {
+          "ID": "scanelf@1.3.4-r0",
+          "Name": "scanelf",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/scanelf@1.3.4-r0?arch=x86_64\u0026distro=3.16.9",
+            "UID": "c56bb72a1ababc74"
+          },
+          "Version": "1.3.4-r0",
+          "Arch": "x86_64",
+          "SrcName": "pax-utils",
+          "SrcVersion": "1.3.4-r0",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.2.3-r3"
+          ],
+          "Layer": {
+            "Digest": "sha256:a88dc8b54e91eb6b19695ef7e04865926d4df23004f414a3ee86978617492d4d",
+            "DiffID": "sha256:5535fda0356bb3eff348b2f618314a47946d7ccfbeb880b3fc910dd7375ae140"
+          },
+          "Digest": "sha1:19ca9ef8d0fc0c53a584cdd1d28e4ac998d1da81",
+          "InstalledFiles": [
+            "usr/bin/scanelf"
+          ]
+        },
+        {
+          "ID": "ssl_client@1.35.0-r17",
+          "Name": "ssl_client",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/ssl_client@1.35.0-r17?arch=x86_64\u0026distro=3.16.9",
+            "UID": "db38a3cebb544d59"
+          },
+          "Version": "1.35.0-r17",
+          "Arch": "x86_64",
+          "SrcName": "busybox",
+          "SrcVersion": "1.35.0-r17",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Sören Tempel \u003csoeren+alpine@soeren-tempel.net\u003e",
+          "DependsOn": [
+            "libcrypto1.1@1.1.1w-r1",
+            "libssl1.1@1.1.1w-r1",
+            "musl@1.2.3-r3"
+          ],
+          "Layer": {
+            "Digest": "sha256:a88dc8b54e91eb6b19695ef7e04865926d4df23004f414a3ee86978617492d4d",
+            "DiffID": "sha256:5535fda0356bb3eff348b2f618314a47946d7ccfbeb880b3fc910dd7375ae140"
+          },
+          "Digest": "sha1:2962576b068d3e220d1df7730a0fc5ac49a201a5",
+          "InstalledFiles": [
+            "usr/bin/ssl_client"
+          ]
+        },
+        {
+          "ID": "zlib@1.2.12-r3",
+          "Name": "zlib",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/zlib@1.2.12-r3?arch=x86_64\u0026distro=3.16.9",
+            "UID": "9c806679adeda9f4"
+          },
+          "Version": "1.2.12-r3",
+          "Arch": "x86_64",
+          "SrcName": "zlib",
+          "SrcVersion": "1.2.12-r3",
+          "Licenses": [
+            "Zlib"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.2.3-r3"
+          ],
+          "Layer": {
+            "Digest": "sha256:a88dc8b54e91eb6b19695ef7e04865926d4df23004f414a3ee86978617492d4d",
+            "DiffID": "sha256:5535fda0356bb3eff348b2f618314a47946d7ccfbeb880b3fc910dd7375ae140"
+          },
+          "Digest": "sha1:124baa9bfd023f2c0308a11b13086c3c2c3ecfd1",
+          "InstalledFiles": [
+            "lib/libz.so.1",
+            "lib/libz.so.1.2.12"
+          ]
+        }
+      ],
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2023-42366",
+          "PkgID": "busybox@1.35.0-r17",
+          "PkgName": "busybox",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/busybox@1.35.0-r17?arch=x86_64\u0026distro=3.16.9",
+            "UID": "52c2bb852df5930b"
+          },
+          "InstalledVersion": "1.35.0-r17",
+          "FixedVersion": "1.35.0-r18",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:a88dc8b54e91eb6b19695ef7e04865926d4df23004f414a3ee86978617492d4d",
+            "DiffID": "sha256:5535fda0356bb3eff348b2f618314a47946d7ccfbeb880b3fc910dd7375ae140"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-42366",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "busybox: A heap-buffer-overflow",
+          "Description": "A heap-buffer-overflow was discovered in BusyBox v.1.36.1 in the next_token function at awk.c:1159.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-787"
+          ],
+          "VendorSeverity": {
+            "azure": 2,
+            "cbl-mariner": 2,
+            "nvd": 2,
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+              "V3Score": 5.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:H",
+              "V3Score": 7.1
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2023-42366",
+            "https://bugs.busybox.net/show_bug.cgi?id=15874",
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-42366",
+            "https://security.netapp.com/advisory/ntap-20241206-0007/",
+            "https://www.cve.org/CVERecord?id=CVE-2023-42366"
+          ],
+          "PublishedDate": "2023-11-27T23:15:07.42Z",
+          "LastModifiedDate": "2024-12-06T14:15:19.53Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-26519",
+          "PkgID": "musl@1.2.3-r3",
+          "PkgName": "musl",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/musl@1.2.3-r3?arch=x86_64\u0026distro=3.16.9",
+            "UID": "1ccb8aa90312d9b2"
+          },
+          "InstalledVersion": "1.2.3-r3",
+          "FixedVersion": "1.2.3-r4",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:a88dc8b54e91eb6b19695ef7e04865926d4df23004f414a3ee86978617492d4d",
+            "DiffID": "sha256:5535fda0356bb3eff348b2f618314a47946d7ccfbeb880b3fc910dd7375ae140"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-26519",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "musl libc 0.9.13 through 1.2.5 before 1.2.6 has an out-of-bounds write ...",
+          "Description": "musl libc 0.9.13 through 1.2.5 before 1.2.6 has an out-of-bounds write vulnerability when an attacker can trigger iconv conversion of untrusted EUC-KR text to UTF-8.",
+          "Severity": "UNKNOWN",
+          "CweIDs": [
+            "CWE-787"
+          ],
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/02/13/2",
+            "http://www.openwall.com/lists/oss-security/2025/02/13/3",
+            "http://www.openwall.com/lists/oss-security/2025/02/13/4",
+            "http://www.openwall.com/lists/oss-security/2025/02/13/5",
+            "http://www.openwall.com/lists/oss-security/2025/02/14/5",
+            "http://www.openwall.com/lists/oss-security/2025/02/14/6",
+            "https://git.musl-libc.org/cgit/musl/commit/?id=c47ad25ea3b484e10326f933e927c0bc8cded3da",
+            "https://git.musl-libc.org/cgit/musl/commit/?id=e5adcd97b5196e29991b524237381a0202a60659",
+            "https://www.openwall.com/lists/oss-security/2025/02/13/2"
+          ],
+          "PublishedDate": "2025-02-14T04:15:09.05Z",
+          "LastModifiedDate": "2025-02-14T17:15:23.09Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-26519",
+          "PkgID": "musl-utils@1.2.3-r3",
+          "PkgName": "musl-utils",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/musl-utils@1.2.3-r3?arch=x86_64\u0026distro=3.16.9",
+            "UID": "c094b56dbb46049d"
+          },
+          "InstalledVersion": "1.2.3-r3",
+          "FixedVersion": "1.2.3-r4",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:a88dc8b54e91eb6b19695ef7e04865926d4df23004f414a3ee86978617492d4d",
+            "DiffID": "sha256:5535fda0356bb3eff348b2f618314a47946d7ccfbeb880b3fc910dd7375ae140"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-26519",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "musl libc 0.9.13 through 1.2.5 before 1.2.6 has an out-of-bounds write ...",
+          "Description": "musl libc 0.9.13 through 1.2.5 before 1.2.6 has an out-of-bounds write vulnerability when an attacker can trigger iconv conversion of untrusted EUC-KR text to UTF-8.",
+          "Severity": "UNKNOWN",
+          "CweIDs": [
+            "CWE-787"
+          ],
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/02/13/2",
+            "http://www.openwall.com/lists/oss-security/2025/02/13/3",
+            "http://www.openwall.com/lists/oss-security/2025/02/13/4",
+            "http://www.openwall.com/lists/oss-security/2025/02/13/5",
+            "http://www.openwall.com/lists/oss-security/2025/02/14/5",
+            "http://www.openwall.com/lists/oss-security/2025/02/14/6",
+            "https://git.musl-libc.org/cgit/musl/commit/?id=c47ad25ea3b484e10326f933e927c0bc8cded3da",
+            "https://git.musl-libc.org/cgit/musl/commit/?id=e5adcd97b5196e29991b524237381a0202a60659",
+            "https://www.openwall.com/lists/oss-security/2025/02/13/2"
+          ],
+          "PublishedDate": "2025-02-14T04:15:09.05Z",
+          "LastModifiedDate": "2025-02-14T17:15:23.09Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2023-42366",
+          "PkgID": "ssl_client@1.35.0-r17",
+          "PkgName": "ssl_client",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/ssl_client@1.35.0-r17?arch=x86_64\u0026distro=3.16.9",
+            "UID": "db38a3cebb544d59"
+          },
+          "InstalledVersion": "1.35.0-r17",
+          "FixedVersion": "1.35.0-r18",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:a88dc8b54e91eb6b19695ef7e04865926d4df23004f414a3ee86978617492d4d",
+            "DiffID": "sha256:5535fda0356bb3eff348b2f618314a47946d7ccfbeb880b3fc910dd7375ae140"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-42366",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "busybox: A heap-buffer-overflow",
+          "Description": "A heap-buffer-overflow was discovered in BusyBox v.1.36.1 in the next_token function at awk.c:1159.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-787"
+          ],
+          "VendorSeverity": {
+            "azure": 2,
+            "cbl-mariner": 2,
+            "nvd": 2,
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+              "V3Score": 5.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:H",
+              "V3Score": 7.1
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2023-42366",
+            "https://bugs.busybox.net/show_bug.cgi?id=15874",
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-42366",
+            "https://security.netapp.com/advisory/ntap-20241206-0007/",
+            "https://www.cve.org/CVERecord?id=CVE-2023-42366"
+          ],
+          "PublishedDate": "2023-11-27T23:15:07.42Z",
+          "LastModifiedDate": "2024-12-06T14:15:19.53Z"
+        }
+      ]
+    }
+  ]
+}

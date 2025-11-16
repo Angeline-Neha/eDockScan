@@ -1,0 +1,2998 @@
+{
+  "SchemaVersion": 2,
+  "CreatedAt": "2025-11-16T15:26:40.231046422Z",
+  "ArtifactName": "panubo/sshd",
+  "ArtifactType": "container_image",
+  "Metadata": {
+    "Size": 34825216,
+    "OS": {
+      "Family": "alpine",
+      "Name": "3.14.10",
+      "EOSL": true
+    },
+    "ImageID": "sha256:d88626cebb29f9e23d7a10b2f7c18a2a306e6a612d3d014179314a29d069b6c0",
+    "DiffIDs": [
+      "sha256:9733ccc395133a067f01ee6e380003d80fe9f443673e0f992ae6a4a7860a872c",
+      "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948",
+      "sha256:ddd0575af7c1fc66bcf21f008b81940f7a64da24eb57b8453c8915fa3d1fe800"
+    ],
+    "RepoTags": [
+      "panubo/sshd:latest"
+    ],
+    "RepoDigests": [
+      "panubo/sshd@sha256:9fd9490153a3b9cbe87526920abdf62a1effc21c12feb9fda5b8c64e57640c21"
+    ],
+    "ImageConfig": {
+      "architecture": "amd64",
+      "created": "2023-04-02T00:21:31.340569059Z",
+      "history": [
+        {
+          "created": "2023-03-29T18:19:37.625607335Z",
+          "created_by": "/bin/sh -c #(nop) ADD file:9663235f252e072c52b0f9e25845841e4321cce2caa7467a0d736c6003b05c00 in / "
+        },
+        {
+          "created": "2023-03-29T18:19:37.727267748Z",
+          "created_by": "/bin/sh -c #(nop)  CMD [\"/bin/sh\"]",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-04-02T00:21:31.293101238Z",
+          "created_by": "RUN /bin/sh -c apk update \u0026\u0026     apk add bash git openssh rsync augeas shadow rssh \u0026\u0026     deluser $(getent passwd 33 | cut -d: -f1) \u0026\u0026     delgroup $(getent group 33 | cut -d: -f1) 2\u003e/dev/null || true \u0026\u0026     mkdir -p ~root/.ssh /etc/authorized_keys \u0026\u0026 chmod 700 ~root/.ssh/ \u0026\u0026     augtool 'set /files/etc/ssh/sshd_config/AuthorizedKeysFile \".ssh/authorized_keys /etc/authorized_keys/%u\"' \u0026\u0026     echo -e \"Port 22\\n\" \u003e\u003e /etc/ssh/sshd_config \u0026\u0026     cp -a /etc/ssh /etc/ssh.cache \u0026\u0026     rm -rf /var/cache/apk/* # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2023-04-02T00:21:31.340569059Z",
+          "created_by": "EXPOSE map[22/tcp:{}]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-04-02T00:21:31.340569059Z",
+          "created_by": "COPY entry.sh /entry.sh # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2023-04-02T00:21:31.340569059Z",
+          "created_by": "ENTRYPOINT [\"/entry.sh\"]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2023-04-02T00:21:31.340569059Z",
+          "created_by": "CMD [\"/usr/sbin/sshd\" \"-D\" \"-e\" \"-f\" \"/etc/ssh/sshd_config\"]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        }
+      ],
+      "os": "linux",
+      "rootfs": {
+        "type": "layers",
+        "diff_ids": [
+          "sha256:9733ccc395133a067f01ee6e380003d80fe9f443673e0f992ae6a4a7860a872c",
+          "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948",
+          "sha256:ddd0575af7c1fc66bcf21f008b81940f7a64da24eb57b8453c8915fa3d1fe800"
+        ]
+      },
+      "config": {
+        "Cmd": [
+          "/usr/sbin/sshd",
+          "-D",
+          "-e",
+          "-f",
+          "/etc/ssh/sshd_config"
+        ],
+        "Entrypoint": [
+          "/entry.sh"
+        ],
+        "Env": [
+          "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+        ],
+        "Labels": {
+          "org.opencontainers.image.created": "2023-04-09T00:20:46.086Z",
+          "org.opencontainers.image.description": "Minimal Alpine Linux Docker image with sshd exposed and rsync installed",
+          "org.opencontainers.image.licenses": "MIT",
+          "org.opencontainers.image.revision": "90eeba5761f2da6ae650f9002d8bcd7f524d01fd",
+          "org.opencontainers.image.source": "https://github.com/panubo/docker-sshd",
+          "org.opencontainers.image.title": "docker-sshd",
+          "org.opencontainers.image.url": "https://github.com/panubo/docker-sshd",
+          "org.opencontainers.image.version": "weekly"
+        },
+        "ExposedPorts": {
+          "22/tcp": {}
+        },
+        "ArgsEscaped": true
+      }
+    },
+    "Layers": [
+      {
+        "Size": 5894656,
+        "Digest": "sha256:f7dab3ab2d6ec29aa28769bec35331fb485b5837501b1e8556413d8b5a79c9c8",
+        "DiffID": "sha256:9733ccc395133a067f01ee6e380003d80fe9f443673e0f992ae6a4a7860a872c"
+      },
+      {
+        "Size": 28920832,
+        "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+        "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+      },
+      {
+        "Size": 9728,
+        "Digest": "sha256:397078cf287669a782c78d9038f34d96ecc48e00c26285e1bedcdb86596051b8",
+        "DiffID": "sha256:ddd0575af7c1fc66bcf21f008b81940f7a64da24eb57b8453c8915fa3d1fe800"
+      }
+    ]
+  },
+  "Results": [
+    {
+      "Target": "panubo/sshd (alpine 3.14.10)",
+      "Class": "os-pkgs",
+      "Type": "alpine",
+      "Packages": [
+        {
+          "ID": "alpine-baselayout@3.2.0-r16",
+          "Name": "alpine-baselayout",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/alpine-baselayout@3.2.0-r16?arch=x86_64\u0026distro=3.14.10",
+            "UID": "ce4d50adf852dc32"
+          },
+          "Version": "3.2.0-r16",
+          "Arch": "x86_64",
+          "SrcName": "alpine-baselayout",
+          "SrcVersion": "3.2.0-r16",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "busybox@1.33.1-r8",
+            "musl@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:f7dab3ab2d6ec29aa28769bec35331fb485b5837501b1e8556413d8b5a79c9c8",
+            "DiffID": "sha256:9733ccc395133a067f01ee6e380003d80fe9f443673e0f992ae6a4a7860a872c"
+          },
+          "Digest": "sha1:509b41f5c355e2bfbf55bc724a411e8befaa6e1a",
+          "InstalledFiles": [
+            "etc/fstab",
+            "etc/group",
+            "etc/hostname",
+            "etc/hosts",
+            "etc/inittab",
+            "etc/modules",
+            "etc/motd",
+            "etc/mtab",
+            "etc/passwd",
+            "etc/profile",
+            "etc/protocols",
+            "etc/services",
+            "etc/shadow",
+            "etc/shells",
+            "etc/sysctl.conf",
+            "etc/crontabs/root",
+            "etc/modprobe.d/aliases.conf",
+            "etc/modprobe.d/blacklist.conf",
+            "etc/modprobe.d/i386.conf",
+            "etc/modprobe.d/kms.conf",
+            "etc/profile.d/README",
+            "etc/profile.d/color_prompt.sh.disabled",
+            "etc/profile.d/locale.sh",
+            "lib/sysctl.d/00-alpine.conf",
+            "sbin/mkmntdirs",
+            "var/run",
+            "var/spool/mail",
+            "var/spool/cron/crontabs"
+          ]
+        },
+        {
+          "ID": "alpine-keys@2.4-r0",
+          "Name": "alpine-keys",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/alpine-keys@2.4-r0?arch=x86_64\u0026distro=3.14.10",
+            "UID": "761cc12850f732ad"
+          },
+          "Version": "2.4-r0",
+          "Arch": "x86_64",
+          "SrcName": "alpine-keys",
+          "SrcVersion": "2.4-r0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "Layer": {
+            "Digest": "sha256:f7dab3ab2d6ec29aa28769bec35331fb485b5837501b1e8556413d8b5a79c9c8",
+            "DiffID": "sha256:9733ccc395133a067f01ee6e380003d80fe9f443673e0f992ae6a4a7860a872c"
+          },
+          "Digest": "sha1:5ab6ceaef588c2e420490ca934d9a6985d2cad4c",
+          "InstalledFiles": [
+            "etc/apk/keys/alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+            "etc/apk/keys/alpine-devel@lists.alpinelinux.org-5243ef4b.rsa.pub",
+            "etc/apk/keys/alpine-devel@lists.alpinelinux.org-5261cecb.rsa.pub",
+            "etc/apk/keys/alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub",
+            "etc/apk/keys/alpine-devel@lists.alpinelinux.org-61666e3f.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-5243ef4b.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-524d27bb.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-5261cecb.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-58199dcc.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-58cbb476.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-58e4f17d.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-5e69ca50.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-60ac2099.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-61666e3f.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616a9724.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616abc23.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616ac3bc.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616adfeb.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub",
+            "usr/share/apk/keys/alpine-devel@lists.alpinelinux.org-616db30d.rsa.pub",
+            "usr/share/apk/keys/aarch64/alpine-devel@lists.alpinelinux.org-58199dcc.rsa.pub",
+            "usr/share/apk/keys/aarch64/alpine-devel@lists.alpinelinux.org-616ae350.rsa.pub",
+            "usr/share/apk/keys/armhf/alpine-devel@lists.alpinelinux.org-524d27bb.rsa.pub",
+            "usr/share/apk/keys/armhf/alpine-devel@lists.alpinelinux.org-616a9724.rsa.pub",
+            "usr/share/apk/keys/armv7/alpine-devel@lists.alpinelinux.org-524d27bb.rsa.pub",
+            "usr/share/apk/keys/armv7/alpine-devel@lists.alpinelinux.org-616adfeb.rsa.pub",
+            "usr/share/apk/keys/mips64/alpine-devel@lists.alpinelinux.org-5e69ca50.rsa.pub",
+            "usr/share/apk/keys/ppc64le/alpine-devel@lists.alpinelinux.org-58cbb476.rsa.pub",
+            "usr/share/apk/keys/ppc64le/alpine-devel@lists.alpinelinux.org-616abc23.rsa.pub",
+            "usr/share/apk/keys/riscv64/alpine-devel@lists.alpinelinux.org-60ac2099.rsa.pub",
+            "usr/share/apk/keys/riscv64/alpine-devel@lists.alpinelinux.org-616db30d.rsa.pub",
+            "usr/share/apk/keys/s390x/alpine-devel@lists.alpinelinux.org-58e4f17d.rsa.pub",
+            "usr/share/apk/keys/s390x/alpine-devel@lists.alpinelinux.org-616ac3bc.rsa.pub",
+            "usr/share/apk/keys/x86/alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+            "usr/share/apk/keys/x86/alpine-devel@lists.alpinelinux.org-5243ef4b.rsa.pub",
+            "usr/share/apk/keys/x86/alpine-devel@lists.alpinelinux.org-61666e3f.rsa.pub",
+            "usr/share/apk/keys/x86_64/alpine-devel@lists.alpinelinux.org-4a6a0840.rsa.pub",
+            "usr/share/apk/keys/x86_64/alpine-devel@lists.alpinelinux.org-5261cecb.rsa.pub",
+            "usr/share/apk/keys/x86_64/alpine-devel@lists.alpinelinux.org-6165ee59.rsa.pub"
+          ]
+        },
+        {
+          "ID": "apk-tools@2.12.7-r0",
+          "Name": "apk-tools",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/apk-tools@2.12.7-r0?arch=x86_64\u0026distro=3.14.10",
+            "UID": "ce27afdececcd6e8"
+          },
+          "Version": "2.12.7-r0",
+          "Arch": "x86_64",
+          "SrcName": "apk-tools",
+          "SrcVersion": "2.12.7-r0",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "libcrypto1.1@1.1.1t-r2",
+            "libssl1.1@1.1.1t-r2",
+            "musl@1.2.2-r4",
+            "zlib@1.2.12-r3"
+          ],
+          "Layer": {
+            "Digest": "sha256:f7dab3ab2d6ec29aa28769bec35331fb485b5837501b1e8556413d8b5a79c9c8",
+            "DiffID": "sha256:9733ccc395133a067f01ee6e380003d80fe9f443673e0f992ae6a4a7860a872c"
+          },
+          "Digest": "sha1:5674a8cb95dab11b6f14e0ce67d3f4a591b81f1b",
+          "InstalledFiles": [
+            "lib/libapk.so.3.12.0",
+            "sbin/apk"
+          ]
+        },
+        {
+          "ID": "augeas@1.12.0-r0",
+          "Name": "augeas",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/augeas@1.12.0-r0?arch=x86_64\u0026distro=3.14.10",
+            "UID": "69039c4b17b3d5ec"
+          },
+          "Version": "1.12.0-r0",
+          "Arch": "x86_64",
+          "SrcName": "augeas",
+          "SrcVersion": "1.12.0-r0",
+          "Licenses": [
+            "LGPL-2.0-or-later"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "augeas-libs@1.12.0-r0",
+            "libgcc@10.3.1_git20210424-r2",
+            "musl@1.2.2-r4",
+            "readline@8.1.0-r0"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:8309a5d9c9641888aac193d2e7851f63f37e1e47",
+          "InstalledFiles": [
+            "usr/bin/augmatch",
+            "usr/bin/augparse",
+            "usr/bin/augtool",
+            "usr/bin/fadot",
+            "usr/share/vim/vimfiles/ftdetect/augeas.vim",
+            "usr/share/vim/vimfiles/syntax/augeas.vim"
+          ]
+        },
+        {
+          "ID": "augeas-libs@1.12.0-r0",
+          "Name": "augeas-libs",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/augeas-libs@1.12.0-r0?arch=x86_64\u0026distro=3.14.10",
+            "UID": "6f147f4b25343f1e"
+          },
+          "Version": "1.12.0-r0",
+          "Arch": "x86_64",
+          "SrcName": "augeas",
+          "SrcVersion": "1.12.0-r0",
+          "Licenses": [
+            "LGPL-2.0-or-later"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "libxml2@2.9.14-r2",
+            "musl@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:aeab8a88c0a86fd9b3e087882154af82ec097789",
+          "InstalledFiles": [
+            "usr/lib/libaugeas.so.0",
+            "usr/lib/libaugeas.so.0.24.2",
+            "usr/lib/libfa.so.1",
+            "usr/lib/libfa.so.1.5.3",
+            "usr/share/augeas/lenses/acf.aug",
+            "usr/share/augeas/lenses/awall.aug",
+            "usr/share/augeas/lenses/dist/access.aug",
+            "usr/share/augeas/lenses/dist/activemq_conf.aug",
+            "usr/share/augeas/lenses/dist/activemq_xml.aug",
+            "usr/share/augeas/lenses/dist/afs_cellalias.aug",
+            "usr/share/augeas/lenses/dist/aliases.aug",
+            "usr/share/augeas/lenses/dist/anaconda.aug",
+            "usr/share/augeas/lenses/dist/anacron.aug",
+            "usr/share/augeas/lenses/dist/approx.aug",
+            "usr/share/augeas/lenses/dist/apt_update_manager.aug",
+            "usr/share/augeas/lenses/dist/aptcacherngsecurity.aug",
+            "usr/share/augeas/lenses/dist/aptconf.aug",
+            "usr/share/augeas/lenses/dist/aptpreferences.aug",
+            "usr/share/augeas/lenses/dist/aptsources.aug",
+            "usr/share/augeas/lenses/dist/authorized_keys.aug",
+            "usr/share/augeas/lenses/dist/automaster.aug",
+            "usr/share/augeas/lenses/dist/automounter.aug",
+            "usr/share/augeas/lenses/dist/avahi.aug",
+            "usr/share/augeas/lenses/dist/backuppchosts.aug",
+            "usr/share/augeas/lenses/dist/bbhosts.aug",
+            "usr/share/augeas/lenses/dist/bootconf.aug",
+            "usr/share/augeas/lenses/dist/build.aug",
+            "usr/share/augeas/lenses/dist/cachefilesd.aug",
+            "usr/share/augeas/lenses/dist/carbon.aug",
+            "usr/share/augeas/lenses/dist/ceph.aug",
+            "usr/share/augeas/lenses/dist/cgconfig.aug",
+            "usr/share/augeas/lenses/dist/cgrules.aug",
+            "usr/share/augeas/lenses/dist/channels.aug",
+            "usr/share/augeas/lenses/dist/chrony.aug",
+            "usr/share/augeas/lenses/dist/clamav.aug",
+            "usr/share/augeas/lenses/dist/cobblermodules.aug",
+            "usr/share/augeas/lenses/dist/cobblersettings.aug",
+            "usr/share/augeas/lenses/dist/collectd.aug",
+            "usr/share/augeas/lenses/dist/cpanel.aug",
+            "usr/share/augeas/lenses/dist/cron.aug",
+            "usr/share/augeas/lenses/dist/cron_user.aug",
+            "usr/share/augeas/lenses/dist/crypttab.aug",
+            "usr/share/augeas/lenses/dist/csv.aug",
+            "usr/share/augeas/lenses/dist/cups.aug",
+            "usr/share/augeas/lenses/dist/cyrus_imapd.aug",
+            "usr/share/augeas/lenses/dist/darkice.aug",
+            "usr/share/augeas/lenses/dist/debctrl.aug",
+            "usr/share/augeas/lenses/dist/desktop.aug",
+            "usr/share/augeas/lenses/dist/devfsrules.aug",
+            "usr/share/augeas/lenses/dist/device_map.aug",
+            "usr/share/augeas/lenses/dist/dhclient.aug",
+            "usr/share/augeas/lenses/dist/dhcpd.aug",
+            "usr/share/augeas/lenses/dist/dns_zone.aug",
+            "usr/share/augeas/lenses/dist/dnsmasq.aug",
+            "usr/share/augeas/lenses/dist/dovecot.aug",
+            "usr/share/augeas/lenses/dist/dpkg.aug",
+            "usr/share/augeas/lenses/dist/dput.aug",
+            "usr/share/augeas/lenses/dist/erlang.aug",
+            "usr/share/augeas/lenses/dist/ethers.aug",
+            "usr/share/augeas/lenses/dist/exports.aug",
+            "usr/share/augeas/lenses/dist/fai_diskconfig.aug",
+            "usr/share/augeas/lenses/dist/fonts.aug",
+            "usr/share/augeas/lenses/dist/fstab.aug",
+            "usr/share/augeas/lenses/dist/fuse.aug",
+            "usr/share/augeas/lenses/dist/gdm.aug",
+            "usr/share/augeas/lenses/dist/getcap.aug",
+            "usr/share/augeas/lenses/dist/group.aug",
+            "usr/share/augeas/lenses/dist/grub.aug",
+            "usr/share/augeas/lenses/dist/grubenv.aug",
+            "usr/share/augeas/lenses/dist/gshadow.aug",
+            "usr/share/augeas/lenses/dist/gtkbookmarks.aug",
+            "usr/share/augeas/lenses/dist/host_conf.aug",
+            "usr/share/augeas/lenses/dist/hostname.aug",
+            "usr/share/augeas/lenses/dist/hosts.aug",
+            "usr/share/augeas/lenses/dist/hosts_access.aug",
+            "usr/share/augeas/lenses/dist/htpasswd.aug",
+            "usr/share/augeas/lenses/dist/httpd.aug",
+            "usr/share/augeas/lenses/dist/inetd.aug",
+            "usr/share/augeas/lenses/dist/inifile.aug",
+            "usr/share/augeas/lenses/dist/inittab.aug",
+            "usr/share/augeas/lenses/dist/inputrc.aug",
+            "usr/share/augeas/lenses/dist/interfaces.aug",
+            "usr/share/augeas/lenses/dist/iproute2.aug",
+            "usr/share/augeas/lenses/dist/iptables.aug",
+            "usr/share/augeas/lenses/dist/iscsid.aug",
+            "usr/share/augeas/lenses/dist/jaas.aug",
+            "usr/share/augeas/lenses/dist/jettyrealm.aug",
+            "usr/share/augeas/lenses/dist/jmxaccess.aug",
+            "usr/share/augeas/lenses/dist/jmxpassword.aug",
+            "usr/share/augeas/lenses/dist/json.aug",
+            "usr/share/augeas/lenses/dist/kdump.aug",
+            "usr/share/augeas/lenses/dist/keepalived.aug",
+            "usr/share/augeas/lenses/dist/known_hosts.aug",
+            "usr/share/augeas/lenses/dist/koji.aug",
+            "usr/share/augeas/lenses/dist/krb5.aug",
+            "usr/share/augeas/lenses/dist/ldif.aug",
+            "usr/share/augeas/lenses/dist/ldso.aug",
+            "usr/share/augeas/lenses/dist/lightdm.aug",
+            "usr/share/augeas/lenses/dist/limits.aug",
+            "usr/share/augeas/lenses/dist/login_defs.aug",
+            "usr/share/augeas/lenses/dist/logrotate.aug",
+            "usr/share/augeas/lenses/dist/logwatch.aug",
+            "usr/share/augeas/lenses/dist/lokkit.aug",
+            "usr/share/augeas/lenses/dist/lvm.aug",
+            "usr/share/augeas/lenses/dist/mailscanner.aug",
+            "usr/share/augeas/lenses/dist/mailscanner_rules.aug",
+            "usr/share/augeas/lenses/dist/masterpasswd.aug",
+            "usr/share/augeas/lenses/dist/mcollective.aug",
+            "usr/share/augeas/lenses/dist/mdadm_conf.aug",
+            "usr/share/augeas/lenses/dist/memcached.aug",
+            "usr/share/augeas/lenses/dist/mke2fs.aug",
+            "usr/share/augeas/lenses/dist/modprobe.aug",
+            "usr/share/augeas/lenses/dist/modules.aug",
+            "usr/share/augeas/lenses/dist/modules_conf.aug",
+            "usr/share/augeas/lenses/dist/mongodbserver.aug",
+            "usr/share/augeas/lenses/dist/monit.aug",
+            "usr/share/augeas/lenses/dist/multipath.aug",
+            "usr/share/augeas/lenses/dist/mysql.aug",
+            "usr/share/augeas/lenses/dist/nagioscfg.aug",
+            "usr/share/augeas/lenses/dist/nagiosobjects.aug",
+            "usr/share/augeas/lenses/dist/netmasks.aug",
+            "usr/share/augeas/lenses/dist/networkmanager.aug",
+            "usr/share/augeas/lenses/dist/networks.aug",
+            "usr/share/augeas/lenses/dist/nginx.aug",
+            "usr/share/augeas/lenses/dist/nrpe.aug",
+            "usr/share/augeas/lenses/dist/nslcd.aug",
+            "usr/share/augeas/lenses/dist/nsswitch.aug",
+            "usr/share/augeas/lenses/dist/ntp.aug",
+            "usr/share/augeas/lenses/dist/ntpd.aug",
+            "usr/share/augeas/lenses/dist/odbc.aug",
+            "usr/share/augeas/lenses/dist/opendkim.aug",
+            "usr/share/augeas/lenses/dist/openshift_config.aug",
+            "usr/share/augeas/lenses/dist/openshift_http.aug",
+            "usr/share/augeas/lenses/dist/openshift_quickstarts.aug",
+            "usr/share/augeas/lenses/dist/openvpn.aug",
+            "usr/share/augeas/lenses/dist/oz.aug",
+            "usr/share/augeas/lenses/dist/pagekite.aug",
+            "usr/share/augeas/lenses/dist/pam.aug",
+            "usr/share/augeas/lenses/dist/pamconf.aug",
+            "usr/share/augeas/lenses/dist/passwd.aug",
+            "usr/share/augeas/lenses/dist/pbuilder.aug",
+            "usr/share/augeas/lenses/dist/pg_hba.aug",
+            "usr/share/augeas/lenses/dist/pgbouncer.aug",
+            "usr/share/augeas/lenses/dist/php.aug",
+            "usr/share/augeas/lenses/dist/phpvars.aug",
+            "usr/share/augeas/lenses/dist/postfix_access.aug",
+            "usr/share/augeas/lenses/dist/postfix_main.aug",
+            "usr/share/augeas/lenses/dist/postfix_master.aug",
+            "usr/share/augeas/lenses/dist/postfix_passwordmap.aug",
+            "usr/share/augeas/lenses/dist/postfix_sasl_smtpd.aug",
+            "usr/share/augeas/lenses/dist/postfix_transport.aug",
+            "usr/share/augeas/lenses/dist/postfix_virtual.aug",
+            "usr/share/augeas/lenses/dist/postgresql.aug",
+            "usr/share/augeas/lenses/dist/properties.aug",
+            "usr/share/augeas/lenses/dist/protocols.aug",
+            "usr/share/augeas/lenses/dist/puppet.aug",
+            "usr/share/augeas/lenses/dist/puppet_auth.aug",
+            "usr/share/augeas/lenses/dist/puppetfile.aug",
+            "usr/share/augeas/lenses/dist/puppetfileserver.aug",
+            "usr/share/augeas/lenses/dist/pylonspaste.aug",
+            "usr/share/augeas/lenses/dist/pythonpaste.aug",
+            "usr/share/augeas/lenses/dist/qpid.aug",
+            "usr/share/augeas/lenses/dist/quote.aug",
+            "usr/share/augeas/lenses/dist/rabbitmq.aug",
+            "usr/share/augeas/lenses/dist/radicale.aug",
+            "usr/share/augeas/lenses/dist/rancid.aug",
+            "usr/share/augeas/lenses/dist/redis.aug",
+            "usr/share/augeas/lenses/dist/reprepro_uploaders.aug",
+            "usr/share/augeas/lenses/dist/resolv.aug",
+            "usr/share/augeas/lenses/dist/rhsm.aug",
+            "usr/share/augeas/lenses/dist/rmt.aug",
+            "usr/share/augeas/lenses/dist/rsyncd.aug",
+            "usr/share/augeas/lenses/dist/rsyslog.aug",
+            "usr/share/augeas/lenses/dist/rtadvd.aug",
+            "usr/share/augeas/lenses/dist/rx.aug",
+            "usr/share/augeas/lenses/dist/samba.aug",
+            "usr/share/augeas/lenses/dist/schroot.aug",
+            "usr/share/augeas/lenses/dist/securetty.aug",
+            "usr/share/augeas/lenses/dist/semanage.aug",
+            "usr/share/augeas/lenses/dist/sep.aug",
+            "usr/share/augeas/lenses/dist/services.aug",
+            "usr/share/augeas/lenses/dist/shadow.aug",
+            "usr/share/augeas/lenses/dist/shells.aug",
+            "usr/share/augeas/lenses/dist/shellvars.aug",
+            "usr/share/augeas/lenses/dist/shellvars_list.aug",
+            "usr/share/augeas/lenses/dist/simplelines.aug",
+            "usr/share/augeas/lenses/dist/simplevars.aug",
+            "usr/share/augeas/lenses/dist/sip_conf.aug",
+            "usr/share/augeas/lenses/dist/slapd.aug",
+            "usr/share/augeas/lenses/dist/smbusers.aug",
+            "usr/share/augeas/lenses/dist/solaris_system.aug",
+            "usr/share/augeas/lenses/dist/soma.aug",
+            "usr/share/augeas/lenses/dist/spacevars.aug",
+            "usr/share/augeas/lenses/dist/splunk.aug",
+            "usr/share/augeas/lenses/dist/squid.aug",
+            "usr/share/augeas/lenses/dist/ssh.aug",
+            "usr/share/augeas/lenses/dist/sshd.aug",
+            "usr/share/augeas/lenses/dist/sssd.aug",
+            "usr/share/augeas/lenses/dist/star.aug",
+            "usr/share/augeas/lenses/dist/strongswan.aug",
+            "usr/share/augeas/lenses/dist/stunnel.aug",
+            "usr/share/augeas/lenses/dist/subversion.aug",
+            "usr/share/augeas/lenses/dist/sudoers.aug",
+            "usr/share/augeas/lenses/dist/sysconfig.aug",
+            "usr/share/augeas/lenses/dist/sysconfig_route.aug",
+            "usr/share/augeas/lenses/dist/sysctl.aug",
+            "usr/share/augeas/lenses/dist/syslog.aug",
+            "usr/share/augeas/lenses/dist/systemd.aug",
+            "usr/share/augeas/lenses/dist/termcap.aug",
+            "usr/share/augeas/lenses/dist/thttpd.aug",
+            "usr/share/augeas/lenses/dist/tmpfiles.aug",
+            "usr/share/augeas/lenses/dist/toml.aug",
+            "usr/share/augeas/lenses/dist/trapperkeeper.aug",
+            "usr/share/augeas/lenses/dist/tuned.aug",
+            "usr/share/augeas/lenses/dist/up2date.aug",
+            "usr/share/augeas/lenses/dist/updatedb.aug",
+            "usr/share/augeas/lenses/dist/util.aug",
+            "usr/share/augeas/lenses/dist/vfstab.aug",
+            "usr/share/augeas/lenses/dist/vmware_config.aug",
+            "usr/share/augeas/lenses/dist/vsftpd.aug",
+            "usr/share/augeas/lenses/dist/webmin.aug",
+            "usr/share/augeas/lenses/dist/wine.aug",
+            "usr/share/augeas/lenses/dist/xendconfsxp.aug",
+            "usr/share/augeas/lenses/dist/xinetd.aug",
+            "usr/share/augeas/lenses/dist/xml.aug",
+            "usr/share/augeas/lenses/dist/xorg.aug",
+            "usr/share/augeas/lenses/dist/xymon.aug",
+            "usr/share/augeas/lenses/dist/xymon_alerting.aug",
+            "usr/share/augeas/lenses/dist/yaml.aug",
+            "usr/share/augeas/lenses/dist/yum.aug"
+          ]
+        },
+        {
+          "ID": "bash@5.1.16-r0",
+          "Name": "bash",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/bash@5.1.16-r0?arch=x86_64\u0026distro=3.14.10",
+            "UID": "61c661ff9518ce5d"
+          },
+          "Version": "5.1.16-r0",
+          "Arch": "x86_64",
+          "SrcName": "bash",
+          "SrcVersion": "5.1.16-r0",
+          "Licenses": [
+            "GPL-3.0-or-later"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "busybox@1.33.1-r8",
+            "musl@1.2.2-r4",
+            "readline@8.1.0-r0"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:606738919af05c0939b7bbdb0966d452f64a45c2",
+          "InstalledFiles": [
+            "bin/bash",
+            "usr/lib/bash/accept",
+            "usr/lib/bash/basename",
+            "usr/lib/bash/csv",
+            "usr/lib/bash/cut",
+            "usr/lib/bash/dirname",
+            "usr/lib/bash/fdflags",
+            "usr/lib/bash/finfo",
+            "usr/lib/bash/head",
+            "usr/lib/bash/id",
+            "usr/lib/bash/ln",
+            "usr/lib/bash/logname",
+            "usr/lib/bash/mkdir",
+            "usr/lib/bash/mkfifo",
+            "usr/lib/bash/mktemp",
+            "usr/lib/bash/mypid",
+            "usr/lib/bash/pathchk",
+            "usr/lib/bash/print",
+            "usr/lib/bash/printenv",
+            "usr/lib/bash/push",
+            "usr/lib/bash/realpath",
+            "usr/lib/bash/rm",
+            "usr/lib/bash/rmdir",
+            "usr/lib/bash/seq",
+            "usr/lib/bash/setpgid",
+            "usr/lib/bash/sleep",
+            "usr/lib/bash/strftime",
+            "usr/lib/bash/sync",
+            "usr/lib/bash/tee",
+            "usr/lib/bash/truefalse",
+            "usr/lib/bash/tty",
+            "usr/lib/bash/uname",
+            "usr/lib/bash/unlink",
+            "usr/lib/bash/whoami"
+          ]
+        },
+        {
+          "ID": "brotli-libs@1.0.9-r5",
+          "Name": "brotli-libs",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/brotli-libs@1.0.9-r5?arch=x86_64\u0026distro=3.14.10",
+            "UID": "b2ca928654d54b30"
+          },
+          "Version": "1.0.9-r5",
+          "Arch": "x86_64",
+          "SrcName": "brotli",
+          "SrcVersion": "1.0.9-r5",
+          "Licenses": [
+            "MIT"
+          ],
+          "Maintainer": "prspkt \u003cprspkt@protonmail.com\u003e",
+          "DependsOn": [
+            "musl@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:aff85b5062fad29cad9bb4fe24357d9331abbdcf",
+          "InstalledFiles": [
+            "usr/lib/libbrotlicommon.so.1",
+            "usr/lib/libbrotlicommon.so.1.0.9",
+            "usr/lib/libbrotlidec.so.1",
+            "usr/lib/libbrotlidec.so.1.0.9",
+            "usr/lib/libbrotlienc.so.1",
+            "usr/lib/libbrotlienc.so.1.0.9"
+          ]
+        },
+        {
+          "ID": "busybox@1.33.1-r8",
+          "Name": "busybox",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/busybox@1.33.1-r8?arch=x86_64\u0026distro=3.14.10",
+            "UID": "dbe9a74e42af8f61"
+          },
+          "Version": "1.33.1-r8",
+          "Arch": "x86_64",
+          "SrcName": "busybox",
+          "SrcVersion": "1.33.1-r8",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:f7dab3ab2d6ec29aa28769bec35331fb485b5837501b1e8556413d8b5a79c9c8",
+            "DiffID": "sha256:9733ccc395133a067f01ee6e380003d80fe9f443673e0f992ae6a4a7860a872c"
+          },
+          "Digest": "sha1:1cddb7d2fdba56323f004ddcdb84b82d022f8995",
+          "InstalledFiles": [
+            "bin/busybox",
+            "bin/sh",
+            "etc/securetty",
+            "etc/udhcpd.conf",
+            "etc/logrotate.d/acpid",
+            "etc/network/if-up.d/dad",
+            "usr/share/udhcpc/default.script"
+          ]
+        },
+        {
+          "ID": "ca-certificates@20220614-r0",
+          "Name": "ca-certificates",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/ca-certificates@20220614-r0?arch=x86_64\u0026distro=3.14.10",
+            "UID": "410b23be4ddd4d6c"
+          },
+          "Version": "20220614-r0",
+          "Arch": "x86_64",
+          "SrcName": "ca-certificates",
+          "SrcVersion": "20220614-r0",
+          "Licenses": [
+            "MPL-2.0",
+            "MIT"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "busybox@1.33.1-r8",
+            "libcrypto1.1@1.1.1t-r2",
+            "musl@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:c572d6a3301f2ff25b3409fd9167c324c99ad2d5",
+          "InstalledFiles": [
+            "etc/ca-certificates.conf",
+            "etc/apk/protected_paths.d/ca-certificates.list",
+            "etc/ca-certificates/update.d/certhash",
+            "usr/bin/c_rehash",
+            "usr/sbin/update-ca-certificates",
+            "usr/share/ca-certificates/mozilla/ACCVRAIZ1.crt",
+            "usr/share/ca-certificates/mozilla/AC_RAIZ_FNMT-RCM.crt",
+            "usr/share/ca-certificates/mozilla/AC_RAIZ_FNMT-RCM_SERVIDORES_SEGUROS.crt",
+            "usr/share/ca-certificates/mozilla/ANF_Secure_Server_Root_CA.crt",
+            "usr/share/ca-certificates/mozilla/Actalis_Authentication_Root_CA.crt",
+            "usr/share/ca-certificates/mozilla/AffirmTrust_Commercial.crt",
+            "usr/share/ca-certificates/mozilla/AffirmTrust_Networking.crt",
+            "usr/share/ca-certificates/mozilla/AffirmTrust_Premium.crt",
+            "usr/share/ca-certificates/mozilla/AffirmTrust_Premium_ECC.crt",
+            "usr/share/ca-certificates/mozilla/Amazon_Root_CA_1.crt",
+            "usr/share/ca-certificates/mozilla/Amazon_Root_CA_2.crt",
+            "usr/share/ca-certificates/mozilla/Amazon_Root_CA_3.crt",
+            "usr/share/ca-certificates/mozilla/Amazon_Root_CA_4.crt",
+            "usr/share/ca-certificates/mozilla/Atos_TrustedRoot_2011.crt",
+            "usr/share/ca-certificates/mozilla/Autoridad_de_Certificacion_Firmaprofesional_CIF_A62634068.crt",
+            "usr/share/ca-certificates/mozilla/Baltimore_CyberTrust_Root.crt",
+            "usr/share/ca-certificates/mozilla/Buypass_Class_2_Root_CA.crt",
+            "usr/share/ca-certificates/mozilla/Buypass_Class_3_Root_CA.crt",
+            "usr/share/ca-certificates/mozilla/CA_Disig_Root_R2.crt",
+            "usr/share/ca-certificates/mozilla/CFCA_EV_ROOT.crt",
+            "usr/share/ca-certificates/mozilla/COMODO_Certification_Authority.crt",
+            "usr/share/ca-certificates/mozilla/COMODO_ECC_Certification_Authority.crt",
+            "usr/share/ca-certificates/mozilla/COMODO_RSA_Certification_Authority.crt",
+            "usr/share/ca-certificates/mozilla/Certainly_Root_E1.crt",
+            "usr/share/ca-certificates/mozilla/Certainly_Root_R1.crt",
+            "usr/share/ca-certificates/mozilla/Certigna.crt",
+            "usr/share/ca-certificates/mozilla/Certigna_Root_CA.crt",
+            "usr/share/ca-certificates/mozilla/Certum_EC-384_CA.crt",
+            "usr/share/ca-certificates/mozilla/Certum_Trusted_Network_CA.crt",
+            "usr/share/ca-certificates/mozilla/Certum_Trusted_Network_CA_2.crt",
+            "usr/share/ca-certificates/mozilla/Certum_Trusted_Root_CA.crt",
+            "usr/share/ca-certificates/mozilla/Comodo_AAA_Services_root.crt",
+            "usr/share/ca-certificates/mozilla/D-TRUST_BR_Root_CA_1_2020.crt",
+            "usr/share/ca-certificates/mozilla/D-TRUST_EV_Root_CA_1_2020.crt",
+            "usr/share/ca-certificates/mozilla/D-TRUST_Root_Class_3_CA_2_2009.crt",
+            "usr/share/ca-certificates/mozilla/D-TRUST_Root_Class_3_CA_2_EV_2009.crt",
+            "usr/share/ca-certificates/mozilla/DigiCert_Assured_ID_Root_CA.crt",
+            "usr/share/ca-certificates/mozilla/DigiCert_Assured_ID_Root_G2.crt",
+            "usr/share/ca-certificates/mozilla/DigiCert_Assured_ID_Root_G3.crt",
+            "usr/share/ca-certificates/mozilla/DigiCert_Global_Root_CA.crt",
+            "usr/share/ca-certificates/mozilla/DigiCert_Global_Root_G2.crt",
+            "usr/share/ca-certificates/mozilla/DigiCert_Global_Root_G3.crt",
+            "usr/share/ca-certificates/mozilla/DigiCert_High_Assurance_EV_Root_CA.crt",
+            "usr/share/ca-certificates/mozilla/DigiCert_TLS_ECC_P384_Root_G5.crt",
+            "usr/share/ca-certificates/mozilla/DigiCert_TLS_RSA4096_Root_G5.crt",
+            "usr/share/ca-certificates/mozilla/DigiCert_Trusted_Root_G4.crt",
+            "usr/share/ca-certificates/mozilla/E-Tugra_Certification_Authority.crt",
+            "usr/share/ca-certificates/mozilla/E-Tugra_Global_Root_CA_ECC_v3.crt",
+            "usr/share/ca-certificates/mozilla/E-Tugra_Global_Root_CA_RSA_v3.crt",
+            "usr/share/ca-certificates/mozilla/EC-ACC.crt",
+            "usr/share/ca-certificates/mozilla/Entrust.net_Premium_2048_Secure_Server_CA.crt",
+            "usr/share/ca-certificates/mozilla/Entrust_Root_Certification_Authority.crt",
+            "usr/share/ca-certificates/mozilla/Entrust_Root_Certification_Authority_-_EC1.crt",
+            "usr/share/ca-certificates/mozilla/Entrust_Root_Certification_Authority_-_G2.crt",
+            "usr/share/ca-certificates/mozilla/Entrust_Root_Certification_Authority_-_G4.crt",
+            "usr/share/ca-certificates/mozilla/GDCA_TrustAUTH_R5_ROOT.crt",
+            "usr/share/ca-certificates/mozilla/GLOBALTRUST_2020.crt",
+            "usr/share/ca-certificates/mozilla/GTS_Root_R1.crt",
+            "usr/share/ca-certificates/mozilla/GTS_Root_R2.crt",
+            "usr/share/ca-certificates/mozilla/GTS_Root_R3.crt",
+            "usr/share/ca-certificates/mozilla/GTS_Root_R4.crt",
+            "usr/share/ca-certificates/mozilla/GlobalSign_ECC_Root_CA_-_R4.crt",
+            "usr/share/ca-certificates/mozilla/GlobalSign_ECC_Root_CA_-_R5.crt",
+            "usr/share/ca-certificates/mozilla/GlobalSign_Root_CA.crt",
+            "usr/share/ca-certificates/mozilla/GlobalSign_Root_CA_-_R3.crt",
+            "usr/share/ca-certificates/mozilla/GlobalSign_Root_CA_-_R6.crt",
+            "usr/share/ca-certificates/mozilla/GlobalSign_Root_E46.crt",
+            "usr/share/ca-certificates/mozilla/GlobalSign_Root_R46.crt",
+            "usr/share/ca-certificates/mozilla/Go_Daddy_Class_2_CA.crt",
+            "usr/share/ca-certificates/mozilla/Go_Daddy_Root_Certificate_Authority_-_G2.crt",
+            "usr/share/ca-certificates/mozilla/HARICA_TLS_ECC_Root_CA_2021.crt",
+            "usr/share/ca-certificates/mozilla/HARICA_TLS_RSA_Root_CA_2021.crt",
+            "usr/share/ca-certificates/mozilla/Hellenic_Academic_and_Research_Institutions_ECC_RootCA_2015.crt",
+            "usr/share/ca-certificates/mozilla/Hellenic_Academic_and_Research_Institutions_RootCA_2015.crt",
+            "usr/share/ca-certificates/mozilla/HiPKI_Root_CA_-_G1.crt",
+            "usr/share/ca-certificates/mozilla/Hongkong_Post_Root_CA_1.crt",
+            "usr/share/ca-certificates/mozilla/Hongkong_Post_Root_CA_3.crt",
+            "usr/share/ca-certificates/mozilla/ISRG_Root_X1.crt",
+            "usr/share/ca-certificates/mozilla/ISRG_Root_X2.crt",
+            "usr/share/ca-certificates/mozilla/IdenTrust_Commercial_Root_CA_1.crt",
+            "usr/share/ca-certificates/mozilla/IdenTrust_Public_Sector_Root_CA_1.crt",
+            "usr/share/ca-certificates/mozilla/Izenpe.com.crt",
+            "usr/share/ca-certificates/mozilla/Microsec_e-Szigno_Root_CA_2009.crt",
+            "usr/share/ca-certificates/mozilla/Microsoft_ECC_Root_Certificate_Authority_2017.crt",
+            "usr/share/ca-certificates/mozilla/Microsoft_RSA_Root_Certificate_Authority_2017.crt",
+            "usr/share/ca-certificates/mozilla/NAVER_Global_Root_Certification_Authority.crt",
+            "usr/share/ca-certificates/mozilla/NetLock_Arany_=Class_Gold=_Főtanúsítvány.crt",
+            "usr/share/ca-certificates/mozilla/Network_Solutions_Certificate_Authority.crt",
+            "usr/share/ca-certificates/mozilla/OISTE_WISeKey_Global_Root_GB_CA.crt",
+            "usr/share/ca-certificates/mozilla/OISTE_WISeKey_Global_Root_GC_CA.crt",
+            "usr/share/ca-certificates/mozilla/QuoVadis_Root_CA_1_G3.crt",
+            "usr/share/ca-certificates/mozilla/QuoVadis_Root_CA_2.crt",
+            "usr/share/ca-certificates/mozilla/QuoVadis_Root_CA_2_G3.crt",
+            "usr/share/ca-certificates/mozilla/QuoVadis_Root_CA_3.crt",
+            "usr/share/ca-certificates/mozilla/QuoVadis_Root_CA_3_G3.crt",
+            "usr/share/ca-certificates/mozilla/SSL.com_EV_Root_Certification_Authority_ECC.crt",
+            "usr/share/ca-certificates/mozilla/SSL.com_EV_Root_Certification_Authority_RSA_R2.crt",
+            "usr/share/ca-certificates/mozilla/SSL.com_Root_Certification_Authority_ECC.crt",
+            "usr/share/ca-certificates/mozilla/SSL.com_Root_Certification_Authority_RSA.crt",
+            "usr/share/ca-certificates/mozilla/SZAFIR_ROOT_CA2.crt",
+            "usr/share/ca-certificates/mozilla/SecureSign_RootCA11.crt",
+            "usr/share/ca-certificates/mozilla/SecureTrust_CA.crt",
+            "usr/share/ca-certificates/mozilla/Secure_Global_CA.crt",
+            "usr/share/ca-certificates/mozilla/Security_Communication_RootCA2.crt",
+            "usr/share/ca-certificates/mozilla/Security_Communication_Root_CA.crt",
+            "usr/share/ca-certificates/mozilla/Staat_der_Nederlanden_EV_Root_CA.crt",
+            "usr/share/ca-certificates/mozilla/Starfield_Class_2_CA.crt",
+            "usr/share/ca-certificates/mozilla/Starfield_Root_Certificate_Authority_-_G2.crt",
+            "usr/share/ca-certificates/mozilla/Starfield_Services_Root_Certificate_Authority_-_G2.crt",
+            "usr/share/ca-certificates/mozilla/SwissSign_Gold_CA_-_G2.crt",
+            "usr/share/ca-certificates/mozilla/SwissSign_Silver_CA_-_G2.crt",
+            "usr/share/ca-certificates/mozilla/T-TeleSec_GlobalRoot_Class_2.crt",
+            "usr/share/ca-certificates/mozilla/T-TeleSec_GlobalRoot_Class_3.crt",
+            "usr/share/ca-certificates/mozilla/TUBITAK_Kamu_SM_SSL_Kok_Sertifikasi_-_Surum_1.crt",
+            "usr/share/ca-certificates/mozilla/TWCA_Global_Root_CA.crt",
+            "usr/share/ca-certificates/mozilla/TWCA_Root_Certification_Authority.crt",
+            "usr/share/ca-certificates/mozilla/TeliaSonera_Root_CA_v1.crt",
+            "usr/share/ca-certificates/mozilla/Telia_Root_CA_v2.crt",
+            "usr/share/ca-certificates/mozilla/TrustCor_ECA-1.crt",
+            "usr/share/ca-certificates/mozilla/TrustCor_RootCert_CA-1.crt",
+            "usr/share/ca-certificates/mozilla/TrustCor_RootCert_CA-2.crt",
+            "usr/share/ca-certificates/mozilla/Trustwave_Global_Certification_Authority.crt",
+            "usr/share/ca-certificates/mozilla/Trustwave_Global_ECC_P256_Certification_Authority.crt",
+            "usr/share/ca-certificates/mozilla/Trustwave_Global_ECC_P384_Certification_Authority.crt",
+            "usr/share/ca-certificates/mozilla/TunTrust_Root_CA.crt",
+            "usr/share/ca-certificates/mozilla/UCA_Extended_Validation_Root.crt",
+            "usr/share/ca-certificates/mozilla/UCA_Global_G2_Root.crt",
+            "usr/share/ca-certificates/mozilla/USERTrust_ECC_Certification_Authority.crt",
+            "usr/share/ca-certificates/mozilla/USERTrust_RSA_Certification_Authority.crt",
+            "usr/share/ca-certificates/mozilla/XRamp_Global_CA_Root.crt",
+            "usr/share/ca-certificates/mozilla/certSIGN_ROOT_CA.crt",
+            "usr/share/ca-certificates/mozilla/certSIGN_Root_CA_G2.crt",
+            "usr/share/ca-certificates/mozilla/e-Szigno_Root_CA_2017.crt",
+            "usr/share/ca-certificates/mozilla/ePKI_Root_Certification_Authority.crt",
+            "usr/share/ca-certificates/mozilla/emSign_ECC_Root_CA_-_C3.crt",
+            "usr/share/ca-certificates/mozilla/emSign_ECC_Root_CA_-_G3.crt",
+            "usr/share/ca-certificates/mozilla/emSign_Root_CA_-_C1.crt",
+            "usr/share/ca-certificates/mozilla/emSign_Root_CA_-_G1.crt",
+            "usr/share/ca-certificates/mozilla/vTrus_ECC_Root_CA.crt",
+            "usr/share/ca-certificates/mozilla/vTrus_Root_CA.crt"
+          ]
+        },
+        {
+          "ID": "ca-certificates-bundle@20220614-r0",
+          "Name": "ca-certificates-bundle",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/ca-certificates-bundle@20220614-r0?arch=x86_64\u0026distro=3.14.10",
+            "UID": "46e146e1ad7ab498"
+          },
+          "Version": "20220614-r0",
+          "Arch": "x86_64",
+          "SrcName": "ca-certificates",
+          "SrcVersion": "20220614-r0",
+          "Licenses": [
+            "MPL-2.0",
+            "MIT"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "Layer": {
+            "Digest": "sha256:f7dab3ab2d6ec29aa28769bec35331fb485b5837501b1e8556413d8b5a79c9c8",
+            "DiffID": "sha256:9733ccc395133a067f01ee6e380003d80fe9f443673e0f992ae6a4a7860a872c"
+          },
+          "Digest": "sha1:61f8867416af2195a65580f6e02d42306c8f5946",
+          "InstalledFiles": [
+            "etc/ssl/cert.pem",
+            "etc/ssl/certs/ca-certificates.crt"
+          ]
+        },
+        {
+          "ID": "expat@2.5.0-r0",
+          "Name": "expat",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/expat@2.5.0-r0?arch=x86_64\u0026distro=3.14.10",
+            "UID": "315bc6065949e778"
+          },
+          "Version": "2.5.0-r0",
+          "Arch": "x86_64",
+          "SrcName": "expat",
+          "SrcVersion": "2.5.0-r0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Maintainer": "Carlo Landmeter \u003cclandmeter@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:eb7fbe779fea88244505928f191cc8cd8bcbc9bc",
+          "InstalledFiles": [
+            "usr/bin/xmlwf",
+            "usr/lib/libexpat.so.1",
+            "usr/lib/libexpat.so.1.8.10"
+          ]
+        },
+        {
+          "ID": "git@2.32.6-r0",
+          "Name": "git",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/git@2.32.6-r0?arch=x86_64\u0026distro=3.14.10",
+            "UID": "f7eb973f001e931"
+          },
+          "Version": "2.32.6-r0",
+          "Arch": "x86_64",
+          "SrcName": "git",
+          "SrcVersion": "2.32.6-r0",
+          "Licenses": [
+            "GPL-2.0-or-later"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "expat@2.5.0-r0",
+            "libcurl@7.79.1-r5",
+            "musl@1.2.2-r4",
+            "pcre2@10.36-r1",
+            "zlib@1.2.12-r3"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:c127cefd8942f9faee55029236c2c7e9754beb66",
+          "InstalledFiles": [
+            "usr/bin/git",
+            "usr/bin/git-receive-pack",
+            "usr/bin/git-shell",
+            "usr/bin/git-upload-archive",
+            "usr/bin/git-upload-pack",
+            "usr/libexec/git-core/git",
+            "usr/libexec/git-core/git-add",
+            "usr/libexec/git-core/git-am",
+            "usr/libexec/git-core/git-annotate",
+            "usr/libexec/git-core/git-apply",
+            "usr/libexec/git-core/git-archive",
+            "usr/libexec/git-core/git-bisect",
+            "usr/libexec/git-core/git-bisect--helper",
+            "usr/libexec/git-core/git-blame",
+            "usr/libexec/git-core/git-branch",
+            "usr/libexec/git-core/git-bugreport",
+            "usr/libexec/git-core/git-bundle",
+            "usr/libexec/git-core/git-cat-file",
+            "usr/libexec/git-core/git-check-attr",
+            "usr/libexec/git-core/git-check-ignore",
+            "usr/libexec/git-core/git-check-mailmap",
+            "usr/libexec/git-core/git-check-ref-format",
+            "usr/libexec/git-core/git-checkout",
+            "usr/libexec/git-core/git-checkout--worker",
+            "usr/libexec/git-core/git-checkout-index",
+            "usr/libexec/git-core/git-cherry",
+            "usr/libexec/git-core/git-cherry-pick",
+            "usr/libexec/git-core/git-clean",
+            "usr/libexec/git-core/git-clone",
+            "usr/libexec/git-core/git-column",
+            "usr/libexec/git-core/git-commit",
+            "usr/libexec/git-core/git-commit-graph",
+            "usr/libexec/git-core/git-commit-tree",
+            "usr/libexec/git-core/git-config",
+            "usr/libexec/git-core/git-count-objects",
+            "usr/libexec/git-core/git-credential",
+            "usr/libexec/git-core/git-credential-cache",
+            "usr/libexec/git-core/git-credential-cache--daemon",
+            "usr/libexec/git-core/git-credential-store",
+            "usr/libexec/git-core/git-describe",
+            "usr/libexec/git-core/git-diff",
+            "usr/libexec/git-core/git-diff-files",
+            "usr/libexec/git-core/git-diff-index",
+            "usr/libexec/git-core/git-diff-tree",
+            "usr/libexec/git-core/git-difftool",
+            "usr/libexec/git-core/git-difftool--helper",
+            "usr/libexec/git-core/git-env--helper",
+            "usr/libexec/git-core/git-fast-export",
+            "usr/libexec/git-core/git-fetch",
+            "usr/libexec/git-core/git-fetch-pack",
+            "usr/libexec/git-core/git-filter-branch",
+            "usr/libexec/git-core/git-fmt-merge-msg",
+            "usr/libexec/git-core/git-for-each-ref",
+            "usr/libexec/git-core/git-for-each-repo",
+            "usr/libexec/git-core/git-format-patch",
+            "usr/libexec/git-core/git-fsck",
+            "usr/libexec/git-core/git-fsck-objects",
+            "usr/libexec/git-core/git-gc",
+            "usr/libexec/git-core/git-get-tar-commit-id",
+            "usr/libexec/git-core/git-grep",
+            "usr/libexec/git-core/git-hash-object",
+            "usr/libexec/git-core/git-help",
+            "usr/libexec/git-core/git-http-fetch",
+            "usr/libexec/git-core/git-http-push",
+            "usr/libexec/git-core/git-index-pack",
+            "usr/libexec/git-core/git-init",
+            "usr/libexec/git-core/git-init-db",
+            "usr/libexec/git-core/git-interpret-trailers",
+            "usr/libexec/git-core/git-log",
+            "usr/libexec/git-core/git-ls-files",
+            "usr/libexec/git-core/git-ls-remote",
+            "usr/libexec/git-core/git-ls-tree",
+            "usr/libexec/git-core/git-mailinfo",
+            "usr/libexec/git-core/git-mailsplit",
+            "usr/libexec/git-core/git-maintenance",
+            "usr/libexec/git-core/git-merge",
+            "usr/libexec/git-core/git-merge-base",
+            "usr/libexec/git-core/git-merge-file",
+            "usr/libexec/git-core/git-merge-index",
+            "usr/libexec/git-core/git-merge-octopus",
+            "usr/libexec/git-core/git-merge-one-file",
+            "usr/libexec/git-core/git-merge-ours",
+            "usr/libexec/git-core/git-merge-recursive",
+            "usr/libexec/git-core/git-merge-resolve",
+            "usr/libexec/git-core/git-merge-subtree",
+            "usr/libexec/git-core/git-merge-tree",
+            "usr/libexec/git-core/git-mergetool",
+            "usr/libexec/git-core/git-mergetool--lib",
+            "usr/libexec/git-core/git-mktag",
+            "usr/libexec/git-core/git-mktree",
+            "usr/libexec/git-core/git-multi-pack-index",
+            "usr/libexec/git-core/git-mv",
+            "usr/libexec/git-core/git-name-rev",
+            "usr/libexec/git-core/git-notes",
+            "usr/libexec/git-core/git-pack-objects",
+            "usr/libexec/git-core/git-pack-redundant",
+            "usr/libexec/git-core/git-pack-refs",
+            "usr/libexec/git-core/git-patch-id",
+            "usr/libexec/git-core/git-prune",
+            "usr/libexec/git-core/git-prune-packed",
+            "usr/libexec/git-core/git-pull",
+            "usr/libexec/git-core/git-push",
+            "usr/libexec/git-core/git-quiltimport",
+            "usr/libexec/git-core/git-range-diff",
+            "usr/libexec/git-core/git-read-tree",
+            "usr/libexec/git-core/git-rebase",
+            "usr/libexec/git-core/git-rebase--preserve-merges",
+            "usr/libexec/git-core/git-receive-pack",
+            "usr/libexec/git-core/git-reflog",
+            "usr/libexec/git-core/git-remote",
+            "usr/libexec/git-core/git-remote-ext",
+            "usr/libexec/git-core/git-remote-fd",
+            "usr/libexec/git-core/git-remote-ftp",
+            "usr/libexec/git-core/git-remote-ftps",
+            "usr/libexec/git-core/git-remote-http",
+            "usr/libexec/git-core/git-remote-https",
+            "usr/libexec/git-core/git-repack",
+            "usr/libexec/git-core/git-replace",
+            "usr/libexec/git-core/git-request-pull",
+            "usr/libexec/git-core/git-rerere",
+            "usr/libexec/git-core/git-reset",
+            "usr/libexec/git-core/git-restore",
+            "usr/libexec/git-core/git-rev-list",
+            "usr/libexec/git-core/git-rev-parse",
+            "usr/libexec/git-core/git-revert",
+            "usr/libexec/git-core/git-rm",
+            "usr/libexec/git-core/git-send-pack",
+            "usr/libexec/git-core/git-sh-i18n",
+            "usr/libexec/git-core/git-sh-i18n--envsubst",
+            "usr/libexec/git-core/git-sh-setup",
+            "usr/libexec/git-core/git-shortlog",
+            "usr/libexec/git-core/git-show",
+            "usr/libexec/git-core/git-show-branch",
+            "usr/libexec/git-core/git-show-index",
+            "usr/libexec/git-core/git-show-ref",
+            "usr/libexec/git-core/git-sparse-checkout",
+            "usr/libexec/git-core/git-stage",
+            "usr/libexec/git-core/git-stash",
+            "usr/libexec/git-core/git-status",
+            "usr/libexec/git-core/git-stripspace",
+            "usr/libexec/git-core/git-submodule",
+            "usr/libexec/git-core/git-submodule--helper",
+            "usr/libexec/git-core/git-switch",
+            "usr/libexec/git-core/git-symbolic-ref",
+            "usr/libexec/git-core/git-tag",
+            "usr/libexec/git-core/git-unpack-file",
+            "usr/libexec/git-core/git-unpack-objects",
+            "usr/libexec/git-core/git-update-index",
+            "usr/libexec/git-core/git-update-ref",
+            "usr/libexec/git-core/git-update-server-info",
+            "usr/libexec/git-core/git-upload-archive",
+            "usr/libexec/git-core/git-upload-pack",
+            "usr/libexec/git-core/git-var",
+            "usr/libexec/git-core/git-verify-commit",
+            "usr/libexec/git-core/git-verify-pack",
+            "usr/libexec/git-core/git-verify-tag",
+            "usr/libexec/git-core/git-web--browse",
+            "usr/libexec/git-core/git-whatchanged",
+            "usr/libexec/git-core/git-worktree",
+            "usr/libexec/git-core/git-write-tree",
+            "usr/libexec/git-core/mergetools/araxis",
+            "usr/libexec/git-core/mergetools/bc",
+            "usr/libexec/git-core/mergetools/codecompare",
+            "usr/libexec/git-core/mergetools/deltawalker",
+            "usr/libexec/git-core/mergetools/diffmerge",
+            "usr/libexec/git-core/mergetools/diffuse",
+            "usr/libexec/git-core/mergetools/ecmerge",
+            "usr/libexec/git-core/mergetools/emerge",
+            "usr/libexec/git-core/mergetools/examdiff",
+            "usr/libexec/git-core/mergetools/guiffy",
+            "usr/libexec/git-core/mergetools/gvimdiff",
+            "usr/libexec/git-core/mergetools/kdiff3",
+            "usr/libexec/git-core/mergetools/kompare",
+            "usr/libexec/git-core/mergetools/meld",
+            "usr/libexec/git-core/mergetools/nvimdiff",
+            "usr/libexec/git-core/mergetools/opendiff",
+            "usr/libexec/git-core/mergetools/smerge",
+            "usr/libexec/git-core/mergetools/tkdiff",
+            "usr/libexec/git-core/mergetools/tortoisemerge",
+            "usr/libexec/git-core/mergetools/vimdiff",
+            "usr/libexec/git-core/mergetools/winmerge",
+            "usr/libexec/git-core/mergetools/xxdiff",
+            "usr/share/git-core/templates/description",
+            "usr/share/git-core/templates/hooks/applypatch-msg.sample",
+            "usr/share/git-core/templates/hooks/commit-msg.sample",
+            "usr/share/git-core/templates/hooks/post-update.sample",
+            "usr/share/git-core/templates/hooks/pre-applypatch.sample",
+            "usr/share/git-core/templates/hooks/pre-commit.sample",
+            "usr/share/git-core/templates/hooks/pre-merge-commit.sample",
+            "usr/share/git-core/templates/hooks/pre-push.sample",
+            "usr/share/git-core/templates/hooks/pre-rebase.sample",
+            "usr/share/git-core/templates/hooks/pre-receive.sample",
+            "usr/share/git-core/templates/hooks/prepare-commit-msg.sample",
+            "usr/share/git-core/templates/hooks/push-to-checkout.sample",
+            "usr/share/git-core/templates/hooks/update.sample",
+            "usr/share/git-core/templates/info/exclude"
+          ]
+        },
+        {
+          "ID": "libacl@2.2.53-r0",
+          "Name": "libacl",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libacl@2.2.53-r0?arch=x86_64\u0026distro=3.14.10",
+            "UID": "9a4002b366716dba"
+          },
+          "Version": "2.2.53-r0",
+          "Arch": "x86_64",
+          "SrcName": "acl",
+          "SrcVersion": "2.2.53-r0",
+          "Licenses": [
+            "LGPL-2.1-or-later",
+            "GPL-2.0-or-later"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:b9955b576e570a45079e40ecdac8795789d27633",
+          "InstalledFiles": [
+            "lib/libacl.so.1",
+            "lib/libacl.so.1.1.2253"
+          ]
+        },
+        {
+          "ID": "libc-utils@0.7.2-r3",
+          "Name": "libc-utils",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libc-utils@0.7.2-r3?arch=x86_64\u0026distro=3.14.10",
+            "UID": "3f2c60ce09fcf426"
+          },
+          "Version": "0.7.2-r3",
+          "Arch": "x86_64",
+          "SrcName": "libc-dev",
+          "SrcVersion": "0.7.2-r3",
+          "Licenses": [
+            "BSD-2-Clause",
+            "BSD-3-Clause"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl-utils@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:f7dab3ab2d6ec29aa28769bec35331fb485b5837501b1e8556413d8b5a79c9c8",
+            "DiffID": "sha256:9733ccc395133a067f01ee6e380003d80fe9f443673e0f992ae6a4a7860a872c"
+          },
+          "Digest": "sha1:52c2d96b3d3f1a8e3885de15c38f540ade34569f"
+        },
+        {
+          "ID": "libcrypto1.1@1.1.1t-r2",
+          "Name": "libcrypto1.1",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libcrypto1.1@1.1.1t-r2?arch=x86_64\u0026distro=3.14.10",
+            "UID": "87a6685b64f72f08"
+          },
+          "Version": "1.1.1t-r2",
+          "Arch": "x86_64",
+          "SrcName": "openssl",
+          "SrcVersion": "1.1.1t-r2",
+          "Licenses": [
+            "OpenSSL"
+          ],
+          "Maintainer": "Timo Teras \u003ctimo.teras@iki.fi\u003e",
+          "DependsOn": [
+            "musl@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:f7dab3ab2d6ec29aa28769bec35331fb485b5837501b1e8556413d8b5a79c9c8",
+            "DiffID": "sha256:9733ccc395133a067f01ee6e380003d80fe9f443673e0f992ae6a4a7860a872c"
+          },
+          "Digest": "sha1:86f90b775cf1912a4f3c172ff08c136ba271b501",
+          "InstalledFiles": [
+            "etc/ssl/ct_log_list.cnf",
+            "etc/ssl/ct_log_list.cnf.dist",
+            "etc/ssl/openssl.cnf",
+            "etc/ssl/openssl.cnf.dist",
+            "etc/ssl/misc/CA.pl",
+            "etc/ssl/misc/tsget",
+            "etc/ssl/misc/tsget.pl",
+            "lib/libcrypto.so.1.1",
+            "usr/lib/libcrypto.so.1.1",
+            "usr/lib/engines-1.1/afalg.so",
+            "usr/lib/engines-1.1/capi.so",
+            "usr/lib/engines-1.1/padlock.so"
+          ]
+        },
+        {
+          "ID": "libcurl@7.79.1-r5",
+          "Name": "libcurl",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libcurl@7.79.1-r5?arch=x86_64\u0026distro=3.14.10",
+            "UID": "45893bff5536052e"
+          },
+          "Version": "7.79.1-r5",
+          "Arch": "x86_64",
+          "SrcName": "curl",
+          "SrcVersion": "7.79.1-r5",
+          "Licenses": [
+            "MIT"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "brotli-libs@1.0.9-r5",
+            "ca-certificates@20220614-r0",
+            "libcrypto1.1@1.1.1t-r2",
+            "libssl1.1@1.1.1t-r2",
+            "musl@1.2.2-r4",
+            "nghttp2-libs@1.43.0-r0",
+            "zlib@1.2.12-r3"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:07b8e4f0fa79442919631b2d306dad2172688e01",
+          "InstalledFiles": [
+            "usr/lib/libcurl.so.4",
+            "usr/lib/libcurl.so.4.7.0"
+          ]
+        },
+        {
+          "ID": "libedit@20210216.3.1-r0",
+          "Name": "libedit",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libedit@20210216.3.1-r0?arch=x86_64\u0026distro=3.14.10",
+            "UID": "b3b0cf692e220a5b"
+          },
+          "Version": "20210216.3.1-r0",
+          "Arch": "x86_64",
+          "SrcName": "libedit",
+          "SrcVersion": "20210216.3.1-r0",
+          "Licenses": [
+            "BSD-3-Clause"
+          ],
+          "Maintainer": "Drew DeVault \u003csir@cmpwn.com\u003e",
+          "DependsOn": [
+            "musl@1.2.2-r4",
+            "ncurses-libs@6.2_p20210612-r1"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:48c336bca92a112e580238fe67f669b044a57f6a",
+          "InstalledFiles": [
+            "usr/lib/libedit.so.0",
+            "usr/lib/libedit.so.0.0.64"
+          ]
+        },
+        {
+          "ID": "libgcc@10.3.1_git20210424-r2",
+          "Name": "libgcc",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libgcc@10.3.1_git20210424-r2?arch=x86_64\u0026distro=3.14.10",
+            "UID": "3a458449b739d1c4"
+          },
+          "Version": "10.3.1_git20210424-r2",
+          "Arch": "x86_64",
+          "SrcName": "gcc",
+          "SrcVersion": "10.3.1_git20210424-r2",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "LGPL-2.1-or-later"
+          ],
+          "Maintainer": "Ariadne Conill \u003cariadne@dereferenced.org\u003e",
+          "DependsOn": [
+            "musl@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:6181ff2c9724341d24ea566104f66981c9e1fa2a",
+          "InstalledFiles": [
+            "usr/lib/libgcc_s.so.1"
+          ]
+        },
+        {
+          "ID": "libretls@3.3.3p1-r3",
+          "Name": "libretls",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libretls@3.3.3p1-r3?arch=x86_64\u0026distro=3.14.10",
+            "UID": "cf6aac894d56764d"
+          },
+          "Version": "3.3.3p1-r3",
+          "Arch": "x86_64",
+          "SrcName": "libretls",
+          "SrcVersion": "3.3.3p1-r3",
+          "Licenses": [
+            "ISC",
+            "BSD-3-Clause",
+            "MIT"
+          ],
+          "Maintainer": "Ariadne Conill \u003cariadne@dereferenced.org\u003e",
+          "DependsOn": [
+            "ca-certificates-bundle@20220614-r0",
+            "libcrypto1.1@1.1.1t-r2",
+            "libssl1.1@1.1.1t-r2",
+            "musl@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:f7dab3ab2d6ec29aa28769bec35331fb485b5837501b1e8556413d8b5a79c9c8",
+            "DiffID": "sha256:9733ccc395133a067f01ee6e380003d80fe9f443673e0f992ae6a4a7860a872c"
+          },
+          "Digest": "sha1:3422f8f45c723c2759f40b2a32bea8b2818f3b7a",
+          "InstalledFiles": [
+            "usr/lib/libtls.so.2",
+            "usr/lib/libtls.so.2.0.3"
+          ]
+        },
+        {
+          "ID": "libssl1.1@1.1.1t-r2",
+          "Name": "libssl1.1",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libssl1.1@1.1.1t-r2?arch=x86_64\u0026distro=3.14.10",
+            "UID": "1109cf488cfc5bc1"
+          },
+          "Version": "1.1.1t-r2",
+          "Arch": "x86_64",
+          "SrcName": "openssl",
+          "SrcVersion": "1.1.1t-r2",
+          "Licenses": [
+            "OpenSSL"
+          ],
+          "Maintainer": "Timo Teras \u003ctimo.teras@iki.fi\u003e",
+          "DependsOn": [
+            "libcrypto1.1@1.1.1t-r2",
+            "musl@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:f7dab3ab2d6ec29aa28769bec35331fb485b5837501b1e8556413d8b5a79c9c8",
+            "DiffID": "sha256:9733ccc395133a067f01ee6e380003d80fe9f443673e0f992ae6a4a7860a872c"
+          },
+          "Digest": "sha1:6cda679fca49797cdc3cebf88db6bd5f678ffc6b",
+          "InstalledFiles": [
+            "lib/libssl.so.1.1",
+            "usr/lib/libssl.so.1.1"
+          ]
+        },
+        {
+          "ID": "libxml2@2.9.14-r2",
+          "Name": "libxml2",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/libxml2@2.9.14-r2?arch=x86_64\u0026distro=3.14.10",
+            "UID": "377448548a6777d9"
+          },
+          "Version": "2.9.14-r2",
+          "Arch": "x86_64",
+          "SrcName": "libxml2",
+          "SrcVersion": "2.9.14-r2",
+          "Licenses": [
+            "MIT"
+          ],
+          "Maintainer": "Carlo Landmeter \u003cclandmeter@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.2.2-r4",
+            "xz-libs@5.2.5-r1",
+            "zlib@1.2.12-r3"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:6d5a9847e8c5d629a9469c23dd6919b20e2ee1df",
+          "InstalledFiles": [
+            "usr/lib/libxml2.so.2",
+            "usr/lib/libxml2.so.2.9.14"
+          ]
+        },
+        {
+          "ID": "linux-pam@1.5.1-r1",
+          "Name": "linux-pam",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/linux-pam@1.5.1-r1?arch=x86_64\u0026distro=3.14.10",
+            "UID": "298ca4cb7334dd6"
+          },
+          "Version": "1.5.1-r1",
+          "Arch": "x86_64",
+          "SrcName": "linux-pam",
+          "SrcVersion": "1.5.1-r1",
+          "Licenses": [
+            "BSD-3-Clause"
+          ],
+          "Maintainer": "Rasmus Thomsen \u003coss@cogitri.dev\u003e",
+          "DependsOn": [
+            "musl@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:1dac69e697332d1b41a3ad04e28627412eda3a72",
+          "InstalledFiles": [
+            "etc/environment",
+            "etc/pam.d/base-account",
+            "etc/pam.d/base-auth",
+            "etc/pam.d/base-password",
+            "etc/pam.d/base-session",
+            "etc/pam.d/base-session-noninteractive",
+            "etc/pam.d/other",
+            "etc/pam.d/su",
+            "etc/pam.d/system-local-login",
+            "etc/pam.d/system-login",
+            "etc/security/access.conf",
+            "etc/security/faillock.conf",
+            "etc/security/group.conf",
+            "etc/security/limits.conf",
+            "etc/security/namespace.conf",
+            "etc/security/namespace.init",
+            "etc/security/pam_env.conf",
+            "etc/security/time.conf",
+            "lib/libpam.so.0",
+            "lib/libpam.so.0.85.1",
+            "lib/libpam_misc.so.0",
+            "lib/libpam_misc.so.0.82.1",
+            "lib/libpamc.so.0",
+            "lib/libpamc.so.0.82.1",
+            "lib/security/pam_access.so",
+            "lib/security/pam_debug.so",
+            "lib/security/pam_deny.so",
+            "lib/security/pam_echo.so",
+            "lib/security/pam_env.so",
+            "lib/security/pam_exec.so",
+            "lib/security/pam_faildelay.so",
+            "lib/security/pam_faillock.so",
+            "lib/security/pam_filter.so",
+            "lib/security/pam_ftp.so",
+            "lib/security/pam_group.so",
+            "lib/security/pam_issue.so",
+            "lib/security/pam_keyinit.so",
+            "lib/security/pam_limits.so",
+            "lib/security/pam_listfile.so",
+            "lib/security/pam_localuser.so",
+            "lib/security/pam_loginuid.so",
+            "lib/security/pam_mail.so",
+            "lib/security/pam_mkhomedir.so",
+            "lib/security/pam_motd.so",
+            "lib/security/pam_namespace.so",
+            "lib/security/pam_nologin.so",
+            "lib/security/pam_permit.so",
+            "lib/security/pam_pwhistory.so",
+            "lib/security/pam_rootok.so",
+            "lib/security/pam_securetty.so",
+            "lib/security/pam_setquota.so",
+            "lib/security/pam_shells.so",
+            "lib/security/pam_stress.so",
+            "lib/security/pam_succeed_if.so",
+            "lib/security/pam_time.so",
+            "lib/security/pam_timestamp.so",
+            "lib/security/pam_umask.so",
+            "lib/security/pam_unix.so",
+            "lib/security/pam_usertype.so",
+            "lib/security/pam_warn.so",
+            "lib/security/pam_wheel.so",
+            "lib/security/pam_xauth.so",
+            "lib/security/pam_filter/upperLOWER",
+            "sbin/faillock",
+            "sbin/mkhomedir_helper",
+            "sbin/pam_namespace_helper",
+            "sbin/pam_timestamp_check",
+            "sbin/pwhistory_helper",
+            "sbin/unix_chkpwd",
+            "sbin/unix_update"
+          ]
+        },
+        {
+          "ID": "musl@1.2.2-r4",
+          "Name": "musl",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/musl@1.2.2-r4?arch=x86_64\u0026distro=3.14.10",
+            "UID": "7359ceabe55afb50"
+          },
+          "Version": "1.2.2-r4",
+          "Arch": "x86_64",
+          "SrcName": "musl",
+          "SrcVersion": "1.2.2-r4",
+          "Licenses": [
+            "MIT"
+          ],
+          "Maintainer": "Timo Teräs \u003ctimo.teras@iki.fi\u003e",
+          "Layer": {
+            "Digest": "sha256:f7dab3ab2d6ec29aa28769bec35331fb485b5837501b1e8556413d8b5a79c9c8",
+            "DiffID": "sha256:9733ccc395133a067f01ee6e380003d80fe9f443673e0f992ae6a4a7860a872c"
+          },
+          "Digest": "sha1:9ca8d8ad4ec80b19e7e8ebfe7383034b8a4cd495",
+          "InstalledFiles": [
+            "lib/ld-musl-x86_64.so.1",
+            "lib/libc.musl-x86_64.so.1"
+          ]
+        },
+        {
+          "ID": "musl-utils@1.2.2-r4",
+          "Name": "musl-utils",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/musl-utils@1.2.2-r4?arch=x86_64\u0026distro=3.14.10",
+            "UID": "6ef62a364a1bfaa5"
+          },
+          "Version": "1.2.2-r4",
+          "Arch": "x86_64",
+          "SrcName": "musl",
+          "SrcVersion": "1.2.2-r4",
+          "Licenses": [
+            "MIT",
+            "BSD-3-Clause",
+            "GPL-2.0-or-later"
+          ],
+          "Maintainer": "Timo Teräs \u003ctimo.teras@iki.fi\u003e",
+          "DependsOn": [
+            "musl@1.2.2-r4",
+            "scanelf@1.3.2-r0"
+          ],
+          "Layer": {
+            "Digest": "sha256:f7dab3ab2d6ec29aa28769bec35331fb485b5837501b1e8556413d8b5a79c9c8",
+            "DiffID": "sha256:9733ccc395133a067f01ee6e380003d80fe9f443673e0f992ae6a4a7860a872c"
+          },
+          "Digest": "sha1:b5f967868c4e1a09356943208363882a3cb3e780",
+          "InstalledFiles": [
+            "sbin/ldconfig",
+            "usr/bin/getconf",
+            "usr/bin/getent",
+            "usr/bin/iconv",
+            "usr/bin/ldd"
+          ]
+        },
+        {
+          "ID": "ncurses-libs@6.2_p20210612-r1",
+          "Name": "ncurses-libs",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/ncurses-libs@6.2_p20210612-r1?arch=x86_64\u0026distro=3.14.10",
+            "UID": "b63c424fe54e253f"
+          },
+          "Version": "6.2_p20210612-r1",
+          "Arch": "x86_64",
+          "SrcName": "ncurses",
+          "SrcVersion": "6.2_p20210612-r1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.2.2-r4",
+            "ncurses-terminfo-base@6.2_p20210612-r1"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:365fde58ecb81d5317487fff43db97c44ae9f87a",
+          "InstalledFiles": [
+            "usr/lib/libformw.so.6",
+            "usr/lib/libformw.so.6.2",
+            "usr/lib/libmenuw.so.6",
+            "usr/lib/libmenuw.so.6.2",
+            "usr/lib/libncursesw.so.6",
+            "usr/lib/libncursesw.so.6.2",
+            "usr/lib/libpanelw.so.6",
+            "usr/lib/libpanelw.so.6.2"
+          ]
+        },
+        {
+          "ID": "ncurses-terminfo-base@6.2_p20210612-r1",
+          "Name": "ncurses-terminfo-base",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/ncurses-terminfo-base@6.2_p20210612-r1?arch=x86_64\u0026distro=3.14.10",
+            "UID": "33a8d230f4b6bb"
+          },
+          "Version": "6.2_p20210612-r1",
+          "Arch": "x86_64",
+          "SrcName": "ncurses",
+          "SrcVersion": "6.2_p20210612-r1",
+          "Licenses": [
+            "MIT"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:9dd2004f2e2096655e9c511c9dc0cc167cce1489",
+          "InstalledFiles": [
+            "etc/terminfo/a/alacritty",
+            "etc/terminfo/a/ansi",
+            "etc/terminfo/d/dumb",
+            "etc/terminfo/g/gnome",
+            "etc/terminfo/g/gnome-256color",
+            "etc/terminfo/k/kitty",
+            "etc/terminfo/k/konsole",
+            "etc/terminfo/k/konsole-256color",
+            "etc/terminfo/k/konsole-linux",
+            "etc/terminfo/l/linux",
+            "etc/terminfo/p/putty",
+            "etc/terminfo/p/putty-256color",
+            "etc/terminfo/r/rxvt",
+            "etc/terminfo/r/rxvt-256color",
+            "etc/terminfo/s/screen",
+            "etc/terminfo/s/screen-256color",
+            "etc/terminfo/s/st-0.6",
+            "etc/terminfo/s/st-0.7",
+            "etc/terminfo/s/st-0.8",
+            "etc/terminfo/s/st-16color",
+            "etc/terminfo/s/st-256color",
+            "etc/terminfo/s/st-direct",
+            "etc/terminfo/s/sun",
+            "etc/terminfo/t/terminator",
+            "etc/terminfo/t/terminology",
+            "etc/terminfo/t/terminology-0.6.1",
+            "etc/terminfo/t/terminology-1.0.0",
+            "etc/terminfo/t/terminology-1.8.1",
+            "etc/terminfo/t/tmux",
+            "etc/terminfo/t/tmux-256color",
+            "etc/terminfo/v/vt100",
+            "etc/terminfo/v/vt102",
+            "etc/terminfo/v/vt200",
+            "etc/terminfo/v/vt220",
+            "etc/terminfo/v/vt52",
+            "etc/terminfo/v/vte",
+            "etc/terminfo/v/vte-256color",
+            "etc/terminfo/x/xterm",
+            "etc/terminfo/x/xterm-256color",
+            "etc/terminfo/x/xterm-color",
+            "etc/terminfo/x/xterm-xfree86"
+          ]
+        },
+        {
+          "ID": "nghttp2-libs@1.43.0-r0",
+          "Name": "nghttp2-libs",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/nghttp2-libs@1.43.0-r0?arch=x86_64\u0026distro=3.14.10",
+            "UID": "85ce7e5ac1453e69"
+          },
+          "Version": "1.43.0-r0",
+          "Arch": "x86_64",
+          "SrcName": "nghttp2",
+          "SrcVersion": "1.43.0-r0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Maintainer": "Francesco Colista \u003cfcolista@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:ed1c1399572ecf017fda5ab28a9f39f4bd233a0d",
+          "InstalledFiles": [
+            "usr/lib/libnghttp2.so.14",
+            "usr/lib/libnghttp2.so.14.20.1"
+          ]
+        },
+        {
+          "ID": "openssh@8.6_p1-r3",
+          "Name": "openssh",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/openssh@8.6_p1-r3?arch=x86_64\u0026distro=3.14.10",
+            "UID": "59f9986ef97e922e"
+          },
+          "Version": "8.6_p1-r3",
+          "Arch": "x86_64",
+          "SrcName": "openssh",
+          "SrcVersion": "8.6_p1-r3",
+          "Licenses": [
+            "BSD-3-Clause"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "libcrypto1.1@1.1.1t-r2",
+            "musl@1.2.2-r4",
+            "openssh-client-default@8.6_p1-r3",
+            "openssh-server@8.6_p1-r3",
+            "openssh-sftp-server@8.6_p1-r3"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:da9735604814832d86f19e9896608517f2fc8033",
+          "InstalledFiles": [
+            "usr/lib/ssh/ssh-pkcs11-helper",
+            "usr/lib/ssh/ssh-sk-helper"
+          ]
+        },
+        {
+          "ID": "openssh-client-common@8.6_p1-r3",
+          "Name": "openssh-client-common",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/openssh-client-common@8.6_p1-r3?arch=x86_64\u0026distro=3.14.10",
+            "UID": "8d16131bab509bce"
+          },
+          "Version": "8.6_p1-r3",
+          "Arch": "x86_64",
+          "SrcName": "openssh",
+          "SrcVersion": "8.6_p1-r3",
+          "Licenses": [
+            "BSD-3-Clause"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "libcrypto1.1@1.1.1t-r2",
+            "libedit@20210216.3.1-r0",
+            "musl@1.2.2-r4",
+            "zlib@1.2.12-r3"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:c6de63776ce0c0b0c1b40dcc6128ba35a57b5906",
+          "InstalledFiles": [
+            "etc/ssh/moduli",
+            "etc/ssh/ssh_config",
+            "usr/bin/findssl.sh",
+            "usr/bin/scp",
+            "usr/bin/sftp",
+            "usr/bin/ssh-add",
+            "usr/bin/ssh-agent",
+            "usr/bin/ssh-copy-id",
+            "usr/bin/ssh-keyscan",
+            "usr/bin/ssh-pkcs11-helper"
+          ]
+        },
+        {
+          "ID": "openssh-client-default@8.6_p1-r3",
+          "Name": "openssh-client-default",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/openssh-client-default@8.6_p1-r3?arch=x86_64\u0026distro=3.14.10",
+            "UID": "525baf2f1d36644b"
+          },
+          "Version": "8.6_p1-r3",
+          "Arch": "x86_64",
+          "SrcName": "openssh",
+          "SrcVersion": "8.6_p1-r3",
+          "Licenses": [
+            "BSD-3-Clause"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "libcrypto1.1@1.1.1t-r2",
+            "musl@1.2.2-r4",
+            "openssh-client-common@8.6_p1-r3",
+            "openssh-keygen@8.6_p1-r3",
+            "zlib@1.2.12-r3"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:e345861b92efff3df287924ccf1ea9b33d6ee4b1",
+          "InstalledFiles": [
+            "usr/bin/ssh"
+          ]
+        },
+        {
+          "ID": "openssh-keygen@8.6_p1-r3",
+          "Name": "openssh-keygen",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/openssh-keygen@8.6_p1-r3?arch=x86_64\u0026distro=3.14.10",
+            "UID": "1eecfc4bd003a492"
+          },
+          "Version": "8.6_p1-r3",
+          "Arch": "x86_64",
+          "SrcName": "openssh",
+          "SrcVersion": "8.6_p1-r3",
+          "Licenses": [
+            "BSD-3-Clause"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "libcrypto1.1@1.1.1t-r2",
+            "musl@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:04cd25a7b139b2546f66e912b22f0884b1276281",
+          "InstalledFiles": [
+            "usr/bin/ssh-keygen"
+          ]
+        },
+        {
+          "ID": "openssh-server@8.6_p1-r3",
+          "Name": "openssh-server",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/openssh-server@8.6_p1-r3?arch=x86_64\u0026distro=3.14.10",
+            "UID": "5994a1215693ba97"
+          },
+          "Version": "8.6_p1-r3",
+          "Arch": "x86_64",
+          "SrcName": "openssh",
+          "SrcVersion": "8.6_p1-r3",
+          "Licenses": [
+            "BSD-3-Clause"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "libcrypto1.1@1.1.1t-r2",
+            "musl@1.2.2-r4",
+            "openssh-keygen@8.6_p1-r3",
+            "openssh-server-common@8.6_p1-r3",
+            "zlib@1.2.12-r3"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:9049deac0f5dff4c00c94e5bbc7b3b5acecb7132",
+          "InstalledFiles": [
+            "usr/sbin/sshd"
+          ]
+        },
+        {
+          "ID": "openssh-server-common@8.6_p1-r3",
+          "Name": "openssh-server-common",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/openssh-server-common@8.6_p1-r3?arch=x86_64\u0026distro=3.14.10",
+            "UID": "10c53ebcf57f7818"
+          },
+          "Version": "8.6_p1-r3",
+          "Arch": "x86_64",
+          "SrcName": "openssh",
+          "SrcVersion": "8.6_p1-r3",
+          "Licenses": [
+            "BSD-3-Clause"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:37d04215547eb95a9163f46ddc779b4c61ff2381",
+          "InstalledFiles": [
+            "etc/conf.d/sshd",
+            "etc/init.d/sshd",
+            "etc/ssh/sshd_config"
+          ]
+        },
+        {
+          "ID": "openssh-sftp-server@8.6_p1-r3",
+          "Name": "openssh-sftp-server",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/openssh-sftp-server@8.6_p1-r3?arch=x86_64\u0026distro=3.14.10",
+            "UID": "ba49fa28d99d7e57"
+          },
+          "Version": "8.6_p1-r3",
+          "Arch": "x86_64",
+          "SrcName": "openssh",
+          "SrcVersion": "8.6_p1-r3",
+          "Licenses": [
+            "BSD-3-Clause"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "libcrypto1.1@1.1.1t-r2",
+            "musl@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:380ccd5654c687875237433ed3d958917beb5b99",
+          "InstalledFiles": [
+            "usr/lib/ssh/sftp-server"
+          ]
+        },
+        {
+          "ID": "pcre2@10.36-r1",
+          "Name": "pcre2",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/pcre2@10.36-r1?arch=x86_64\u0026distro=3.14.10",
+            "UID": "eb6aa328daed30aa"
+          },
+          "Version": "10.36-r1",
+          "Arch": "x86_64",
+          "SrcName": "pcre2",
+          "SrcVersion": "10.36-r1",
+          "Licenses": [
+            "BSD-3-Clause"
+          ],
+          "Maintainer": "Jakub Jirutka \u003cjakub@jirutka.cz\u003e",
+          "DependsOn": [
+            "musl@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:bc37729e071d51645f8c26e726d78661cd2fa069",
+          "InstalledFiles": [
+            "usr/lib/libpcre2-8.so.0",
+            "usr/lib/libpcre2-8.so.0.10.1",
+            "usr/lib/libpcre2-posix.so.2",
+            "usr/lib/libpcre2-posix.so.2.0.3"
+          ]
+        },
+        {
+          "ID": "popt@1.18-r0",
+          "Name": "popt",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/popt@1.18-r0?arch=x86_64\u0026distro=3.14.10",
+            "UID": "24604210b805b2af"
+          },
+          "Version": "1.18-r0",
+          "Arch": "x86_64",
+          "SrcName": "popt",
+          "SrcVersion": "1.18-r0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:ac8945be46e9a9cfc870d042e13fc43676a6a59d",
+          "InstalledFiles": [
+            "lib/libpopt.so.0",
+            "lib/libpopt.so.0.0.1"
+          ]
+        },
+        {
+          "ID": "readline@8.1.0-r0",
+          "Name": "readline",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/readline@8.1.0-r0?arch=x86_64\u0026distro=3.14.10",
+            "UID": "4bf43ea0d64f3146"
+          },
+          "Version": "8.1.0-r0",
+          "Arch": "x86_64",
+          "SrcName": "readline",
+          "SrcVersion": "8.1.0-r0",
+          "Licenses": [
+            "GPL-2.0-or-later"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.2.2-r4",
+            "ncurses-libs@6.2_p20210612-r1"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:89ebbe0b12af7fce093217415a7cb46792aadf97",
+          "InstalledFiles": [
+            "etc/inputrc",
+            "usr/lib/libreadline.so.8",
+            "usr/lib/libreadline.so.8.1"
+          ]
+        },
+        {
+          "ID": "rssh@2.3.4-r2",
+          "Name": "rssh",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/rssh@2.3.4-r2?arch=x86_64\u0026distro=3.14.10",
+            "UID": "31ff187c0af0a89a"
+          },
+          "Version": "2.3.4-r2",
+          "Arch": "x86_64",
+          "SrcName": "rssh",
+          "SrcVersion": "2.3.4-r2",
+          "Licenses": [
+            "BSD-2-Clause"
+          ],
+          "Maintainer": "Jakub Jirutka \u003cjakub@jirutka.cz\u003e",
+          "DependsOn": [
+            "busybox@1.33.1-r8",
+            "musl@1.2.2-r4",
+            "openssh@8.6_p1-r3"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:38e0e3f2ea40604f30a6aa40b02aa877d5db30b3",
+          "InstalledFiles": [
+            "etc/rssh.conf.default",
+            "usr/bin/rssh",
+            "usr/lib/rssh/rssh_chroot_helper"
+          ]
+        },
+        {
+          "ID": "rsync@3.2.5-r0",
+          "Name": "rsync",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/rsync@3.2.5-r0?arch=x86_64\u0026distro=3.14.10",
+            "UID": "7040ef77a5aa072b"
+          },
+          "Version": "3.2.5-r0",
+          "Arch": "x86_64",
+          "SrcName": "rsync",
+          "SrcVersion": "3.2.5-r0",
+          "Licenses": [
+            "GPL-3.0-or-later"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "libacl@2.2.53-r0",
+            "musl@1.2.2-r4",
+            "popt@1.18-r0",
+            "zlib@1.2.12-r3",
+            "zstd-libs@1.4.9-r1"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:e13542521f7b90086b783f7b55d63fd441239725",
+          "InstalledFiles": [
+            "etc/rsyncd.conf",
+            "etc/logrotate.d/rsyncd",
+            "usr/bin/rsync",
+            "usr/bin/rsync-ssl"
+          ]
+        },
+        {
+          "ID": "scanelf@1.3.2-r0",
+          "Name": "scanelf",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/scanelf@1.3.2-r0?arch=x86_64\u0026distro=3.14.10",
+            "UID": "964e05ded3f3ed04"
+          },
+          "Version": "1.3.2-r0",
+          "Arch": "x86_64",
+          "SrcName": "pax-utils",
+          "SrcVersion": "1.3.2-r0",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:f7dab3ab2d6ec29aa28769bec35331fb485b5837501b1e8556413d8b5a79c9c8",
+            "DiffID": "sha256:9733ccc395133a067f01ee6e380003d80fe9f443673e0f992ae6a4a7860a872c"
+          },
+          "Digest": "sha1:3962a8d1f9946c296b856d023cd8f003c00c2d6a",
+          "InstalledFiles": [
+            "usr/bin/scanelf"
+          ]
+        },
+        {
+          "ID": "shadow@4.8.1-r0",
+          "Name": "shadow",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/shadow@4.8.1-r0?arch=x86_64\u0026distro=3.14.10",
+            "UID": "eceec366cfa800bf"
+          },
+          "Version": "4.8.1-r0",
+          "Arch": "x86_64",
+          "SrcName": "shadow",
+          "SrcVersion": "4.8.1-r0",
+          "Licenses": [
+            "BSD-3-Clause"
+          ],
+          "Maintainer": "Stuart Cardall \u003cdeveloper@it-offshore.co.uk\u003e",
+          "DependsOn": [
+            "linux-pam@1.5.1-r1",
+            "musl@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:5afacbdf40c471398e09a1df0b50f66de4f62153",
+          "InstalledFiles": [
+            "bin/groups",
+            "bin/login",
+            "bin/su",
+            "etc/login.defs",
+            "etc/default/useradd",
+            "etc/pam.d/chpasswd",
+            "etc/pam.d/groupadd",
+            "etc/pam.d/groupdel",
+            "etc/pam.d/groupmems",
+            "etc/pam.d/groupmod",
+            "etc/pam.d/login",
+            "etc/pam.d/newusers",
+            "etc/pam.d/useradd",
+            "etc/pam.d/userdel",
+            "etc/pam.d/usermod",
+            "usr/bin/chage",
+            "usr/bin/chfn",
+            "usr/bin/chsh",
+            "usr/bin/expiry",
+            "usr/bin/faillog",
+            "usr/bin/gpasswd",
+            "usr/bin/lastlog",
+            "usr/bin/newgrp",
+            "usr/bin/passwd",
+            "usr/bin/sg",
+            "usr/sbin/chgpasswd",
+            "usr/sbin/chpasswd",
+            "usr/sbin/groupadd",
+            "usr/sbin/groupdel",
+            "usr/sbin/groupmems",
+            "usr/sbin/groupmod",
+            "usr/sbin/grpck",
+            "usr/sbin/grpconv",
+            "usr/sbin/grpunconv",
+            "usr/sbin/logoutd",
+            "usr/sbin/newusers",
+            "usr/sbin/pwck",
+            "usr/sbin/pwconv",
+            "usr/sbin/pwunconv",
+            "usr/sbin/useradd",
+            "usr/sbin/userdel",
+            "usr/sbin/usermod",
+            "usr/sbin/vigr",
+            "usr/sbin/vipw"
+          ]
+        },
+        {
+          "ID": "ssl_client@1.33.1-r8",
+          "Name": "ssl_client",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/ssl_client@1.33.1-r8?arch=x86_64\u0026distro=3.14.10",
+            "UID": "e651136890baf008"
+          },
+          "Version": "1.33.1-r8",
+          "Arch": "x86_64",
+          "SrcName": "busybox",
+          "SrcVersion": "1.33.1-r8",
+          "Licenses": [
+            "GPL-2.0-only"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "libretls@3.3.3p1-r3",
+            "musl@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:f7dab3ab2d6ec29aa28769bec35331fb485b5837501b1e8556413d8b5a79c9c8",
+            "DiffID": "sha256:9733ccc395133a067f01ee6e380003d80fe9f443673e0f992ae6a4a7860a872c"
+          },
+          "Digest": "sha1:2ab5b4b3838f98ca5443c869aca15af651bdb193",
+          "InstalledFiles": [
+            "usr/bin/ssl_client"
+          ]
+        },
+        {
+          "ID": "xz-libs@5.2.5-r1",
+          "Name": "xz-libs",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/xz-libs@5.2.5-r1?arch=x86_64\u0026distro=3.14.10",
+            "UID": "ed8795412b2eb18a"
+          },
+          "Version": "5.2.5-r1",
+          "Arch": "x86_64",
+          "SrcName": "xz",
+          "SrcVersion": "5.2.5-r1",
+          "Licenses": [
+            "GPL-2.0-or-later",
+            "Public-Domain",
+            "LGPL-2.1-or-later"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:aefbd4bd93b681bb781a75e31b4f35f9bff6bf80",
+          "InstalledFiles": [
+            "usr/lib/liblzma.so.5",
+            "usr/lib/liblzma.so.5.2.5"
+          ]
+        },
+        {
+          "ID": "zlib@1.2.12-r3",
+          "Name": "zlib",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/zlib@1.2.12-r3?arch=x86_64\u0026distro=3.14.10",
+            "UID": "4373a1e3e2bb2be3"
+          },
+          "Version": "1.2.12-r3",
+          "Arch": "x86_64",
+          "SrcName": "zlib",
+          "SrcVersion": "1.2.12-r3",
+          "Licenses": [
+            "Zlib"
+          ],
+          "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
+          "DependsOn": [
+            "musl@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:f7dab3ab2d6ec29aa28769bec35331fb485b5837501b1e8556413d8b5a79c9c8",
+            "DiffID": "sha256:9733ccc395133a067f01ee6e380003d80fe9f443673e0f992ae6a4a7860a872c"
+          },
+          "Digest": "sha1:cbee5a04cc92cfcac9705b140b3f857fa409a440",
+          "InstalledFiles": [
+            "lib/libz.so.1",
+            "lib/libz.so.1.2.12"
+          ]
+        },
+        {
+          "ID": "zstd-libs@1.4.9-r1",
+          "Name": "zstd-libs",
+          "Identifier": {
+            "PURL": "pkg:apk/alpine/zstd-libs@1.4.9-r1?arch=x86_64\u0026distro=3.14.10",
+            "UID": "da52b8409e8e715a"
+          },
+          "Version": "1.4.9-r1",
+          "Arch": "x86_64",
+          "SrcName": "zstd",
+          "SrcVersion": "1.4.9-r1",
+          "Licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-or-later"
+          ],
+          "Maintainer": "André Klitzing \u003caklitzing@gmail.com\u003e",
+          "DependsOn": [
+            "musl@1.2.2-r4"
+          ],
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "Digest": "sha1:46e8ea7454798d9b4ee1c0718dd1d19faf66d073",
+          "InstalledFiles": [
+            "usr/lib/libzstd.so.1",
+            "usr/lib/libzstd.so.1.4.9"
+          ]
+        }
+      ],
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2023-25652",
+          "PkgID": "git@2.32.6-r0",
+          "PkgName": "git",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/git@2.32.6-r0?arch=x86_64\u0026distro=3.14.10",
+            "UID": "f7eb973f001e931"
+          },
+          "InstalledVersion": "2.32.6-r0",
+          "FixedVersion": "2.32.7-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-25652",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "git: by feeding specially crafted input to `git apply --reject`, a path outside the working tree can be overwritten with partially controlled contents",
+          "Description": "Git is a revision control system. Prior to versions 2.30.9, 2.31.8, 2.32.7, 2.33.8, 2.34.8, 2.35.8, 2.36.6, 2.37.7, 2.38.5, 2.39.3, and 2.40.1, by feeding specially crafted input to `git apply --reject`, a path outside the working tree can be overwritten with partially controlled contents (corresponding to the rejected hunk(s) from the given patch). A fix is available in versions 2.30.9, 2.31.8, 2.32.7, 2.33.8, 2.34.8, 2.35.8, 2.36.6, 2.37.7, 2.38.5, 2.39.3, and 2.40.1. As a workaround, avoid using `git apply` with `--reject` when applying patches from an untrusted source. Use `git apply --stat` to inspect a patch before applying; avoid applying one that create a conflict where a link corresponding to the `*.rej` file exists.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-22"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "amazon": 2,
+            "nvd": 3,
+            "oracle-oval": 3,
+            "photon": 3,
+            "redhat": 3,
+            "rocky": 3,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2023/04/25/2",
+            "https://access.redhat.com/errata/RHSA-2023:3245",
+            "https://access.redhat.com/security/cve/CVE-2023-25652",
+            "https://bugzilla.redhat.com/2168160",
+            "https://bugzilla.redhat.com/2168161",
+            "https://bugzilla.redhat.com/2188333",
+            "https://bugzilla.redhat.com/2188337",
+            "https://bugzilla.redhat.com/2188338",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2168160",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2168161",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2188333",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2188337",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2188338",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-22490",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-23946",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-25652",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-25815",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-29007",
+            "https://errata.almalinux.org/9/ALSA-2023-3245.html",
+            "https://errata.rockylinux.org/RLSA-2023:3246",
+            "https://github.com/git/git/commit/18e2b1cfc80990719275d7b08e6e50f3e8cbc902",
+            "https://github.com/git/git/commit/668f2d53613ac8fd373926ebe219f2c29112d93e",
+            "https://github.com/git/git/security/advisories/GHSA-2hvf-7c8p-28fx",
+            "https://linux.oracle.com/cve/CVE-2023-25652.html",
+            "https://linux.oracle.com/errata/ELSA-2023-3263.html",
+            "https://lists.debian.org/debian-lts-announce/2024/06/msg00018.html",
+            "https://lists.debian.org/debian-lts-announce/2024/09/msg00009.html",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/BSXOGVVBJLYX26IAYX6PJSYQB36BREWH/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/PI7FZ4NNR5S5J5K6AMVQBH2JFP6NE4L7/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/RKOXOAZ42HLXHXTW6JZI4L5DAIYDTYCU/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/YFZWGQKB6MM5MNF2DLFTD7KS2KWPICKL/",
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-25652",
+            "https://security.gentoo.org/glsa/202312-15",
+            "https://ubuntu.com/security/notices/USN-6050-1",
+            "https://ubuntu.com/security/notices/USN-6050-2",
+            "https://www.cve.org/CVERecord?id=CVE-2023-25652"
+          ],
+          "PublishedDate": "2023-04-25T20:15:09.933Z",
+          "LastModifiedDate": "2025-11-04T17:15:35.43Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2023-29007",
+          "PkgID": "git@2.32.6-r0",
+          "PkgName": "git",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/git@2.32.6-r0?arch=x86_64\u0026distro=3.14.10",
+            "UID": "f7eb973f001e931"
+          },
+          "InstalledVersion": "2.32.6-r0",
+          "FixedVersion": "2.32.7-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-29007",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "git: arbitrary configuration injection when renaming or deleting a section from a configuration file",
+          "Description": "Git is a revision control system. Prior to versions 2.30.9, 2.31.8, 2.32.7, 2.33.8, 2.34.8, 2.35.8, 2.36.6, 2.37.7, 2.38.5, 2.39.3, and 2.40.1, a specially crafted `.gitmodules` file with submodule URLs that are longer than 1024 characters can used to exploit a bug in `config.c::git_config_copy_or_rename_section_in_file()`. This bug can be used to inject arbitrary configuration into a user's `$GIT_DIR/config` when attempting to remove the configuration section associated with that submodule. When the attacker injects configuration values which specify executables to run (such as `core.pager`, `core.editor`, `core.sshCommand`, etc.) this can lead to a remote code execution. A fix A fix is available in versions 2.30.9, 2.31.8, 2.32.7, 2.33.8, 2.34.8, 2.35.8, 2.36.6, 2.37.7, 2.38.5, 2.39.3, and 2.40.1. As a workaround, avoid running `git submodule deinit` on untrusted repositories or without prior inspection of any submodule sections in `$GIT_DIR/config`.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-74"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "amazon": 2,
+            "nvd": 3,
+            "oracle-oval": 3,
+            "photon": 3,
+            "redhat": 3,
+            "rocky": 3,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+              "V3Score": 7.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+              "V3Score": 7.8
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2023:3245",
+            "https://access.redhat.com/security/cve/CVE-2023-29007",
+            "https://bugzilla.redhat.com/2168160",
+            "https://bugzilla.redhat.com/2168161",
+            "https://bugzilla.redhat.com/2188333",
+            "https://bugzilla.redhat.com/2188337",
+            "https://bugzilla.redhat.com/2188338",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2168160",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2168161",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2188333",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2188337",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2188338",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-22490",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-23946",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-25652",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-25815",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-29007",
+            "https://errata.almalinux.org/9/ALSA-2023-3245.html",
+            "https://errata.rockylinux.org/RLSA-2023:3246",
+            "https://github.com/git/git/blob/9ce9dea4e1c2419cca126d29fa7730baa078a11b/Documentation/RelNotes/2.30.9.txt",
+            "https://github.com/git/git/commit/528290f8c61222433a8cf02fb7cfffa8438432b4",
+            "https://github.com/git/git/security/advisories/GHSA-v48j-4xgg-4844",
+            "https://linux.oracle.com/cve/CVE-2023-29007.html",
+            "https://linux.oracle.com/errata/ELSA-2023-3263.html",
+            "https://lists.debian.org/debian-lts-announce/2024/06/msg00018.html",
+            "https://lists.debian.org/debian-lts-announce/2024/09/msg00009.html",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/PI7FZ4NNR5S5J5K6AMVQBH2JFP6NE4L7/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/RKOXOAZ42HLXHXTW6JZI4L5DAIYDTYCU/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/YFZWGQKB6MM5MNF2DLFTD7KS2KWPICKL/",
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-29007",
+            "https://security.gentoo.org/glsa/202312-15",
+            "https://ubuntu.com/security/notices/USN-6050-1",
+            "https://ubuntu.com/security/notices/USN-6050-2",
+            "https://www.cve.org/CVERecord?id=CVE-2023-29007"
+          ],
+          "PublishedDate": "2023-04-25T21:15:10.403Z",
+          "LastModifiedDate": "2025-11-04T17:15:36.58Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2023-25815",
+          "PkgID": "git@2.32.6-r0",
+          "PkgName": "git",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/git@2.32.6-r0?arch=x86_64\u0026distro=3.14.10",
+            "UID": "f7eb973f001e931"
+          },
+          "InstalledVersion": "2.32.6-r0",
+          "FixedVersion": "2.32.7-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-25815",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "git: malicious placement of crafted messages when git was compiled with runtime prefix",
+          "Description": "In Git for Windows, the Windows port of Git, no localized messages are shipped with the installer. As a consequence, Git is expected not to localize messages at all, and skips the gettext initialization. However, due to a change in MINGW-packages, the `gettext()` function's implicit initialization no longer uses the runtime prefix but uses the hard-coded path `C:\\mingw64\\share\\locale` to look for localized messages. And since any authenticated user has the permission to create folders in `C:\\` (and since `C:\\mingw64` does not typically exist), it is possible for low-privilege users to place fake messages in that location where `git.exe` will pick them up in version 2.40.1.\n\nThis vulnerability is relatively hard to exploit and requires social engineering. For example, a legitimate message at the end of a clone could be maliciously modified to ask the user to direct their web browser to a malicious website, and the user might think that the message comes from Git and is legitimate. It does require local write access by the attacker, though, which makes this attack vector less likely. Version 2.40.1 contains a patch for this issue. Some workarounds are available. Do not work on a Windows machine with shared accounts, or alternatively create a `C:\\mingw64` folder and leave it empty. Users who have administrative rights may remove the permission to create folders in `C:\\`.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-22",
+            "CWE-134"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "nvd": 1,
+            "oracle-oval": 3,
+            "photon": 1,
+            "redhat": 1,
+            "rocky": 3,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:N/I:L/A:N",
+              "V3Score": 2.2
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:N/I:L/A:N",
+              "V3Score": 2.2
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2023/04/25/2",
+            "https://access.redhat.com/errata/RHSA-2023:3245",
+            "https://access.redhat.com/security/cve/CVE-2023-25815",
+            "https://axcheron.github.io/exploit-101-format-strings/#writing-to-the-stack",
+            "https://bugzilla.redhat.com/2168160",
+            "https://bugzilla.redhat.com/2168161",
+            "https://bugzilla.redhat.com/2188333",
+            "https://bugzilla.redhat.com/2188337",
+            "https://bugzilla.redhat.com/2188338",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2168160",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2168161",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2188333",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2188337",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2188338",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-22490",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-23946",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-25652",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-25815",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-29007",
+            "https://errata.almalinux.org/9/ALSA-2023-3245.html",
+            "https://errata.rockylinux.org/RLSA-2023:3246",
+            "https://github.com/git-for-windows/git/releases/tag/v2.40.1.windows.1",
+            "https://github.com/git-for-windows/git/security/advisories/GHSA-9w66-8mq8-5vm8",
+            "https://github.com/msys2/MINGW-packages/pull/10461",
+            "https://linux.oracle.com/cve/CVE-2023-25815.html",
+            "https://linux.oracle.com/errata/ELSA-2023-3246.html",
+            "https://lists.debian.org/debian-lts-announce/2024/06/msg00018.html",
+            "https://lists.debian.org/debian-lts-announce/2024/09/msg00009.html",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/PI7FZ4NNR5S5J5K6AMVQBH2JFP6NE4L7/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/RKOXOAZ42HLXHXTW6JZI4L5DAIYDTYCU/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/YFZWGQKB6MM5MNF2DLFTD7KS2KWPICKL/",
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-25815",
+            "https://pubs.opengroup.org/onlinepubs/9699919799/functions/printf.html",
+            "https://security.gentoo.org/glsa/202312-15",
+            "https://ubuntu.com/security/notices/USN-6050-1",
+            "https://ubuntu.com/security/notices/USN-7023-1",
+            "https://www.cve.org/CVERecord?id=CVE-2023-25815"
+          ],
+          "PublishedDate": "2023-04-25T20:15:09.997Z",
+          "LastModifiedDate": "2025-11-04T17:15:35.647Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2023-27533",
+          "PkgID": "libcurl@7.79.1-r5",
+          "PkgName": "libcurl",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libcurl@7.79.1-r5?arch=x86_64\u0026distro=3.14.10",
+            "UID": "45893bff5536052e"
+          },
+          "InstalledVersion": "7.79.1-r5",
+          "FixedVersion": "8.0.1-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-27533",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "curl: TELNET option IAC injection",
+          "Description": "A vulnerability in input validation exists in curl \u003c8.0 during communication using the TELNET protocol may allow an attacker to pass on maliciously crafted user name and \"telnet options\" during server negotiation. The lack of proper input scrubbing allows an attacker to send content or perform option negotiation without the application's intent. This vulnerability could be exploited if an application allows user input, thereby enabling attackers to execute arbitrary code on the system.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-75",
+            "CWE-74"
+          ],
+          "VendorSeverity": {
+            "alma": 2,
+            "amazon": 2,
+            "azure": 3,
+            "cbl-mariner": 3,
+            "nvd": 3,
+            "oracle-oval": 2,
+            "photon": 3,
+            "redhat": 1,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+              "V3Score": 8.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N",
+              "V3Score": 4.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2023:6679",
+            "https://access.redhat.com/security/cve/CVE-2023-27533",
+            "https://bugzilla.redhat.com/2179062",
+            "https://bugzilla.redhat.com/2179069",
+            "https://bugzilla.redhat.com/2179092",
+            "https://bugzilla.redhat.com/2179103",
+            "https://curl.se/docs/CVE-2023-27533.html",
+            "https://errata.almalinux.org/9/ALSA-2023-6679.html",
+            "https://hackerone.com/reports/1891474",
+            "https://linux.oracle.com/cve/CVE-2023-27533.html",
+            "https://linux.oracle.com/errata/ELSA-2023-6679.html",
+            "https://lists.debian.org/debian-lts-announce/2023/04/msg00025.html",
+            "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/36NBD5YLJXXEDZLDGNFCERWRYJQ6LAQW/",
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-27533",
+            "https://security.gentoo.org/glsa/202310-12",
+            "https://security.netapp.com/advisory/ntap-20230420-0011/",
+            "https://ubuntu.com/security/notices/USN-5964-1",
+            "https://ubuntu.com/security/notices/USN-5964-2",
+            "https://www.cve.org/CVERecord?id=CVE-2023-27533"
+          ],
+          "PublishedDate": "2023-03-30T20:15:07.373Z",
+          "LastModifiedDate": "2024-11-21T07:53:06.787Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2023-27534",
+          "PkgID": "libcurl@7.79.1-r5",
+          "PkgName": "libcurl",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libcurl@7.79.1-r5?arch=x86_64\u0026distro=3.14.10",
+            "UID": "45893bff5536052e"
+          },
+          "InstalledVersion": "7.79.1-r5",
+          "FixedVersion": "8.0.1-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-27534",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "curl: SFTP path ~ resolving discrepancy",
+          "Description": "A path traversal vulnerability exists in curl \u003c8.0.0 SFTP implementation causes the tilde (~) character to be wrongly replaced when used as a prefix in the first path element, in addition to its intended use as the first element to indicate a path relative to the user's home directory. Attackers can exploit this flaw to bypass filtering or execute arbitrary code by crafting a path like /~2/foo while accessing a server with a specific user.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-22"
+          ],
+          "VendorSeverity": {
+            "alma": 2,
+            "amazon": 2,
+            "azure": 3,
+            "cbl-mariner": 3,
+            "nvd": 3,
+            "oracle-oval": 2,
+            "photon": 3,
+            "redhat": 1,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+              "V3Score": 8.8
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N",
+              "V3Score": 3.7
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2023:6679",
+            "https://access.redhat.com/security/cve/CVE-2023-27534",
+            "https://bugzilla.redhat.com/2179062",
+            "https://bugzilla.redhat.com/2179069",
+            "https://bugzilla.redhat.com/2179092",
+            "https://bugzilla.redhat.com/2179103",
+            "https://curl.se/docs/CVE-2023-27534.html",
+            "https://errata.almalinux.org/9/ALSA-2023-6679.html",
+            "https://hackerone.com/reports/1892351",
+            "https://linux.oracle.com/cve/CVE-2023-27534.html",
+            "https://linux.oracle.com/errata/ELSA-2023-6679.html",
+            "https://lists.debian.org/debian-lts-announce/2024/03/msg00016.html",
+            "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/36NBD5YLJXXEDZLDGNFCERWRYJQ6LAQW/",
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-27534",
+            "https://security.gentoo.org/glsa/202310-12",
+            "https://security.netapp.com/advisory/ntap-20230420-0012/",
+            "https://ubuntu.com/security/notices/USN-5964-1",
+            "https://www.cve.org/CVERecord?id=CVE-2023-27534"
+          ],
+          "PublishedDate": "2023-03-30T20:15:07.427Z",
+          "LastModifiedDate": "2025-04-23T17:16:28.313Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2023-27535",
+          "PkgID": "libcurl@7.79.1-r5",
+          "PkgName": "libcurl",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libcurl@7.79.1-r5?arch=x86_64\u0026distro=3.14.10",
+            "UID": "45893bff5536052e"
+          },
+          "InstalledVersion": "7.79.1-r5",
+          "FixedVersion": "8.0.1-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-27535",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "curl: FTP too eager connection reuse",
+          "Description": "An authentication bypass vulnerability exists in libcurl \u003c8.0.0 in the FTP connection reuse feature that can result in wrong credentials being used during subsequent transfers. Previously created connections are kept in a connection pool for reuse if they match the current setup. However, certain FTP settings such as CURLOPT_FTP_ACCOUNT, CURLOPT_FTP_ALTERNATIVE_TO_USER, CURLOPT_FTP_SSL_CCC, and CURLOPT_USE_SSL were not included in the configuration match checks, causing them to match too easily. This could lead to libcurl using the wrong credentials when performing a transfer, potentially allowing unauthorized access to sensitive information.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-305",
+            "CWE-287"
+          ],
+          "VendorSeverity": {
+            "alma": 2,
+            "amazon": 2,
+            "azure": 2,
+            "cbl-mariner": 2,
+            "nvd": 2,
+            "oracle-oval": 2,
+            "photon": 2,
+            "redhat": 2,
+            "rocky": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 5.9
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2023:2650",
+            "https://access.redhat.com/security/cve/CVE-2023-27535",
+            "https://bugzilla.redhat.com/2179073",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2179073",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2188029",
+            "https://curl.se/docs/CVE-2023-27535.html",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-27535",
+            "https://errata.almalinux.org/9/ALSA-2023-2650.html",
+            "https://errata.rockylinux.org/RLSA-2023:3106",
+            "https://hackerone.com/reports/1892780",
+            "https://linux.oracle.com/cve/CVE-2023-27535.html",
+            "https://linux.oracle.com/errata/ELSA-2023-3106.html",
+            "https://lists.debian.org/debian-lts-announce/2023/04/msg00025.html",
+            "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/36NBD5YLJXXEDZLDGNFCERWRYJQ6LAQW/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/36NBD5YLJXXEDZLDGNFCERWRYJQ6LAQW/",
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-27535",
+            "https://security.gentoo.org/glsa/202310-12",
+            "https://security.netapp.com/advisory/ntap-20230420-0010/",
+            "https://ubuntu.com/security/notices/USN-5964-1",
+            "https://ubuntu.com/security/notices/USN-5964-2",
+            "https://www.cve.org/CVERecord?id=CVE-2023-27535"
+          ],
+          "PublishedDate": "2023-03-30T20:15:07.483Z",
+          "LastModifiedDate": "2025-06-09T15:15:28.903Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2023-27536",
+          "PkgID": "libcurl@7.79.1-r5",
+          "PkgName": "libcurl",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libcurl@7.79.1-r5?arch=x86_64\u0026distro=3.14.10",
+            "UID": "45893bff5536052e"
+          },
+          "InstalledVersion": "7.79.1-r5",
+          "FixedVersion": "8.0.1-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-27536",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "curl: GSS delegation too eager connection re-use",
+          "Description": "An authentication bypass vulnerability exists libcurl \u003c8.0.0 in the connection reuse feature which can reuse previously established connections with incorrect user permissions due to a failure to check for changes in the CURLOPT_GSSAPI_DELEGATION option. This vulnerability affects krb5/kerberos/negotiate/GSSAPI transfers and could potentially result in unauthorized access to sensitive information. The safest option is to not reuse connections if the CURLOPT_GSSAPI_DELEGATION option has been changed.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-305",
+            "CWE-287"
+          ],
+          "VendorSeverity": {
+            "alma": 2,
+            "amazon": 2,
+            "azure": 2,
+            "cbl-mariner": 2,
+            "nvd": 2,
+            "oracle-oval": 2,
+            "photon": 2,
+            "redhat": 2,
+            "rocky": 2,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 5.9
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2023:6679",
+            "https://access.redhat.com/security/cve/CVE-2023-27536",
+            "https://bugzilla.redhat.com/2179062",
+            "https://bugzilla.redhat.com/2179069",
+            "https://bugzilla.redhat.com/2179092",
+            "https://bugzilla.redhat.com/2179103",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2179092",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2196786",
+            "https://curl.se/docs/CVE-2023-27536.html",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-27536",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-28321",
+            "https://errata.almalinux.org/9/ALSA-2023-6679.html",
+            "https://errata.rockylinux.org/RLSA-2023:4523",
+            "https://hackerone.com/reports/1895135",
+            "https://linux.oracle.com/cve/CVE-2023-27536.html",
+            "https://linux.oracle.com/errata/ELSA-2023-6679.html",
+            "https://lists.debian.org/debian-lts-announce/2023/04/msg00025.html",
+            "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/36NBD5YLJXXEDZLDGNFCERWRYJQ6LAQW/",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/36NBD5YLJXXEDZLDGNFCERWRYJQ6LAQW/",
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-27536",
+            "https://security.gentoo.org/glsa/202310-12",
+            "https://security.netapp.com/advisory/ntap-20230420-0010/",
+            "https://ubuntu.com/security/notices/USN-5964-1",
+            "https://ubuntu.com/security/notices/USN-5964-2",
+            "https://www.cve.org/CVERecord?id=CVE-2023-27536"
+          ],
+          "PublishedDate": "2023-03-30T20:15:07.547Z",
+          "LastModifiedDate": "2025-02-14T16:15:33.497Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2023-27537",
+          "PkgID": "libcurl@7.79.1-r5",
+          "PkgName": "libcurl",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libcurl@7.79.1-r5?arch=x86_64\u0026distro=3.14.10",
+            "UID": "45893bff5536052e"
+          },
+          "InstalledVersion": "7.79.1-r5",
+          "FixedVersion": "8.0.1-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-27537",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "curl: HSTS double-free",
+          "Description": "A double free vulnerability exists in libcurl \u003c8.0.0 when sharing HSTS data between separate \"handles\". This sharing was introduced without considerations for do this sharing across separate threads but there was no indication of this fact in the documentation. Due to missing mutexes or thread locks, two threads sharing the same HSTS data could end up doing a double-free or use-after-free.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-415"
+          ],
+          "VendorSeverity": {
+            "amazon": 2,
+            "azure": 2,
+            "cbl-mariner": 2,
+            "nvd": 2,
+            "redhat": 1,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 5.9
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L",
+              "V3Score": 5.6
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2023-27537",
+            "https://curl.se/docs/CVE-2023-27537.html",
+            "https://hackerone.com/reports/1897203",
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-27537",
+            "https://security.gentoo.org/glsa/202310-12",
+            "https://security.netapp.com/advisory/ntap-20230420-0010/",
+            "https://www.cve.org/CVERecord?id=CVE-2023-27537"
+          ],
+          "PublishedDate": "2023-03-30T20:15:07.617Z",
+          "LastModifiedDate": "2024-11-21T07:53:07.407Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2023-27538",
+          "PkgID": "libcurl@7.79.1-r5",
+          "PkgName": "libcurl",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libcurl@7.79.1-r5?arch=x86_64\u0026distro=3.14.10",
+            "UID": "45893bff5536052e"
+          },
+          "InstalledVersion": "7.79.1-r5",
+          "FixedVersion": "8.0.1-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:a48fb9fff36770b6eddb2fb61cc66b26ac1f17cec450d68ce0b0f8032c5c1e60",
+            "DiffID": "sha256:8a2db3eb27bf18c06ed2048aebd1a4ec80bbc558dafa0295a9dc087e4b305948"
+          },
+          "SeveritySource": "nvd",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-27538",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "curl: SSH connection too eager reuse still",
+          "Description": "An authentication bypass vulnerability exists in libcurl prior to v8.0.0 where it reuses a previously established SSH connection despite the fact that an SSH option was modified, which should have prevented reuse. libcurl maintains a pool of previously used connections to reuse them for subsequent transfers if the configurations match. However, two SSH settings were omitted from the configuration check, allowing them to match easily, potentially leading to the reuse of an inappropriate connection.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-305",
+            "CWE-287"
+          ],
+          "VendorSeverity": {
+            "alma": 2,
+            "amazon": 2,
+            "azure": 2,
+            "cbl-mariner": 2,
+            "nvd": 2,
+            "oracle-oval": 2,
+            "photon": 2,
+            "redhat": 2,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 5.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 5.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2023:6679",
+            "https://access.redhat.com/security/cve/CVE-2023-27538",
+            "https://bugzilla.redhat.com/2179062",
+            "https://bugzilla.redhat.com/2179069",
+            "https://bugzilla.redhat.com/2179092",
+            "https://bugzilla.redhat.com/2179103",
+            "https://curl.se/docs/CVE-2023-27538.html",
+            "https://errata.almalinux.org/9/ALSA-2023-6679.html",
+            "https://hackerone.com/reports/1898475",
+            "https://linux.oracle.com/cve/CVE-2023-27538.html",
+            "https://linux.oracle.com/errata/ELSA-2023-6679.html",
+            "https://lists.debian.org/debian-lts-announce/2023/04/msg00025.html",
+            "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/36NBD5YLJXXEDZLDGNFCERWRYJQ6LAQW/",
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-27538",
+            "https://security.gentoo.org/glsa/202310-12",
+            "https://security.netapp.com/advisory/ntap-20230420-0010/",
+            "https://ubuntu.com/security/notices/USN-5964-1",
+            "https://www.cve.org/CVERecord?id=CVE-2023-27538"
+          ],
+          "PublishedDate": "2023-03-30T20:15:07.677Z",
+          "LastModifiedDate": "2025-06-09T15:15:29.15Z"
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "SchemaVersion": 2,
-  "CreatedAt": "2025-11-15T12:59:06.634783533Z",
+  "CreatedAt": "2025-11-16T10:50:06.711048174Z",
   "ArtifactName": "mcr.microsoft.com/dotnet/aspnet:7.0",
   "ArtifactType": "container_image",
   "Metadata": {
@@ -9623,6 +9623,7 @@
           "VendorSeverity": {
             "alma": 2,
             "amazon": 2,
+            "azure": 2,
             "photon": 3,
             "redhat": 2,
             "rocky": 2,
@@ -10387,6 +10388,7 @@
           "VendorSeverity": {
             "alma": 2,
             "amazon": 2,
+            "azure": 2,
             "photon": 3,
             "redhat": 2,
             "rocky": 2,
