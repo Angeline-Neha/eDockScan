@@ -8,7 +8,7 @@ import pandas as pd
 import json
 from pathlib import Path
 import hashlib
-from behavioral_analyzer import BehavioralAnalyzer
+from backend.behavioral_analyzer import BehavioralAnalyzer
 import logging
 
 logging.basicConfig(level=logging.INFO)

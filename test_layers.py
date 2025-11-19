@@ -5,8 +5,8 @@ Test layer analysis on a specific image
 
 import json
 from pathlib import Path
-from behavioral_analyzer import BehavioralAnalyzer, print_layer_analysis_report
-from extract import EnhancedRemoteDockerScanner
+from backend.behavioral_analyzer import BehavioralAnalyzer, print_layer_analysis_report
+from backend.extract import EnhancedRemoteDockerScanner
 
 def analyze_layers(image_name):
     """Analyze and display layer-by-layer security analysis"""

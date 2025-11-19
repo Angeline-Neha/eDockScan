@@ -16,7 +16,7 @@ from typing import Dict, List, Optional, Tuple
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass, asdict
 import pandas as pd
-from behavioral_analyzer import BehavioralAnalyzer
+from backend.behavioral_analyzer import BehavioralAnalyzer
 
 # Configure logging
 logging.basicConfig(

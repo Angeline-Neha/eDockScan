@@ -34,7 +34,7 @@ from difflib import SequenceMatcher
 import hashlib
 from collections import defaultdict
 # Add this with your other imports at the top
-from behavioral_analyzer import BehavioralAnalyzer
+from backend.behavioral_analyzer import BehavioralAnalyzer
 
 # Configure structured logging
 logging.basicConfig(
