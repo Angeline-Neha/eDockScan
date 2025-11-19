@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Shield, AlertTriangle, CheckCircle, XCircle, Download, Layers, Activity, TrendingUp, RefreshCw, ChevronDown, ChevronRight, Database, Zap, Lock, Server, FileWarning, Clock, BarChart3, PieChart, Settings } from 'lucide-react';
+import { Search, Shield, AlertTriangle, CheckCircle, XCircle, Download, Layers, Activity, TrendingUp, RefreshCw, ChevronDown, ChevronRight, Database, Zap, Lock, Server, FileWarning, Clock, BarChart3, PieChart, Settings, AlertCircleIcon } from 'lucide-react';
 
 // API Configuration
-const API_BASE_URL = '';
+const API_BASE_URL = ''; // Empty for proxy
 
 // Real API calls to FastAPI backend
 const api = {
@@ -74,6 +74,113 @@ const api = {
   }
 };
 
+// Progress Bar Component
+function ProgressBar({ progress, label, color = 'cyan' }) {
+  const colorClasses = {
+    cyan: 'bg-cyan-500',
+    blue: 'bg-blue-500',
+    green: 'bg-green-500',
+    yellow: 'bg-yellow-500',
+    red: 'bg-red-500'
+  };
+
+  return (
+    <div className="w-full">
+      <div className="flex justify-between items-center mb-2">
+        <span className="text-sm text-slate-300">{label}</span>
+        <span className="text-sm font-semibold text-slate-200">{progress}%</span>
+      </div>
+      <div className="w-full bg-slate-700 rounded-full h-2.5 overflow-hidden">
+        <div
+          className={`h-2.5 rounded-full transition-all duration-300 ${colorClasses[color]}`}
+          style={{ width: `${progress}%` }}
+        >
+          <div className="h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Error Alert Component
+function ErrorAlert({ message, onClose }) {
+  return (
+    <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-4 flex items-start space-x-3 animate-slideIn">
+      <AlertCircleIcon className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+      <div className="flex-1">
+        <h4 className="font-semibold text-red-400 mb-1">Scan Failed</h4>
+        <p className="text-sm text-red-300">{message}</p>
+      </div>
+      <button
+        onClick={onClose}
+        className="text-red-400 hover:text-red-300 transition-colors"
+      >
+        <XCircle className="w-5 h-5" />
+      </button>
+    </div>
+  );
+}
+
+// Scanning Progress Component
+function ScanningProgress({ imageName, progress }) {
+  const stages = [
+    { label: 'Pulling image', progress: 20 },
+    { label: 'Running Trivy scan', progress: 40 },
+    { label: 'Running Syft analysis', progress: 60 },
+    { label: 'Behavioral analysis', progress: 80 },
+    { label: 'ML prediction', progress: 95 },
+    { label: 'Generating report', progress: 100 }
+  ];
+
+  const currentStage = stages.find(s => progress < s.progress) || stages[stages.length - 1];
+  const stageIndex = stages.indexOf(currentStage);
+
+  return (
+    <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 space-y-6">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-3">
+          <div className="relative">
+            <RefreshCw className="w-8 h-8 text-cyan-400 animate-spin" />
+          </div>
+          <div>
+            <h3 className="text-lg font-bold text-white">Scanning in Progress</h3>
+            <p className="text-sm text-slate-400">{imageName}</p>
+          </div>
+        </div>
+        <div className="text-right">
+          <div className="text-3xl font-bold text-cyan-400">{progress}%</div>
+          <div className="text-xs text-slate-400">Complete</div>
+        </div>
+      </div>
+
+      <ProgressBar progress={progress} label="Overall Progress" color="cyan" />
+
+      <div className="space-y-3">
+        <div className="text-sm font-semibold text-slate-300">Scan Stages:</div>
+        {stages.map((stage, idx) => (
+          <div
+            key={idx}
+            className={`flex items-center space-x-3 transition-all duration-300 ${
+              idx < stageIndex ? 'opacity-50' : idx === stageIndex ? 'opacity-100' : 'opacity-30'
+            }`}
+          >
+            {idx < stageIndex ? (
+              <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
+            ) : idx === stageIndex ? (
+              <RefreshCw className="w-4 h-4 text-cyan-400 animate-spin flex-shrink-0" />
+            ) : (
+              <div className="w-4 h-4 border-2 border-slate-600 rounded-full flex-shrink-0" />
+            )}
+            <span className={`text-sm ${idx === stageIndex ? 'text-cyan-400 font-semibold' : 'text-slate-400'}`}>
+              {stage.label}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // Main App Component
 export default function DockerSecurityScanner() {
   const [activeTab, setActiveTab] = useState('scan');
@@ -82,23 +189,65 @@ export default function DockerSecurityScanner() {
   const [scanResult, setScanResult] = useState(null);
   const [history, setHistory] = useState([]);
   const [analytics, setAnalytics] = useState(null);
+  const [error, setError] = useState(null);
+  const [scanProgress, setScanProgress] = useState(0);
 
   useEffect(() => {
-    api.getHistory().then(setHistory);
-    api.getAnalytics().then(setAnalytics);
+    api.getHistory().then(setHistory).catch(console.error);
+    api.getAnalytics().then(setAnalytics).catch(console.error);
   }, []);
 
   const handleScan = async () => {
-    if (!imageName.trim()) return;
+    if (!imageName.trim()) {
+      setError('Please enter an image name');
+      return;
+    }
+
     setScanning(true);
     setScanResult(null);
+    setError(null);
+    setScanProgress(0);
+
+    // Simulate progress (since backend doesn't send progress updates)
+    const progressInterval = setInterval(() => {
+      setScanProgress(prev => {
+        if (prev >= 95) {
+          clearInterval(progressInterval);
+          return 95;
+        }
+        return prev + 5;
+      });
+    }, 1000);
+
     try {
       const result = await api.scanImage(imageName);
+      setScanProgress(100);
       setScanResult(result);
+      
+      // Refresh history
       const newHistory = await api.getHistory();
       setHistory(newHistory);
-    } catch (error) {
-      console.error('Scan failed:', error);
+      
+      // Clear progress after a delay
+      setTimeout(() => {
+        clearInterval(progressInterval);
+      }, 500);
+    } catch (err) {
+      clearInterval(progressInterval);
+      setScanProgress(0);
+      
+      // Enhanced error messages
+      let errorMessage = err.message;
+      if (errorMessage.includes('Image not found') || errorMessage.includes('404')) {
+        errorMessage = `Image "${imageName}" not found. Please check the image name and tag.`;
+      } else if (errorMessage.includes('pull access denied')) {
+        errorMessage = `Access denied for "${imageName}". The image may be private or doesn't exist.`;
+      } else if (errorMessage.includes('timeout')) {
+        errorMessage = `Scan timed out for "${imageName}". The image may be too large or the registry is slow.`;
+      }
+      
+      setError(errorMessage);
+      console.error('Scan failed:', err);
     } finally {
       setScanning(false);
     }
@@ -169,6 +318,9 @@ export default function DockerSecurityScanner() {
             scanning={scanning}
             handleScan={handleScan}
             scanResult={scanResult}
+            error={error}
+            setError={setError}
+            scanProgress={scanProgress}
           />
         )}
         {activeTab === 'history' && <HistoryTab history={history} />}
@@ -181,7 +333,7 @@ export default function DockerSecurityScanner() {
 }
 
 // Scan Tab Component
-function ScanTab({ imageName, setImageName, scanning, handleScan, scanResult }) {
+function ScanTab({ imageName, setImageName, scanning, handleScan, scanResult, error, setError, scanProgress }) {
   return (
     <div className="space-y-8">
       {/* Hero Section */}
@@ -200,6 +352,7 @@ function ScanTab({ imageName, setImageName, scanning, handleScan, scanResult }) 
               onKeyPress={(e) => e.key === 'Enter' && handleScan()}
               placeholder="Enter image name (e.g., nginx:latest, ubuntu:14.04)"
               className="flex-1 px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 text-white placeholder-slate-400"
+              disabled={scanning}
             />
             <button
               onClick={handleScan}
@@ -226,7 +379,8 @@ function ScanTab({ imageName, setImageName, scanning, handleScan, scanResult }) 
               <button
                 key={img}
                 onClick={() => setImageName(img)}
-                className="text-cyan-400 hover:text-cyan-300 underline"
+                className="text-cyan-400 hover:text-cyan-300 underline disabled:opacity-50"
+                disabled={scanning}
               >
                 {img}
               </button>
@@ -235,12 +389,24 @@ function ScanTab({ imageName, setImageName, scanning, handleScan, scanResult }) 
         </div>
       </div>
 
+      {/* Error Alert */}
+      {error && (
+        <ErrorAlert message={error} onClose={() => setError(null)} />
+      )}
+
+      {/* Scanning Progress */}
+      {scanning && (
+        <ScanningProgress imageName={imageName} progress={scanProgress} />
+      )}
+
       {/* Scan Result */}
-      {scanResult && <ScanResult result={scanResult} />}
+      {scanResult && !scanning && <ScanResult result={scanResult} />}
     </div>
   );
 }
 
+// Keep your existing ScanResult and other components below...
+// (I'll continue in the next message with the rest of the components)
 // Scan Result Component
 function ScanResult({ result }) {
   const [expandedLayer, setExpandedLayer] = useState(null);
