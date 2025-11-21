@@ -1,6 +1,6 @@
 {
   "SchemaVersion": 2,
-  "CreatedAt": "2025-11-21T11:22:48.560576815Z",
+  "CreatedAt": "2025-11-21T20:23:20.64158917Z",
   "ArtifactName": "rastasheep/ubuntu-sshd",
   "ArtifactType": "container_image",
   "Metadata": {

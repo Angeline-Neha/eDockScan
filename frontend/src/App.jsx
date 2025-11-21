@@ -6,6 +6,7 @@ import BehavioralRadar from './components/BehavioralRadar';
 import LayerBarChart from './components/LayerBarChart';
 import PDFExport from './components/PDFExport';
 
+import RecommendationsPanel from './components/RecommendationsPanel';
 // API Configuration
 const API_BASE_URL = ''; // Empty for proxy
 
@@ -338,8 +339,6 @@ export default function DockerSecurityScanner() {
     </div>
   );
 }
-
-// Scan Tab Component
 // Scan Tab Component
 function ScanTab({ imageName, setImageName, scanning, handleScan, scanResult, error, setError, scanProgress, chartRefs }) {
   return (
@@ -407,13 +406,10 @@ function ScanTab({ imageName, setImageName, scanning, handleScan, scanResult, er
         <ScanningProgress imageName={imageName} progress={scanProgress} />
       )}
 
-
-
-      {/* Your existing scan result details */}
+      {/* ORDER: 1. Scan Results (Verdict Card, Top Risk, Features) */}
       {scanResult && !scanning && <ScanResult result={scanResult} />}
 
-
-      {/* Display charts when scan completes */}
+      {/* ORDER: 2. Charts (Behavioral & Layer Analysis) */}
       {scanResult && (
         <div className="space-y-6">
           {/* PDF Export Button */}
@@ -421,17 +417,13 @@ function ScanTab({ imageName, setImageName, scanning, handleScan, scanResult, er
             <PDFExport report={scanResult} chartRefs={chartRefs} />
           </div>
 
-
-
-
-
+          {/* Behavioral Analysis */}
           <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
             <h3 className="text-lg font-semibold mb-4">Behavioral Analysis</h3>
             <div className="w-full h-64 flex items-center justify-center">
               <BehavioralRadar features={scanResult.all_features || {}} />
             </div>
           </div>
-
 
           {/* Layer Analysis */}
           {scanResult.layer_analyses && scanResult.layer_analyses.length > 0 && (
@@ -448,14 +440,16 @@ function ScanTab({ imageName, setImageName, scanning, handleScan, scanResult, er
               </div>
             </div>
           )}
+
+          {/* ORDER: 3. AI Recommendations */}
+          <div className="mt-8">
+            <RecommendationsPanel scanResult={scanResult} />
+          </div>
         </div>
-      )
-      }
-    </div >
+      )}
+    </div>
   );
 }
-
-
 
 // Keep your existing ScanResult and other components below...
 // (I'll continue in the next message with the rest of the components)
@@ -507,14 +501,6 @@ function ScanResult({ result }) {
               </div>
             </div>
           </div>
-          <div className="flex space-x-2">
-            <button className="p-2 bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors">
-              <Download className="w-5 h-5" />
-            </button>
-            <button className="p-2 bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors">
-              <RefreshCw className="w-5 h-5" />
-            </button>
-          </div>
         </div>
       </div>
 
@@ -529,8 +515,10 @@ function ScanResult({ result }) {
             <div key={idx} className="flex items-center justify-between">
               <div className="flex-1">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-slate-300 font-medium">{factor.feature.replace(/_/g, ' ')}</span>
-                  <span className="text-sm text-slate-400">Value: {factor.value}</span>
+                  <span className="text-slate-300 font-medium">
+                    {factor.feature.replace(/_/g, ' ')}
+                  </span>
+                  <span className="text-sm text-slate-400 ml-4">Value: {factor.value}</span>
                 </div>
                 <div className="w-full bg-slate-700 rounded-full h-2">
                   <div
@@ -548,122 +536,145 @@ function ScanResult({ result }) {
       </div>
 
       {/* Feature Dashboard */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        {Object.entries({
+      <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
+        <h4 className="text-xl font-bold mb-4">Security Features</h4>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {result.all_features && Object.entries(result.all_features)
+            .filter(([feature]) => {
+              // Only show these important features
+              const importantFeatures = [
+                'known_cves',
+                'runs_as_root',
+                'ssh_backdoor',
+                'hardcoded_secrets',
+                'outdated_base',
+                'image_age_days',
+                'privilege_escalation_risk',
+                'external_calls',
+                'suspicious_ports',
+                'anti_analysis_score',
+                'temp_file_activity'
+              ];
+              return importantFeatures.includes(feature);
+            }).map(([feature, value]) => {
+              const isRisky =
+                (feature === 'known_cves' && value >= 5) ||
+                (['ssh_backdoor', 'hardcoded_secrets', 'runs_as_root', 'outdated_base'].includes(feature) && value > 0) ||
+                (typeof value === 'number' && value > 0.5 && value <= 1);
+              const StatusIcon = isRisky ? XCircle : CheckCircle;
 
-          'Known CVEs': result.all_features.known_cves,
-          'Runs as Root': result.all_features.runs_as_root,
-          'Image Age (days)': result.all_features.image_age_days,
-          'Hardcoded Secrets': result.all_features.hardcoded_secrets,
-          'SSH Backdoor': result.all_features.ssh_backdoor
-        }).map(([label, value]) => {
-          const isRisky = label === 'Known CVEs' ? value >= 5 : value > 0;
-          const StatusIcon = isRisky ? XCircle : CheckCircle;
-          return (
-            <div key={label} className="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
-                  <p className="text-sm text-slate-400 mb-1">{label}</p>
-                  <p className="text-2xl font-bold">{value}</p>
+              return (
+                <div key={feature} className="bg-slate-900/50 border border-slate-600 rounded-lg p-4 hover:border-cyan-500 transition-colors">
+                  <div className="flex items-start justify-between mb-2">
+                    <span className="text-slate-300 text-sm font-medium capitalize">
+                      {feature.replace(/_/g, ' ')}
+                    </span>
+                    <StatusIcon className={`w-4 h-4 flex-shrink-0 ml-2 ${isRisky ? 'text-red-400' : 'text-green-400'}`} />
+                  </div>
+                  <p className="text-2xl font-bold">
+                    {typeof value === 'number' ?
+                      (value < 1 && value > 0 ? value.toFixed(3) : value.toFixed(0))
+                      : value}
+                  </p>
                 </div>
-                <StatusIcon className={`w-5 h-5 ${isRisky ? 'text-red-400' : 'text-green-400'}`} />
-              </div>
-            </div>
-          );
-        })}
+              );
+            })}
+        </div>
       </div>
 
       {/* Behavioral Analysis */}
-      <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
-        <h4 className="text-xl font-bold mb-4 flex items-center">
-          <Layers className="w-5 h-5 mr-2 text-purple-400" />
-          Behavioral Analysis (Layer-by-Layer)
-        </h4>
+      {result.layer_analyses && result.layer_analyses.length > 0 && (
+        <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
+          <h4 className="text-xl font-bold mb-4 flex items-center">
+            <Layers className="w-5 h-5 mr-2 text-purple-400" />
+            Behavioral Analysis (Layer-by-Layer)
+          </h4>
 
-        <div className="mb-6 grid grid-cols-4 gap-4">
-          <div className="text-center">
-            <p className="text-sm text-slate-400">Total Layers</p>
-            <p className="text-2xl font-bold">{result.layer_analyses.length}</p>
-          </div>
-          <div className="text-center">
-            <p className="text-sm text-slate-400">High-Risk Layers</p>
-            <p className="text-2xl font-bold text-red-400">
-              {result.layer_analyses.filter(l => l.risk_score >= 0.5).length}
-            </p>
-          </div>
-          <div className="text-center">
-            <p className="text-sm text-slate-400">Max Risk</p>
-            <p className="text-2xl font-bold text-orange-400">
-              {(Math.max(...result.layer_analyses.map(l => l.risk_score)) * 100).toFixed(0)}%
-            </p>
-          </div>
-          <div className="text-center">
-            <p className="text-sm text-slate-400">Avg Risk</p>
-            <p className="text-2xl font-bold">
-              {(result.layer_analyses.reduce((a, b) => a + b.risk_score, 0) / result.layer_analyses.length * 100).toFixed(0)}%
-            </p>
-          </div>
-        </div>
-
-        <div className="space-y-3">
-          {result.layer_analyses.filter(layer => layer.risk_score >= 0.3).map((layer, idx) => (
-            <div
-              key={idx}
-              className={`border rounded-lg overflow-hidden ${getRiskColor(layer.risk_score)}`}
-            >
-              <button
-                onClick={() => setExpandedLayer(expandedLayer === idx ? null : idx)}
-                className="w-full p-4 flex items-center justify-between hover:bg-slate-900/30 transition-colors"
-              >
-                <div className="flex items-center space-x-3">
-                  {expandedLayer === idx ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
-                  <span className="font-semibold">{layer.layer_id.toUpperCase()}</span>
-                  <span className="text-sm opacity-75">Risk: {(layer.risk_score * 100).toFixed(0)}%</span>
-                </div>
-                <div className="text-sm text-slate-300 max-w-2xl truncate">
-                  {layer.command}
-                </div>
-              </button>
-
-              {expandedLayer === idx && (
-                <div className="p-4 bg-slate-900/50 border-t border-slate-700">
-                  <div className="space-y-3">
-                    <div>
-                      <p className="text-sm text-slate-400 mb-1">Command:</p>
-                      <code className="block bg-slate-950 px-3 py-2 rounded text-sm overflow-x-auto">
-                        {layer.command}
-                      </code>
-                    </div>
-                    <div>
-                      <p className="text-sm text-slate-400 mb-1">Size:</p>
-                      <p className="font-mono">{(layer.size_bytes / (1024 * 1024)).toFixed(2)} MB</p>
-                    </div>
-                    {layer.findings.length > 0 && (
-                      <div>
-                        <p className="text-sm text-slate-400 mb-2">Findings:</p>
-                        <ul className="space-y-1">
-                          {layer.findings.map((finding, i) => (
-                            <li key={i} className="flex items-start space-x-2">
-                              <span className="text-red-400 mt-1">•</span>
-                              <span>{finding}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
+          <div className="mb-6 grid grid-cols-4 gap-4">
+            <div className="text-center">
+              <p className="text-sm text-slate-400">Total Layers</p>
+              <p className="text-2xl font-bold">{result.layer_analyses.length}</p>
             </div>
-          ))}
+            <div className="text-center">
+              <p className="text-sm text-slate-400">High-Risk Layers</p>
+              <p className="text-2xl font-bold text-red-400">
+                {result.layer_analyses.filter(l => l.risk_score >= 0.5).length}
+              </p>
+            </div>
+            <div className="text-center">
+              <p className="text-sm text-slate-400">Max Risk</p>
+              <p className="text-2xl font-bold text-orange-400">
+                {(Math.max(...result.layer_analyses.map(l => l.risk_score)) * 100).toFixed(0)}%
+              </p>
+            </div>
+            <div className="text-center">
+              <p className="text-sm text-slate-400">Avg Risk</p>
+              <p className="text-2xl font-bold">
+                {(result.layer_analyses.reduce((a, b) => a + b.risk_score, 0) / result.layer_analyses.length * 100).toFixed(0)}%
+              </p>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            {result.layer_analyses.filter(layer => layer.risk_score >= 0.3).map((layer, idx) => (
+              <div
+                key={idx}
+                className={`border rounded-lg overflow-hidden ${getRiskColor(layer.risk_score)}`}
+              >
+                <button
+                  onClick={() => setExpandedLayer(expandedLayer === idx ? null : idx)}
+                  className="w-full p-4 flex items-center justify-between hover:bg-slate-900/30 transition-colors"
+                >
+                  <div className="flex items-center space-x-3">
+                    {expandedLayer === idx ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
+                    <span className="font-semibold">{layer.layer_id.toUpperCase()}</span>
+                    <span className="text-sm opacity-75">Risk: {(layer.risk_score * 100).toFixed(0)}%</span>
+                  </div>
+                  <div className="text-sm text-slate-300 max-w-2xl truncate">
+                    {layer.command}
+                  </div>
+                </button>
+
+                {expandedLayer === idx && (
+                  <div className="p-4 bg-slate-900/50 border-t border-slate-700">
+                    <div className="space-y-3">
+                      <div>
+                        <p className="text-sm text-slate-400 mb-1">Command:</p>
+                        <code className="block bg-slate-950 px-3 py-2 rounded text-sm overflow-x-auto">
+                          {layer.command}
+                        </code>
+                      </div>
+                      <div>
+                        <p className="text-sm text-slate-400 mb-1">Size:</p>
+                        <p className="font-mono">{(layer.size_bytes / (1024 * 1024)).toFixed(2)} MB</p>
+                      </div>
+                      {layer.findings && layer.findings.length > 0 && (
+                        <div>
+                          <p className="text-sm text-slate-400 mb-2">Findings:</p>
+                          <ul className="space-y-1">
+                            {layer.findings.map((finding, i) => (
+                              <li key={i} className="flex items-start space-x-2">
+                                <span className="text-red-400 mt-1">•</span>
+                                <span>{finding}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Remediations */}
       {result.remediations && result.remediations.length > 0 && (
         <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
           <h4 className="text-xl font-bold mb-4 flex items-center">
-            <Lock className="w-5 h-5 mr-2 text-cyan-400" />
+            <Shield className="w-5 h-5 mr-2 text-cyan-400" />
             Remediation Recommendations
           </h4>
 
@@ -699,7 +710,6 @@ function ScanResult({ result }) {
     </div>
   );
 }
-
 // History Tab
 function HistoryTab({ history }) {
   return (
