@@ -14,28 +14,28 @@ const api = {
       },
       body: JSON.stringify({ image_name: imageName })
     });
-    
+
     if (!response.ok) {
       const error = await response.json();
       throw new Error(error.detail || 'Scan failed');
     }
-    
+
     return response.json();
   },
-  
+
   getHistory: async () => {
     const response = await fetch(`${API_BASE_URL}/api/history?limit=50`);
     if (!response.ok) throw new Error('Failed to fetch history');
     const data = await response.json();
     return data.scans;
   },
-  
+
   getAnalytics: async () => {
     const response = await fetch(`${API_BASE_URL}/api/analytics`);
     if (!response.ok) throw new Error('Failed to fetch analytics');
     return response.json();
   },
-  
+
   startBatchScan: async (images, workers = 3, timeout = 300) => {
     const response = await fetch(`${API_BASE_URL}/api/batch-scan`, {
       method: 'POST',
@@ -48,23 +48,23 @@ const api = {
         timeout
       })
     });
-    
+
     if (!response.ok) throw new Error('Failed to start batch scan');
     return response.json();
   },
-  
+
   getBatchProgress: async (jobId) => {
     const response = await fetch(`${API_BASE_URL}/api/batch-scan/${jobId}`);
     if (!response.ok) throw new Error('Failed to fetch batch progress');
     return response.json();
   },
-  
+
   getModelInfo: async () => {
     const response = await fetch(`${API_BASE_URL}/api/model-info`);
     if (!response.ok) throw new Error('Failed to fetch model info');
     return response.json();
   },
-  
+
   trainModel: async () => {
     const response = await fetch(`${API_BASE_URL}/api/train`, {
       method: 'POST',
@@ -160,9 +160,8 @@ function ScanningProgress({ imageName, progress }) {
         {stages.map((stage, idx) => (
           <div
             key={idx}
-            className={`flex items-center space-x-3 transition-all duration-300 ${
-              idx < stageIndex ? 'opacity-50' : idx === stageIndex ? 'opacity-100' : 'opacity-30'
-            }`}
+            className={`flex items-center space-x-3 transition-all duration-300 ${idx < stageIndex ? 'opacity-50' : idx === stageIndex ? 'opacity-100' : 'opacity-30'
+              }`}
           >
             {idx < stageIndex ? (
               <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
@@ -223,11 +222,11 @@ export default function DockerSecurityScanner() {
       const result = await api.scanImage(imageName);
       setScanProgress(100);
       setScanResult(result);
-      
+
       // Refresh history
       const newHistory = await api.getHistory();
       setHistory(newHistory);
-      
+
       // Clear progress after a delay
       setTimeout(() => {
         clearInterval(progressInterval);
@@ -235,7 +234,7 @@ export default function DockerSecurityScanner() {
     } catch (err) {
       clearInterval(progressInterval);
       setScanProgress(0);
-      
+
       // Enhanced error messages
       let errorMessage = err.message;
       if (errorMessage.includes('Image not found') || errorMessage.includes('404')) {
@@ -245,7 +244,7 @@ export default function DockerSecurityScanner() {
       } else if (errorMessage.includes('timeout')) {
         errorMessage = `Scan timed out for "${imageName}". The image may be too large or the registry is slow.`;
       }
-      
+
       setError(errorMessage);
       console.error('Scan failed:', err);
     } finally {
@@ -289,17 +288,15 @@ export default function DockerSecurityScanner() {
               { id: 'scan', label: 'Scan', icon: Search },
               { id: 'history', label: 'Scan History', icon: Clock },
               { id: 'analytics', label: 'Analytics', icon: BarChart3 },
-              { id: 'batch', label: 'Batch Scanner', icon: Database },
-              { id: 'training', label: 'Model Training', icon: Zap }
+              { id: 'batch', label: 'Batch Scanner', icon: Database }
             ].map(tab => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center space-x-2 py-4 border-b-2 transition-colors ${
-                  activeTab === tab.id
-                    ? 'border-cyan-400 text-cyan-400'
-                    : 'border-transparent text-slate-400 hover:text-slate-200'
-                }`}
+                className={`flex items-center space-x-2 py-4 border-b-2 transition-colors ${activeTab === tab.id
+                  ? 'border-cyan-400 text-cyan-400'
+                  : 'border-transparent text-slate-400 hover:text-slate-200'
+                  }`}
               >
                 <tab.icon className="w-4 h-4" />
                 <span className="font-medium">{tab.label}</span>
@@ -325,7 +322,10 @@ export default function DockerSecurityScanner() {
         )}
         {activeTab === 'history' && <HistoryTab history={history} />}
         {activeTab === 'analytics' && <AnalyticsTab analytics={analytics} />}
-        {activeTab === 'batch' && <BatchTab />}
+        {activeTab === 'batch' && (<BatchTab
+          setHistory={setHistory}
+          setAnalytics={setAnalytics} />
+        )}
         {activeTab === 'training' && <TrainingTab />}
       </main>
     </div>
@@ -343,7 +343,7 @@ function ScanTab({ imageName, setImageName, scanning, handleScan, scanResult, er
           <p className="text-slate-300">
             Powered by XGBoost ML model with 24+ behavioral features and layer-by-layer analysis
           </p>
-          
+
           <div className="flex space-x-3">
             <input
               type="text"
@@ -404,6 +404,8 @@ function ScanTab({ imageName, setImageName, scanning, handleScan, scanResult, er
     </div>
   );
 }
+
+
 
 // Keep your existing ScanResult and other components below...
 // (I'll continue in the next message with the rest of the components)
@@ -498,7 +500,7 @@ function ScanResult({ result }) {
       {/* Feature Dashboard */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {Object.entries({
-          'Cryptominer Binary': result.all_features.cryptominer_binary,
+
           'Known CVEs': result.all_features.known_cves,
           'Runs as Root': result.all_features.runs_as_root,
           'Image Age (days)': result.all_features.image_age_days,
@@ -527,7 +529,7 @@ function ScanResult({ result }) {
           <Layers className="w-5 h-5 mr-2 text-purple-400" />
           Behavioral Analysis (Layer-by-Layer)
         </h4>
-        
+
         <div className="mb-6 grid grid-cols-4 gap-4">
           <div className="text-center">
             <p className="text-sm text-slate-400">Total Layers</p>
@@ -572,7 +574,7 @@ function ScanResult({ result }) {
                   {layer.command}
                 </div>
               </button>
-              
+
               {expandedLayer === idx && (
                 <div className="p-4 bg-slate-900/50 border-t border-slate-700">
                   <div className="space-y-3">
@@ -614,17 +616,16 @@ function ScanResult({ result }) {
             <Lock className="w-5 h-5 mr-2 text-cyan-400" />
             Remediation Recommendations
           </h4>
-          
+
           <div className="space-y-4">
             {result.remediations.map((rem, idx) => (
               <div key={idx} className="border border-slate-600 rounded-lg p-4">
                 <div className="flex items-start justify-between mb-2">
                   <div>
-                    <span className={`px-2 py-1 rounded text-xs font-semibold ${
-                      rem.severity === 'CRITICAL' ? 'bg-red-500/20 text-red-400' :
+                    <span className={`px-2 py-1 rounded text-xs font-semibold ${rem.severity === 'CRITICAL' ? 'bg-red-500/20 text-red-400' :
                       rem.severity === 'HIGH' ? 'bg-orange-500/20 text-orange-400' :
-                      'bg-yellow-500/20 text-yellow-400'
-                    }`}>
+                        'bg-yellow-500/20 text-yellow-400'
+                      }`}>
                       {rem.severity}
                     </span>
                     <span className="ml-2 text-slate-400 text-sm">Layer: {rem.layer_id}</span>
@@ -670,19 +671,17 @@ function HistoryTab({ history }) {
               <tr key={idx} className="border-b border-slate-700/50 hover:bg-slate-700/30">
                 <td className="py-3 px-4 font-mono text-sm">{item.image}</td>
                 <td className="py-3 px-4">
-                  <span className={`font-bold ${
-                    item.risk_score >= 0.7 ? 'text-red-400' :
+                  <span className={`font-bold ${item.risk_score >= 0.7 ? 'text-red-400' :
                     item.risk_score >= 0.5 ? 'text-orange-400' :
-                    item.risk_score >= 0.3 ? 'text-yellow-400' :
-                    'text-green-400'
-                  }`}>
+                      item.risk_score >= 0.3 ? 'text-yellow-400' :
+                        'text-green-400'
+                    }`}>
                     {(item.risk_score * 100).toFixed(0)}%
                   </span>
                 </td>
                 <td className="py-3 px-4">
-                  <span className={`px-2 py-1 rounded text-xs font-semibold ${
-                    item.verdict === 'RISKY' ? 'bg-red-500/20 text-red-400' : 'bg-green-500/20 text-green-400'
-                  }`}>
+                  <span className={`px-2 py-1 rounded text-xs font-semibold ${item.verdict === 'RISKY' ? 'bg-red-500/20 text-red-400' : 'bg-green-500/20 text-green-400'
+                    }`}>
                     {item.verdict}
                   </span>
                 </td>
@@ -748,165 +747,532 @@ function AnalyticsTab({ analytics }) {
 }
 
 // Batch Tab
-function BatchTab() {
-  const [batchFile, setBatchFile] = useState(null);
-  const [batchProgress, setBatchProgress] = useState(null);
-  const [batchResults, setBatchResults] = useState([]);
+// Batch Scanner Tab Component
+function BatchTab({ setHistory, setAnalytics }) {
+  const [batchImages, setBatchImages] = useState('');
+  const [workers, setWorkers] = useState(3);
+  const [timeout, setTimeout] = useState(300);
+  const [scanning, setScanning] = useState(false);
+  const [jobId, setJobId] = useState(null);
+  const [progress, setProgress] = useState(null);
+  const [error, setError] = useState(null);
+  const [selectedResult, setSelectedResult] = useState(null);
+  const [showDetailModal, setShowDetailModal] = useState(false);
+
+  useEffect(() => {
+    if (jobId && scanning) {
+      const fetchProgress = async () => {
+        try {
+          const progressData = await api.getBatchProgress(jobId);
+          console.log('📊 Progress update:', progressData); // Debug log
+          setProgress(progressData);
+
+          if (progressData.status === 'completed') {
+            setScanning(false);
+            clearInterval(interval);
+
+            const newHistory = await api.getHistory();
+            setHistory(newHistory);
+
+            const newAnalytics = await api.getAnalytics();
+            setAnalytics(newAnalytics);
+          }
+        } catch (err) {
+          console.error('❌ Failed to fetch progress:', err);
+        }
+      };
+      fetchProgress();
+
+      const interval = setInterval(fetchProgress, 500);
+
+      return () => clearInterval(interval);
+    }
+  }, [jobId, scanning, setHistory, setAnalytics]);
+
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const text = e.target.result;
+
+      // Parse CSV - handle both comma and newline separated
+      let images = [];
+
+      // Check if it's comma-separated
+      if (text.includes(',')) {
+        images = text
+          .split(/[,\n]/)  // Split by comma OR newline
+          .map(img => img.trim())
+          .filter(img => img.length > 0);
+      } else {
+        // Newline separated
+        images = text
+          .split('\n')
+          .map(img => img.trim())
+          .filter(img => img.length > 0);
+      }
+
+      setBatchImages(images.join('\n'));
+    };
+
+    reader.readAsText(file);
+  };
 
   const handleBatchScan = async () => {
-    setBatchProgress({
-      total: 150,
-      completed: 0,
-      inProgress: 3,
-      queued: 147,
-      failed: 0
-    });
+    setError(null);
+    const images = batchImages
+      .split('\n')
+      .map(img => img.trim())
+      .filter(img => img.length > 0);
 
-    // Simulate batch scanning
-    const interval = setInterval(() => {
-      setBatchProgress(prev => {
-        if (!prev || prev.completed >= prev.total) {
-          clearInterval(interval);
-          return prev;
-        }
-        return {
-          ...prev,
-          completed: prev.completed + 1,
-          queued: prev.queued - 1
-        };
+    if (images.length === 0) {
+      setError('Please enter at least one image name');
+      return;
+    }
+
+    if (images.length > 50) {
+      setError('Maximum 50 images allowed per batch');
+      return;
+    }
+    setScanning(true);
+    setProgress(null);
+
+    try {
+      const result = await api.startBatchScan(images, workers, timeout);
+      setJobId(result.job_id);
+
+      setProgress({
+        job_id: result.job_id,
+        status: 'running',
+        total: images.length,
+        completed: 0,
+        queued: images.length,
+        failed: 0,
+        results: [],
+        started_at: new Date().toISOString()
       });
-    }, 100);
+    } catch (err) {
+      setError(err.message);
+      setScanning(false);
+    }
+  };
 
-    // Mock results
-    setTimeout(() => {
-      setBatchResults([
-        { image: 'nginx:alpine', verdict: 'SAFE', risk_score: 0.12, duration: '12s' },
-        { image: 'ubuntu:14.04', verdict: 'RISKY', risk_score: 0.87, duration: '18s' },
-        { image: 'python:3.11-slim', verdict: 'SAFE', risk_score: 0.15, duration: '14s' }
-      ]);
-    }, 3000);
+  const getProgressPercentage = () => {
+    if (!progress) return 0;
+    return Math.round((progress.completed / progress.total) * 100);
+  };
+
+  const viewDetailedResult = (result) => {
+
+    if (result.full_report) {
+      setSelectedResult(result.full_report);
+      setShowDetailModal(true);
+    } else {
+      setError(`Detailed report not available for ${result.image}`);
+    }
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
-        <h3 className="text-2xl font-bold mb-6 flex items-center">
-          <Database className="w-6 h-6 mr-2" />
-          Batch Scanner
-        </h3>
-
-        <div className="space-y-4">
-          <div className="border-2 border-dashed border-slate-600 rounded-lg p-8 text-center hover:border-cyan-500 transition-colors cursor-pointer">
-            <input
-              type="file"
-              accept=".csv"
-              onChange={(e) => setBatchFile(e.target.files[0])}
-              className="hidden"
-              id="batch-upload"
-            />
-            <label htmlFor="batch-upload" className="cursor-pointer">
-              <Database className="w-12 h-12 mx-auto mb-3 text-slate-400" />
-              <p className="text-slate-300 mb-1">
-                {batchFile ? batchFile.name : 'Drop CSV here or click to upload'}
-              </p>
-              <p className="text-sm text-slate-400">CSV should contain image names</p>
-            </label>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm text-slate-400 mb-2">Parallel Workers</label>
-              <select className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white">
-                <option>3</option>
-                <option>5</option>
-                <option>10</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm text-slate-400 mb-2">Timeout (seconds)</label>
-              <input
-                type="number"
-                defaultValue="300"
-                className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white"
-              />
-            </div>
-          </div>
-
-          <button
-            onClick={handleBatchScan}
-            className="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 rounded-lg font-semibold transition-all"
-          >
-            Start Batch Scan
-          </button>
+    <div className="space-y-8">
+      {/* Header */}
+      <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-xl p-8">
+        <div className="max-w-3xl mx-auto text-center space-y-4">
+          <Database className="w-12 h-12 text-purple-400 mx-auto" />
+          <h2 className="text-3xl font-bold">Batch Scanner</h2>
+          <p className="text-slate-300">
+            Scan multiple Docker images in parallel. Enter one image per line or upload a CSV file.
+          </p>
         </div>
       </div>
 
-      {batchProgress && (
-        <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
-          <h4 className="text-xl font-bold mb-4">Scanning Progress</h4>
-          
-          <div className="mb-4">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-slate-400">
-                {batchProgress.completed} / {batchProgress.total} images
-              </span>
-              <span className="text-cyan-400 font-semibold">
-                {((batchProgress.completed / batchProgress.total) * 100).toFixed(0)}%
-              </span>
-            </div>
-            <div className="w-full bg-slate-700 rounded-full h-3">
-              <div
-                className="bg-gradient-to-r from-cyan-500 to-blue-500 h-3 rounded-full transition-all duration-300"
-                style={{ width: `${(batchProgress.completed / batchProgress.total) * 100}%` }}
+      {/* Configuration */}
+      <div className="grid md:grid-cols-3 gap-6">
+        <div className="md:col-span-2 bg-slate-800/50 border border-slate-700 rounded-xl p-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <label className="block text-sm font-semibold text-slate-300">
+              Docker Images (one per line)
+            </label>
+
+            {/* CSV Upload Button */}
+            <label className="cursor-pointer">
+              <input
+                type="file"
+                accept=".csv,.txt"
+                onChange={handleFileUpload}
+                disabled={scanning}
+                className="hidden"
               />
-            </div>
+              <span className="inline-flex items-center px-3 py-1.5 bg-purple-500/20 hover:bg-purple-500/30 text-purple-400 rounded-lg text-sm font-semibold transition-colors">
+                <Download className="w-4 h-4 mr-2" />
+                Upload CSV
+              </span>
+            </label>
           </div>
 
-          <div className="grid grid-cols-4 gap-4 mb-6">
-            <div className="bg-slate-700/50 rounded-lg p-3 text-center">
-              <p className="text-2xl font-bold text-green-400">{batchProgress.completed}</p>
-              <p className="text-xs text-slate-400">Completed</p>
-            </div>
-            <div className="bg-slate-700/50 rounded-lg p-3 text-center">
-              <p className="text-2xl font-bold text-cyan-400">{batchProgress.inProgress}</p>
-              <p className="text-xs text-slate-400">In Progress</p>
-            </div>
-            <div className="bg-slate-700/50 rounded-lg p-3 text-center">
-              <p className="text-2xl font-bold text-slate-400">{batchProgress.queued}</p>
-              <p className="text-xs text-slate-400">Queued</p>
-            </div>
-            <div className="bg-slate-700/50 rounded-lg p-3 text-center">
-              <p className="text-2xl font-bold text-red-400">{batchProgress.failed}</p>
-              <p className="text-xs text-slate-400">Failed</p>
-            </div>
+          <textarea
+            value={batchImages}
+            onChange={(e) => setBatchImages(e.target.value)}
+            placeholder="nginx:latest&#10;ubuntu:20.04&#10;python:3.11-slim&#10;redis:alpine&#10;postgres:15"
+            rows={10}
+            disabled={scanning}
+            className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400 text-white placeholder-slate-500 font-mono text-sm"
+          />
+          <p className="text-xs text-slate-400 mt-2">
+            {batchImages.split('\n').filter(l => l.trim()).length} images • Max 50 images
+          </p>
+
+          <button
+            onClick={handleBatchScan}
+            disabled={scanning || !batchImages.trim()}
+            className="w-full px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 disabled:from-slate-600 disabled:to-slate-700 disabled:cursor-not-allowed rounded-lg font-semibold transition-all flex items-center justify-center space-x-2"
+          >
+            {scanning ? (
+              <>
+                <RefreshCw className="w-5 h-5 animate-spin" />
+                <span>Scanning {progress?.completed || 0}/{progress?.total || 0}...</span>
+              </>
+            ) : (
+              <>
+                <Zap className="w-5 h-5" />
+                <span>Start Batch Scan</span>
+              </>
+            )}
+          </button>
+        </div>
+
+        {/* Settings */}
+        <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 space-y-6">
+          <h3 className="font-bold text-lg flex items-center">
+            <Settings className="w-5 h-5 mr-2 text-purple-400" />
+            Settings
+          </h3>
+
+          <div>
+            <label className="block text-sm font-semibold text-slate-300 mb-2">
+              Parallel Workers
+            </label>
+            <input
+              type="number"
+              value={workers}
+              onChange={(e) => setWorkers(parseInt(e.target.value) || 1)}
+              min="1"
+              max="10"
+              disabled={scanning}
+              className="w-full px-4 py-2 bg-slate-900 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400 text-white"
+            />
+            <p className="text-xs text-slate-400 mt-1">
+              Number of images to scan simultaneously
+            </p>
           </div>
 
-          {batchResults.length > 0 && (
-            <div>
-              <h5 className="font-semibold mb-3">Recent Results:</h5>
-              <div className="space-y-2">
-                {batchResults.map((result, idx) => (
-                  <div key={idx} className="flex items-center justify-between bg-slate-700/30 rounded-lg p-3">
-                    <span className="font-mono text-sm">{result.image}</span>
-                    <div className="flex items-center space-x-3">
-                      <span className={`px-2 py-1 rounded text-xs font-semibold ${
-                        result.verdict === 'RISKY' ? 'bg-red-500/20 text-red-400' : 'bg-green-500/20 text-green-400'
-                      }`}>
-                        {result.verdict}
-                      </span>
-                      <span className="text-sm text-slate-400">{result.duration}</span>
-                    </div>
+          <div>
+            <label className="block text-sm font-semibold text-slate-300 mb-2">
+              Timeout (seconds)
+            </label>
+            <input
+              type="number"
+              value={timeout}
+              onChange={(e) => setTimeout(parseInt(e.target.value) || 60)}
+              min="60"
+              max="600"
+              disabled={scanning}
+              className="w-full px-4 py-2 bg-slate-900 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400 text-white"
+            />
+            <p className="text-xs text-slate-400 mt-1">
+              Max time per image scan
+            </p>
+          </div>
+
+          <div className="pt-4 border-t border-slate-700 space-y-2 text-sm">
+            <div className="flex justify-between">
+              <span className="text-slate-400">Est. Duration:</span>
+              <span className="text-white font-semibold">
+                ~{Math.ceil(batchImages.split('\n').filter(l => l.trim()).length / workers * 0.5)} min
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Error */}
+      {error && (
+        <ErrorAlert message={error} onClose={() => setError(null)} />
+      )}
+
+      {scanning && progress && (
+        <div className="relative bg-gradient-to-br from-purple-900/30 via-slate-800/50 to-pink-900/30 border border-purple-500/30 rounded-2xl p-8 overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'linear-gradient(to right, rgba(168, 85, 247) 1px, transparent 1px), linear-gradient(to bottom, rgba(168, 85, 247) 1px, transparent 1px)',
+              backgroundSize: '40px 40px'
+            }}></div>
+          </div>
+
+          {/* Floating particles */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute w-2 h-2 bg-purple-400 rounded-full animate-float-1" style={{ top: '20%', left: '10%' }}></div>
+            <div className="absolute w-3 h-3 bg-pink-400 rounded-full animate-float-2" style={{ top: '60%', left: '80%' }}></div>
+            <div className="absolute w-2 h-2 bg-cyan-400 rounded-full animate-float-3" style={{ top: '40%', left: '50%' }}></div>
+          </div>
+
+          <div className="relative z-10 space-y-6">
+            {/* Header */}
+            <div className="flex items-start justify-between">
+              <div className="flex items-start space-x-4">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-purple-500 rounded-full blur-xl opacity-50 animate-pulse"></div>
+                  <div className="relative bg-gradient-to-br from-purple-500 to-pink-500 p-3 rounded-xl">
+                    <Database className="w-8 h-8 text-white animate-bounce-slow" />
                   </div>
-                ))}
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+                    Batch Scan in Progress
+                  </h3>
+                  <p className="text-sm text-slate-400 mt-1">Job ID: <code className="text-purple-400 font-mono text-xs">{jobId}</code></p>
+                  <div className="flex items-center gap-2 mt-2 text-sm">
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                    <span className="text-slate-400">Status: <span className="font-semibold text-green-400">{progress.status}</span></span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div className="text-right">
+                  <div className="text-5xl font-bold bg-gradient-to-br from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    {getProgressPercentage()}%
+                  </div>
+                  <div className="text-slate-400 text-sm mt-1">Complete</div>
+                </div>
               </div>
             </div>
-          )}
+
+            {/* Stats Grid */}
+            <div className="grid grid-cols-4 gap-4">
+              <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-4 border border-slate-700/50 hover:border-purple-500/50 transition-all">
+                <div className="text-slate-400 text-xs uppercase tracking-wider mb-2">Total</div>
+                <div className="text-3xl font-bold text-white">{progress.total}</div>
+              </div>
+              <div className="bg-green-500/10 backdrop-blur-sm rounded-xl p-4 border border-green-500/30 hover:border-green-400/50 transition-all">
+                <div className="text-green-400 text-xs uppercase tracking-wider mb-2">Completed</div>
+                <div className="text-3xl font-bold text-green-400">{progress.completed}</div>
+              </div>
+              <div className="bg-blue-500/10 backdrop-blur-sm rounded-xl p-4 border border-blue-500/30 hover:border-blue-400/50 transition-all">
+                <div className="text-blue-400 text-xs uppercase tracking-wider mb-2">Queued</div>
+                <div className="text-3xl font-bold text-blue-400">{progress.queued}</div>
+              </div>
+              <div className="bg-red-500/10 backdrop-blur-sm rounded-xl p-4 border border-red-500/30 hover:border-red-400/50 transition-all">
+                <div className="text-red-400 text-xs uppercase tracking-wider mb-2">Failed</div>
+                <div className="text-3xl font-bold text-red-400">{progress.failed}</div>
+              </div>
+            </div>
+
+            {/* Progress Bar with Glow */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-slate-300 font-medium">Scanning Images...</span>
+                <span className="text-purple-400 font-mono font-semibold">{progress.completed} / {progress.total}</span>
+              </div>
+              <div className="relative h-4 bg-slate-800/80 rounded-full overflow-hidden border border-slate-700/50">
+                <div
+                  className="absolute inset-y-0 left-0 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 rounded-full transition-all duration-500 ease-out shadow-[0_0_20px_rgba(168,85,247,0.5)]"
+                  style={{ width: `${getProgressPercentage()}%` }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer"></div>
+                </div>
+              </div>
+            </div>
+
+            {/* Time Info */}
+            <div className="flex items-center gap-4 text-sm text-slate-400">
+              <Clock className="w-4 h-4" />
+              <span>Started: {new Date(progress.started_at).toLocaleTimeString()}</span>
+            </div>
+
+            {/* Live Activity Feed */}
+            {progress.results && progress.results.length > 0 && (
+              <div className="bg-slate-900/50 backdrop-blur-sm rounded-xl p-4 border border-slate-700/50 max-h-48 overflow-y-auto">
+                <div className="flex items-center gap-2 mb-3">
+                  <Activity className="w-4 h-4 text-purple-400" />
+                  <h4 className="text-sm font-semibold text-slate-300">Recent Activity</h4>
+                </div>
+                <div className="space-y-2">
+                  {progress.results.slice(-5).reverse().map((result, idx) => (
+                    <div key={idx} className="flex items-center justify-between text-xs py-2 px-3 bg-slate-800/50 rounded-lg border border-slate-700/30">
+                      <div className="flex items-center gap-2 flex-1 min-w-0">
+                        {result.status === 'success' ? (
+                          <CheckCircle2 className="w-4 h-4 text-green-400 flex-shrink-0" />
+                        ) : (
+                          <XCircle className="w-4 h-4 text-red-400 flex-shrink-0" />
+                        )}
+                        <span className="text-slate-300 truncate">{result.image}</span>
+                      </div>
+                      <div className="flex items-center gap-3 ml-2 flex-shrink-0">
+                        {result.status === 'success' && (
+                          <span className={`px-2 py-1 rounded text-xs font-semibold ${result.verdict === 'SAFE' ? 'bg-green-500/20 text-green-400' :
+                            result.verdict === 'RISKY' ? 'bg-red-500/20 text-red-400' :
+                              'bg-yellow-500/20 text-yellow-400'
+                            }`}>
+                            {result.verdict}
+                          </span>
+                        )}
+                        <span className="text-slate-500">{result.duration}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
+      )}
+
+
+      {/* Completed Results Table */}
+      {progress && !scanning && progress.results && progress.results.length > 0 && (
+        <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <h3 className="text-xl font-bold">Scan Results</h3>
+            <div className="text-sm text-slate-400">
+              Completed in {progress.completed_at ?
+                Math.round((new Date(progress.completed_at) - new Date(progress.started_at)) / 1000) : '?'
+              } seconds
+            </div>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead className="bg-slate-900/50">
+                <tr>
+                  <th className="px-4 py-3 text-left text-slate-300 font-semibold">Image</th>
+                  <th className="px-4 py-3 text-left text-slate-300 font-semibold">Status</th>
+                  <th className="px-4 py-3 text-left text-slate-300 font-semibold">Verdict</th>
+                  <th className="px-4 py-3 text-left text-slate-300 font-semibold">Risk Score</th>
+                  <th className="px-4 py-3 text-left text-slate-300 font-semibold">Duration</th>
+                  <th className="px-4 py-3 text-left text-slate-300 font-semibold">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-700">
+                {progress.results.map((result, idx) => (
+                  <tr key={idx} className="hover:bg-slate-800/30 transition-colors">
+                    <td className="px-4 py-3 font-mono text-xs">{result.image}</td>
+                    <td className="px-4 py-3">
+                      {result.status === 'success' ? (
+                        <span className="inline-flex items-center px-2 py-1 bg-green-500/20 text-green-400 rounded text-xs font-semibold">
+                          <CheckCircle className="w-3 h-3 mr-1" />
+                          Success
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center px-2 py-1 bg-red-500/20 text-red-400 rounded text-xs font-semibold">
+                          <XCircle className="w-3 h-3 mr-1" />
+                          Failed
+                        </span>
+                      )}
+                    </td>
+                    <td className="px-4 py-3">
+                      {result.verdict ? (
+                        <span className={`font-semibold ${result.verdict === 'RISKY' ? 'text-red-400' : 'text-green-400'}`}>
+                          {result.verdict}
+                        </span>
+                      ) : (
+                        <span className="text-slate-500">-</span>
+                      )}
+                    </td>
+                    <td className="px-4 py-3">
+                      {result.risk_score !== undefined ? (
+                        <div className="flex items-center space-x-2">
+                          <div className="w-16 bg-slate-700 rounded-full h-1.5">
+                            <div
+                              className={`h-1.5 rounded-full ${result.risk_score >= 0.7 ? 'bg-red-500' :
+                                result.risk_score >= 0.5 ? 'bg-orange-500' :
+                                  result.risk_score >= 0.3 ? 'bg-yellow-500' : 'bg-green-500'
+                                }`}
+                              style={{ width: `${result.risk_score * 100}%` }}
+                            />
+                          </div>
+                          <span className="font-semibold text-xs">{(result.risk_score * 100).toFixed(1)}%</span>
+                        </div>
+                      ) : (
+                        <span className="text-slate-500">-</span>
+                      )}
+                    </td>
+                    <td className="px-4 py-3 text-slate-400">{result.duration || '-'}</td>
+                    <td className="px-4 py-3">
+                      {result.status === 'success' && (
+                        <button
+                          onClick={() => viewDetailedResult(result)}
+                          className="inline-flex items-center px-3 py-1 bg-purple-500/20 hover:bg-purple-500/30 text-purple-400 rounded text-xs font-semibold transition-colors">
+                          <FileWarning className="w-3 h-3 mr-1" />
+                          View Details
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* Example Templates */}
+      {!scanning && !progress && (
+        <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
+          <h3 className="font-bold text-lg mb-4">Quick Templates</h3>
+          <div className="grid md:grid-cols-3 gap-4">
+            <button
+              onClick={() => setBatchImages('nginx:alpine\nredis:alpine\npostgres:alpine\nmongo:latest\nmysql:8')}
+              className="p-4 bg-slate-900 hover:bg-slate-800 border border-slate-600 rounded-lg text-left transition-colors"
+            >
+              <div className="font-semibold text-green-400 mb-1">✓ Safe Images</div>
+              <div className="text-xs text-slate-400">5 popular safe images</div>
+            </button>
+            <button
+              onClick={() => setBatchImages('ubuntu:14.04\npython:2.7\nnode:10\ncentos:6\ndebian:jessie')}
+              className="p-4 bg-slate-900 hover:bg-slate-800 border border-slate-600 rounded-lg text-left transition-colors"
+            >
+              <div className="font-semibold text-red-400 mb-1">⚠ Risky Images</div>
+              <div className="text-xs text-slate-400">5 outdated/vulnerable images</div>
+            </button>
+            <button
+              onClick={() => setBatchImages('nginx:latest\nubuntu:20.04\npython:3.11\nalpine:latest\nredis:7\npostgres:15\nmongo:6\nnode:20\nubuntu:14.04\npython:2.7')}
+              className="p-4 bg-slate-900 hover:bg-slate-800 border border-slate-600 rounded-lg text-left transition-colors"
+            >
+              <div className="font-semibold text-purple-400 mb-1">🔀 Mixed Set</div>
+              <div className="text-xs text-slate-400">10 mixed safe/risky images</div>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Detailed Result Modal */}
+      {showDetailModal && selectedResult && (
+        <DetailModal result={selectedResult} onClose={() => setShowDetailModal(false)} />
       )}
     </div>
   );
 }
 
+// Detail Modal Component
+function DetailModal({ result, onClose }) {
+  return (
+    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={onClose}>
+      <div className="bg-slate-800 border border-slate-700 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+        <div className="sticky top-0 bg-slate-800 border-b border-slate-700 p-6 flex items-center justify-between">
+          <h3 className="text-xl font-bold">Detailed Scan Report</h3>
+          <button onClick={onClose} className="text-slate-400 hover:text-white transition-colors">
+            <XCircle className="w-6 h-6" />
+          </button>
+        </div>
+
+        <div className="p-6">
+          <ScanResult result={result} />
+        </div>
+      </div>
+    </div>
+  );
+}
 // Training Tab
 function TrainingTab() {
   const [training, setTraining] = useState(false);

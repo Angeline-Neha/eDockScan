@@ -62,3 +62,4 @@ echo "🎉 Setup complete!"
 echo "You can now run your scanner with:"
 echo "   python extract_features.py extract"
 echo ""
+

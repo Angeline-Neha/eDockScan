@@ -274,39 +274,102 @@ async def run_batch_scan(job_id: str, images: List[str], workers: int, timeout: 
     from concurrent.futures import ThreadPoolExecutor, as_completed
     
     def scan_single(image_name: str):
+        import time
+        start_time = time.time()
+        
+        # Update in_progress count
+        batch_jobs[job_id]['in_progress'] += 1
+        batch_jobs[job_id]['queued'] -= 1
+        
         try:
             report = scanner.scan_image(image_name)
-            return {
+            duration = f"{int(time.time() - start_time)}s"
+            
+            # Convert layer_analyses to dict
+            layer_analyses_dict = []
+            for layer in report.get('layer_analyses', []):
+                if hasattr(layer, 'to_dict'):
+                    layer_analyses_dict.append(layer.to_dict())
+                elif isinstance(layer, dict):
+                    layer_analyses_dict.append(layer)
+            
+            # Convert remediations to dict
+            remediations_dict = []
+            for rem in report.get('remediations', []):
+                if hasattr(rem, 'to_dict'):
+                    remediations_dict.append(rem.to_dict())
+                elif isinstance(rem, dict):
+                    remediations_dict.append(rem)
+            
+            result = {
                 'image': image_name,
                 'status': 'success',
                 'verdict': report.get('verdict', 'UNKNOWN'),
                 'risk_score': report.get('risk_score', 0),
-                'duration': '15s'  # Placeholder
+                'duration': duration,
+                'full_report': {
+                    'image': report['image'],
+                    'verdict': report['verdict'],
+                    'is_risky': report['is_risky'],
+                    'risk_score': report['risk_score'],
+                    'confidence': report['confidence'],
+                    'severity': report['severity'],
+                    'scan_status': report['scan_status'],
+                    'scan_confidence': report['scan_confidence'],
+                    'top_risk_factors': report['top_risk_factors'],
+                    'all_features': report['all_features'],
+                    'layer_analyses': layer_analyses_dict,
+                    'remediations': remediations_dict,
+                    'scan_id': str(uuid.uuid4()),
+                    'timestamp': datetime.now().isoformat()
+                }
             }
         except Exception as e:
             logger.error(f"Failed to scan {image_name}: {e}")
-            return {
+            duration = f"{int(time.time() - start_time)}s"
+            result = {
                 'image': image_name,
                 'status': 'failed',
-                'error': str(e)
+                'error': str(e),
+                'duration': duration
             }
+        
+        # Update progress after scan completes
+        batch_jobs[job_id]['in_progress'] -= 1
+        batch_jobs[job_id]['completed'] += 1
+        batch_jobs[job_id]['results'].append(result)
+        
+        if result['status'] == 'failed':
+            batch_jobs[job_id]['failed'] += 1
+        
+        return result
     
     with ThreadPoolExecutor(max_workers=workers) as executor:
         futures = {executor.submit(scan_single, img): img for img in images}
         
+        # Wait for all to complete
         for future in as_completed(futures):
-            result = future.result()
-            
-            # Update job status
-            batch_jobs[job_id]['completed'] += 1
-            batch_jobs[job_id]['queued'] -= 1
-            batch_jobs[job_id]['results'].append(result)
-            
-            if result['status'] == 'failed':
-                batch_jobs[job_id]['failed'] += 1
+            future.result()  # Get result to handle any exceptions
     
     batch_jobs[job_id]['status'] = 'completed'
     batch_jobs[job_id]['completed_at'] = datetime.now().isoformat()
+    
+    # Add successful scans to history
+    logger.info(f"Adding {len(batch_jobs[job_id]['results'])} results to history")
+    for result in batch_jobs[job_id]['results']:
+        if result['status'] == 'success' and 'full_report' in result:
+            scan_history.append({
+                'scan_id': result['full_report']['scan_id'],
+                'image': result['image'],
+                'verdict': result['verdict'],
+                'risk_score': result['risk_score'],
+                'cves': result['full_report']['all_features'].get('known_cves', 0),
+                'timestamp': result['full_report']['timestamp'],
+                'scanned': 'Just now'
+            })
+    
+    if len(scan_history) > 1000:
+        del scan_history[:-1000]
 
 # Get batch scan progress
 @app.get("/api/batch-scan/{job_id}")
@@ -314,6 +377,8 @@ async def get_batch_progress(job_id: str):
     """Get progress of a batch scan job"""
     if job_id not in batch_jobs:
         raise HTTPException(status_code=404, detail="Job not found")
+    
+    logger.info(f"Progress check for {job_id}: {batch_jobs[job_id]['completed']}/{batch_jobs[job_id]['total']}")
     
     return batch_jobs[job_id]
 
