@@ -1,5 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Search, Shield, AlertTriangle, CheckCircle, XCircle, Download, Layers, Activity, TrendingUp, RefreshCw, ChevronDown, ChevronRight, Database, Zap, Lock, Server, FileWarning, Clock, BarChart3, PieChart, Settings, AlertCircleIcon } from 'lucide-react';
+import RiskGauge from './components/RiskGauge';
+import VulnerabilityDonut from './components/VulnerabilityDonut';
+import BehavioralRadar from './components/BehavioralRadar';
+import LayerBarChart from './components/LayerBarChart';
+import PDFExport from './components/PDFExport';
 
 // API Configuration
 const API_BASE_URL = ''; // Empty for proxy
@@ -190,6 +195,7 @@ export default function DockerSecurityScanner() {
   const [analytics, setAnalytics] = useState(null);
   const [error, setError] = useState(null);
   const [scanProgress, setScanProgress] = useState(0);
+  const chartRefs = useRef({});
 
   useEffect(() => {
     api.getHistory().then(setHistory).catch(console.error);
@@ -262,9 +268,9 @@ export default function DockerSecurityScanner() {
               <Shield className="w-8 h-8 text-cyan-400" />
               <div>
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                  Docker Security Scanner
+                  ML Powered Docker Security Scanner
                 </h1>
-                <p className="text-sm text-slate-400">AI-Powered Image Threat Detection</p>
+                <p className="text-sm text-slate-400">Docker Image Threat Detection</p>
               </div>
             </div>
             <div className="flex items-center space-x-6 text-sm">
@@ -318,6 +324,7 @@ export default function DockerSecurityScanner() {
             error={error}
             setError={setError}
             scanProgress={scanProgress}
+            chartRefs={chartRefs}
           />
         )}
         {activeTab === 'history' && <HistoryTab history={history} />}
@@ -333,7 +340,8 @@ export default function DockerSecurityScanner() {
 }
 
 // Scan Tab Component
-function ScanTab({ imageName, setImageName, scanning, handleScan, scanResult, error, setError, scanProgress }) {
+// Scan Tab Component
+function ScanTab({ imageName, setImageName, scanning, handleScan, scanResult, error, setError, scanProgress, chartRefs }) {
   return (
     <div className="space-y-8">
       {/* Hero Section */}
@@ -399,9 +407,51 @@ function ScanTab({ imageName, setImageName, scanning, handleScan, scanResult, er
         <ScanningProgress imageName={imageName} progress={scanProgress} />
       )}
 
-      {/* Scan Result */}
+
+
+      {/* Your existing scan result details */}
       {scanResult && !scanning && <ScanResult result={scanResult} />}
-    </div>
+
+
+      {/* Display charts when scan completes */}
+      {scanResult && (
+        <div className="space-y-6">
+          {/* PDF Export Button */}
+          <div className="flex justify-end">
+            <PDFExport report={scanResult} chartRefs={chartRefs} />
+          </div>
+
+
+
+
+
+          <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
+            <h3 className="text-lg font-semibold mb-4">Behavioral Analysis</h3>
+            <div className="w-full h-64 flex items-center justify-center">
+              <BehavioralRadar features={scanResult.all_features || {}} />
+            </div>
+          </div>
+
+
+          {/* Layer Analysis */}
+          {scanResult.layer_analyses && scanResult.layer_analyses.length > 0 && (
+            <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
+              <h3 className="text-lg font-semibold mb-4">Layer Risk Analysis</h3>
+              <div className="w-full">
+                <LayerBarChart
+                  layers={scanResult.layer_analyses.map((l, idx) => ({
+                    layer: idx + 1,
+                    command: l.command || 'Unknown',
+                    riskScore: (l.risk_score || 0) * 100
+                  }))}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      )
+      }
+    </div >
   );
 }
 
