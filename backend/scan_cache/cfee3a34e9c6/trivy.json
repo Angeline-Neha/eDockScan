@@ -1,6 +1,6 @@
 {
   "SchemaVersion": 2,
-  "CreatedAt": "2025-11-21T12:23:16.838034384Z",
+  "CreatedAt": "2025-11-21T18:56:03.38019651Z",
   "ArtifactName": "ubuntu:20.04",
   "ArtifactType": "container_image",
   "Metadata": {
