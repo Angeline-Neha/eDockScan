@@ -217,3 +217,5 @@ App.jsx                          # Main React component with all tabs
 ## Snapshots
 
 ![Upload Screen](img/upload_screen.png)
+![chart](img/upload_screen.png)
+![Upload Screen](img/upload_screen.png)

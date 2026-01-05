@@ -108,18 +108,7 @@ pids
 *.seed
 *.pid.lock
 
-# Generated files
-*.pdf
-*.png
-*.jpg
-!public/*.png
-!public/*.jpg
-!frontend/public/*.png
-!frontend/public/*.jpg
-reports/
-outputs/
-scans/
-scan_results/
+
 
 # Temporary files
 *.tmp
