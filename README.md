@@ -201,3 +201,6 @@ bkimminich/juice-shop
 ## Snapshots
 
 ![Upload Screen](img/upload_screen.png)
+![Batch Scan](img/batch_scan.png)
+![Chart](img/chart.png)
+
