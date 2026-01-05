@@ -173,22 +173,6 @@ vulnerables/web-dvwa
 bkimminich/juice-shop
 ```
 
-## Architecture
-
-### Frontend (`client/src/`)
-```
-App.jsx                          # Main React component with all tabs
-├── Scan Tab                     # Single image scanning UI
-│   ├── RiskGauge.jsx           # Circular gauge visualization
-│   ├── VulnerabilityDonut.jsx  # CVE severity breakdown
-│   ├── BehavioralRadar.jsx     # Multi-axis feature analysis
-│   ├── LayerBarChart.jsx       # Per-layer risk view
-│   └── PDFExport.jsx           # Report generation
-├── History Tab                  # Browse previous scans
-├── Analytics Tab                # Aggregate statistics
-└── Batch Tab                    # Multi-image scanning
-```
-
 
 ## Risk Score Interpretation
 
