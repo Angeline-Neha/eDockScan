@@ -8,11 +8,8 @@ import seaborn as sns
 import json
 import sys
 from pathlib import Path
-# At the very top of model.py, add:
 import logging
 logging.basicConfig(level=logging.DEBUG, format='%(name)s - %(levelname)s - %(message)s')
-
-# Import your feature extraction tools
 from extract import EnhancedRemoteDockerScanner
 
 # ============================================
@@ -525,10 +522,7 @@ class DockerSecurityScanner:
                         'example_fix': rem.example_fix
                         })
     
-    # ============================================
-    # END OF ADDED BLOCK
-    # ============================================
-
+    
        
         # Build report
         report = {
@@ -611,10 +605,7 @@ class DockerSecurityScanner:
             status = "❌" if value > 0 else "✓"
             print(f"{status} {label:30s}: {value}")
 
-        # ============================================
-    # ADD THIS ENTIRE BLOCK
-    # ============================================
-    
+     
     # Behavioral Analysis Summary
         print(f"\n{'─'*70}")
         print("BEHAVIORAL ANALYSIS (LAYER-BY-LAYER)")
@@ -709,9 +700,6 @@ class DockerSecurityScanner:
                     status = "✓ NONE"
                 print(f"{status:15s} {label:35s}: {value}")
     
-        # ============================================
-    # ADD THIS: LAYER-BY-LAYER DETAILED ANALYSIS
-    # ============================================
     
         layer_analyses = report.get('layer_analyses', [])
         remediations = report.get('remediations', [])
@@ -801,10 +789,7 @@ class DockerSecurityScanner:
                 if len(items) > 3:
                     print(f"\n   ... and {len(items) - 3} more {severity} issues")
     
-    # ============================================
-    # END OF ADDED BLOCK
-    # ============================================
-        
+     
         print(f"\n{'='*70}")
 
 

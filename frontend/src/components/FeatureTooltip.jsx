@@ -1,4 +1,4 @@
-// src/components/FeatureTooltip.jsx
+
 import { featureExplanations, getRiskLevelColor } from '../utils/featureExplanations';
 import { HelpCircle, AlertTriangle, CheckCircle, XCircle } from 'lucide-react';
 

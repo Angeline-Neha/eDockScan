@@ -1,8 +1,4 @@
 #!/usr/bin/env python3
-"""
-FastAPI Backend for Docker Security Scanner
-Connects your ML model to the React frontend
-"""
 
 from fastapi import FastAPI, HTTPException, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
@@ -14,12 +10,9 @@ import json
 from pathlib import Path
 import uuid
 from contextlib import asynccontextmanager
-
-# Import your existing scanner
 from model import DockerSecurityScanner
 from extract import EnhancedRemoteDockerScanner
 
-# Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -31,7 +24,7 @@ scanner = None
 scan_history = []
 batch_jobs = {}
 
-# Lifespan context manager (replaces @app.on_event)
+# Lifespan context manager
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup
@@ -60,14 +53,13 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# CORS middleware - allows React frontend to call this API
+# CORS middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
         "http://localhost:5173",
         "https://*.app.github.dev",
-         "*" # Allow GitHub Codespaces
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -145,7 +137,7 @@ async def scan_image(request: ScanRequest):
     logger.info(f"Scanning image: {image_name}")
     
     try:
-        # Run the scan using your existing model
+        # Run the scan
         report = scanner.scan_image(image_name)
         
         # Check for errors
@@ -475,13 +467,9 @@ async def get_model_info():
 # Train model endpoint
 @app.post("/api/train")
 async def train_model(background_tasks: BackgroundTasks):
-    """
-    Trigger model training (runs in background)
-    """
+    
     training_id = str(uuid.uuid4())
     
-    # In production, you'd run this in background
-    # For now, just return a mock response
     return {
         'training_id': training_id,
         'status': 'started',

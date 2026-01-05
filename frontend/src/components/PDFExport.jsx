@@ -17,11 +17,6 @@ export default function PDFExport({ report, chartRefs }) {
             const pageHeight = pdf.internal.pageSize.getHeight();
             let yPos = 20;
 
-            // ===========================
-            // PROFESSIONAL COVER PAGE
-            
-            // ===========================
-
             // Header bar - Dark slate
             pdf.setFillColor(30, 41, 59); // slate-800
             pdf.rect(0, 0, pageWidth, 60, 'F');
@@ -65,7 +60,7 @@ export default function PDFExport({ report, chartRefs }) {
             const splitImage = pdf.splitTextToSize(imageName, pageWidth - 40);
             pdf.text(splitImage, 20, 115);
 
-            // Verdict Box - Professional style
+            // Verdict Box
             const verdictY = 135;
             const verdictColors = {
                 SAFE: { bg: [220, 252, 231], text: [22, 163, 74], border: [134, 239, 172] }, // green
@@ -303,7 +298,7 @@ export default function PDFExport({ report, chartRefs }) {
                 });
             }
 
-            // Add professional footer to all pages
+           
             const totalPages = pdf.getNumberOfPages();
             for (let i = 1; i <= totalPages; i++) {
                 pdf.setPage(i);

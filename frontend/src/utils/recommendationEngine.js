@@ -4,12 +4,7 @@ export const generateRecommendations = (scanResult) => {
     const recommendations = [];
     const features = scanResult.all_features || {};
 
-    // Priority levels: CRITICAL (100), HIGH (75), MEDIUM (50), LOW (25)
-
-    // ========================================
-    // CRITICAL THREATS
-    // ========================================
-
+   
     if (features.cryptominer_binary === 1) {
         recommendations.push({
             id: 'cryptominer',

@@ -857,7 +857,7 @@ function BatchTab({ setHistory, setAnalytics }) {
     reader.onload = (e) => {
       const text = e.target.result;
 
-      // Parse CSV - handle both comma and newline separated
+      // Parse CSV 
       let images = [];
 
       // Check if it's comma-separated
@@ -1306,7 +1306,7 @@ function BatchTab({ setHistory, setAnalytics }) {
         </div>
       )}
 
-      {/* Detailed Result Modal */}
+      {/* Detailed Result Model */}
       {showDetailModal && selectedResult && (
         <DetailModal result={selectedResult} onClose={() => setShowDetailModal(false)} />
       )}
@@ -1314,7 +1314,7 @@ function BatchTab({ setHistory, setAnalytics }) {
   );
 }
 
-// Detail Modal Component
+// Detail Model Component
 function DetailModal({ result, onClose }) {
   return (
     <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={onClose}>

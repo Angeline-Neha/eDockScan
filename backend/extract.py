@@ -1,83 +1,4 @@
 #!/usr/bin/env python3
-"""
-Suggested safe images (20)
-
-mcr.microsoft.com/dotnet/runtime:7.0 — official .NET runtime (server apps).
-
-mcr.microsoft.com/dotnet/aspnet:7.0 — ASP.NET runtime (web apps).
-
-openresty/openresty:alpine — nginx + lua (small, popular reverse-proxy).
-
-cassandra:4.1 — official Cassandra (DB) (use small tags if available).
-
-neo4j:5.10 — official graph DB (well-maintained).
-
-minio/minio:latest — S3-compatible object store (single binary, easy to scan).
-
-phpmyadmin/phpmyadmin:latest — small web admin UI for MySQL (useful test target).
-
-mailhog/mailhog:latest — email testing server (lightweight).
-
-openjdk:21-jdk-slim — newer OpenJDK slim tag (if you used 11/17 already).
-
-golang:1.22-alpine — recent Go in alpine (small dev image).
-
-dotmesh/dolt:latest — lightweight versioned SQL DB (smallish).
-
-curlimages/curl:latest — tiny image with curl only (great for network tests).
-
-hashicorp/terraform:light — small Terraform image (tooling test).
-
-containerd/stargz-snapshotter:latest — infra tooling (small test).
-
-k8s.gcr.io/kube-state-metrics/kube-state-metrics:v2.12.0 — metrics exporter (useful but safe to scan).
-
-prom/node-exporter:latest — Prometheus node exporter (small binary).
-
-grafana/loki:2.8.2 — logging backend (if you already have grafana).
-
-bitnami/redis:7.2.0-debian-11-r0 — Bitnami Redis variant (alternative to official).
-
-traefik:v2.11 — reverse proxy (you had some traefik tags, this is another stable tag).
-
-RISKY
-
-End-of-life / old distro images (high CVE counts — useful as “risky” labels)
-
-ubuntu:14.04, ubuntu:16.04, ubuntu:12.04
-
-debian:jessie, debian:wheezy
-
-centos:6, centos:5
-
-python:2.7, node:10, php:5.6
-
-Intentionally vulnerable / security-lab images (safe for testing if you know what they do)
-
-vulnerables/web-dvwa (Damn Vulnerable Web App)
-
-bkimminich/juice-shop (OWASP Juice Shop)
-
-webgoat/goatandwolf / webgoat variants
-
-vulhub/* collections (many small vulnerable services)
-
-vulnerable/node-labs (various vuln labs)
-
-Tooling / pentest images (contain offensive tooling — label as risky)
-
-rapid7/metasploit-framework
-
-kalilinux/kali-rolling (contains many offensive tools)
-
-acunetix/ or other scanner images (if present)
-
-Typosquat / suspicious naming (examples to use for typosquatting tests)
-
-ngnix:latest (typo of nginx)
-
-ubuntuu:latest, pyt0n:latest — fake/typo repos for detection tests
-"""
 
 import subprocess
 import json
@@ -96,7 +17,6 @@ import numpy as np
 from difflib import SequenceMatcher
 import hashlib
 from collections import defaultdict
-# Add this with your other imports at the top
 from behavioral_analyzer import BehavioralAnalyzer
 
 # Configure structured logging
@@ -430,7 +350,7 @@ class EnhancedSecurityDetector:
         return False
 
 class EnhancedRemoteDockerScanner:
-    """Enhanced scanner with all improvements"""
+    
     
     def __init__(
         self,
@@ -541,7 +461,7 @@ class EnhancedRemoteDockerScanner:
                     logger.info("Extracting behavioral features...")
                     behavioral_features = self.behavioral_analyzer.analyze_image(image_name, trivy_data, syft_data)
 
-        # Extract remediations (stored separately, won't go in CSV)
+        # Extract remediations 
                     remediations = behavioral_features.pop('_remediations', [])
 
         # Add behavioral features to the features object
@@ -549,7 +469,7 @@ class EnhancedRemoteDockerScanner:
                         if hasattr(features, feature_name):
                             setattr(features, feature_name, value)
         
-        # Store remediations in features metadata (for reporting)
+        # Store remediations in features metadata
                     features.remediations = remediations
         
                     logger.info(f"Behavioral analysis complete "
@@ -640,7 +560,7 @@ class EnhancedRemoteDockerScanner:
         
         # Try REMOTE-ONLY with registry: prefix (no fallback to local)
         try:
-            # Force registry-only scan with explicit prefix
+            
             full_name = f"registry:{image_name}"
             
             logger.debug(f"Attempting remote-only scan: {full_name}")
@@ -1161,8 +1081,6 @@ def validate_features(df: pd.DataFrame) -> Dict[str, Any]:
     return validation_results
 
 
-# Enhanced image lists - SAFE for remote scanning (no large pulls)
-# Total: 150 images (75 safe + 75 risky) - minimum viable dataset
 
 SAFE_IMAGES = [
     # Official base images (small, well-maintained)
@@ -1328,34 +1246,7 @@ NEW_SAFE_IMAGES = [
     'debian:buster-slim',  # Oldstable, security support until June 2024 ⚠️ Check date
     'debian:bullseye',  # Oldstable, supported until 2026 ✅
     
-    # Alpine older but maintained
-    'alpine:3.17',  # Still receives security patches ✅
-    'alpine:3.16',  # Still receives security patches ✅
     
-    # ═══════════════════════════════════════════════════════════
-    # DIFFERENT CATEGORIES YOU DON'T HAVE
-    # ═══════════════════════════════════════════════════════════
-    
-    # Search engines
-    'opensearchproject/opensearch:2.11.1',  # Elasticsearch alternative ✅
-    'meilisearch/meilisearch:v1.5',  # Fast search engine ✅
-    
-    # Reverse proxies / Load balancers (different from yours)
-    'nginx/nginx-ingress:3.4.3',  # Nginx Ingress Controller ✅
-    'haproxytech/haproxy-debian:2.8',  # HAProxy Debian variant ✅
-    
-    # Cache / In-memory stores
-    'memcached:1.6.22',  # Specific stable version ✅
-    'dragonflydb/dragonfly:v1.13.0',  # Redis alternative ✅
-    
-    # Web application servers
-    'jetty:11-jre17-alpine',  # Jetty server ✅
-    
-    # Serverless / FaaS
-    'openfaas/gateway:0.27.4',  # OpenFaaS gateway ✅
-    
-    # Documentation / Static sites
-    'squidfunk/mkdocs-material:9.5', 
 ]
 
 NEW_RISKY_IMAGES = [
@@ -1478,9 +1369,6 @@ Examples:
   # Extract full dataset with parallel processing
   python extract_features.py extract --workers 5
   
-  # Test with a small subset
-  python extract_features.py test
-  
   # Scan a single image
   python extract_features.py single nginx:latest
   
@@ -1557,8 +1445,8 @@ Examples:
     elif args.command == 'test':
         logger.info("Running test with 30 images...")
         df = extract_dataset_parallel(
-            NEW_SAFE_IMAGES[40:50],    # 15 safe images
-            NEW_RISKY_IMAGES[40:50],   # 15 risky images
+            NEW_SAFE_IMAGES[10:50],    # 15 safe images
+            NEW_RISKY_IMAGES[10:50],   # 15 risky images
             output_csv=args.output,
             max_workers=4,
             timeout_per_image=args.timeout

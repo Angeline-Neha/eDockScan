@@ -1,14 +1,4 @@
 #!/usr/bin/env python3
-"""
-ENHANCED Behavioral Analyzer - High-Performance Layer Analysis
-Major improvements:
-1. Compiled regex patterns for 10x speed boost
-2. Vectorized scoring for batch processing
-3. Smart caching to avoid redundant analysis
-4. Parallel layer processing
-5. Reduced memory footprint
-6. Better pattern matching with context awareness
-"""
 
 import json
 import re
@@ -55,10 +45,7 @@ class RemediationSuggestion:
 
 
 class PatternMatcher:
-    """
-    High-performance pattern matcher with pre-compiled regex
-    This is the KEY performance improvement - compile once, use many times
-    """
+    
     
     def __init__(self):
         # Compile all patterns at initialization (10x faster than re-compiling)
@@ -239,16 +226,7 @@ class PatternMatcher:
 
 
 class BehavioralAnalyzer:
-    """
-    ENHANCED High-Performance Behavioral Analyzer
     
-    Key improvements:
-    - Pre-compiled regex patterns (10x faster)
-    - Vectorized scoring
-    - Layer-level caching
-    - Parallel processing support
-    - Reduced memory footprint
-    """
     
     def __init__(self, weights_file='behavioral_weights.json'):
         # Initialize high-performance pattern matcher
@@ -329,9 +307,7 @@ class BehavioralAnalyzer:
             return [f.result() for f in futures]
     
     def _analyze_layer(self, idx: int, layer: Dict) -> LayerAnalysis:
-        """
-        OPTIMIZED layer analysis with caching and vectorized scoring
-        """
+        
         command = layer.get('created_by', '')
         size = layer.get('size', 0)
         created = layer.get('created', '')
@@ -500,7 +476,7 @@ class BehavioralAnalyzer:
         total_weight = sum(self.learned_weights.values())
         analysis.risk_score = min(weighted_risk / total_weight, 1.0) if total_weight > 0 else 0.0
         
-        # DEBUG: Log if risk detected
+        
         if analysis.risk_score > 0.1:
             logger.info(f"Layer {idx} risk: {analysis.risk_score:.2f} - Findings: {len(analysis.findings)}")
             for finding in analysis.findings:
@@ -534,9 +510,7 @@ class BehavioralAnalyzer:
     
     def _extract_ml_features(self, layer_analyses: List[LayerAnalysis], 
                             trivy_data: Dict, syft_data: Dict) -> Dict[str, float]:
-        """
-        OPTIMIZED feature extraction with vectorized operations
-        """
+        
         
         # Aggregate threat indicators (vectorized max)
         all_indicators = defaultdict(float)
@@ -879,9 +853,6 @@ def export_analysis_json(layer_analyses: List[LayerAnalysis],
     logger.info(f"Analysis exported to {output_file}")
 
 
-# ============================================
-# STANDALONE TESTING
-# ============================================
 
 if __name__ == "__main__":
     import sys
@@ -896,7 +867,7 @@ if __name__ == "__main__":
     print("ENHANCED BEHAVIORAL ANALYZER - PERFORMANCE TEST")
     print("="*80)
     
-    # Test data - realistic malicious image
+    # Test data 
     mock_trivy_data = {
         "Metadata": {
             "ImageConfig": {
