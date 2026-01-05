@@ -56,7 +56,7 @@ credentials/
 config/secrets.json
 api_keys.txt
 
-merged_docker_features_metadata.json
+data/merged_docker_features_metadata.json
 # Node / React / Frontend
 node_modules/
 npm-debug.log*
